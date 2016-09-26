@@ -15,12 +15,12 @@
  */
 
 public class SpielLogik {
-String[][] versuch = new String[4][10];	//String-Array, in dem die Farben des aktuellen Versuches gespeichert werden
-String[] loesung = new String[4];		//String-Array, in dem die Farben des geheimen Codes gespeichert werden 
-String[] versuchAktuell = new String[4];		//String-Array, in dem die Farben des aktuellen Versuches gespeichert sind 
-String[][] hint = new String [4][10];	//Array, in dem die Lösungshinweise gespeichert sind
-int dieVersuche;
-int dieSchwierigkeit;
+protected String[][] versuch = new String[4][10];	//String-Array, in dem die Farben des aktuellen Versuches gespeichert werden
+protected String[] loesung = new String[4];		//String-Array, in dem die Farben des geheimen Codes gespeichert werden 
+protected String[] versuchAktuell = new String[4];		//String-Array, in dem die Farben des aktuellen Versuches gespeichert sind 
+protected String[][] hint = new String [4][10];	//Array, in dem die Lösungshinweise gespeichert sind
+protected int dieVersuche;
+protected int dieSchwierigkeit;
 
 //Konstruktor
 public SpielLogik(int pSchwierigkeit){
@@ -76,7 +76,7 @@ public void setVersuch(String[] eingegebenerVersuch){
 	dieVersuche++;
 	//for-Schleife, mit der die eingegebenen Farben im Array gespeichert werden
   for (int i = 0; i < versuch.length; i++) {
-      this.versuch[dieVersuche][i] = eingegebenerVersuch[i];
+      this.versuch[i][dieVersuche] = eingegebenerVersuch[i];
   }
 }
 
@@ -85,20 +85,21 @@ public String[][] getVersuch(){
 }
 
 
+//farbe aus 
 //1-schwarz(genau richtig), 2-weiß(farbe richtig), 0-nichts
 public void setHint(int farbe){
 	for(int i = 0; i < hint.length; i++){
 		//schwarze Farbe setzen
 		if(farbe == 2){
-			hint[dieVersuche][i] = Integer.toString(farbe);
+			hint[i][dieVersuche] = Integer.toString(farbe);
 		}
 		//weiße Farbe setzen
 		if(farbe == 1){
-			hint[dieVersuche][i] = Integer.toString(farbe);
+			hint[i][dieVersuche] = Integer.toString(farbe);
 		}
 		//keine Farbe setzen
 		if(farbe == 0){
-			hint[dieVersuche][i] = Integer.toString(farbe);
+			hint[i][dieVersuche] = Integer.toString(farbe);
 		}
 	}
 }
@@ -150,12 +151,12 @@ public void derVergleich(){
 		for(int j = 0; j < loesung.length; j++){
 			//es werden alle Farben der Lösung mit allen Farben des Versuch verglichen
 			//es wird die weiße Hint-Farbe gesetzt (2), wenn die Farben gleich sind und die Positionen nicht gleich sind
-			if (loesung[i] == versuch[dieVersuche][j] && loesung[i] != versuch[dieVersuche][i]){
+			if (loesung[i] == versuch[j][dieVersuche] && loesung[i] != versuch[i][dieVersuche]){
 				setHint(2);
 			}
 		}
 		//wenn die Position und die Farbe übereinstimmen wird die schwarze Hint-Farbe gesetzt
-		if (loesung[i] == versuch[dieVersuche][i]){
+		if (loesung[i] == versuch[i][dieVersuche]){
 			setHint(1);
 			tempRichtig++;
 		}
@@ -182,6 +183,11 @@ public void derVergleich(){
 	}
 }
 
+
+private void verloren() {
+	// TODO Auto-generated method stub
+	
+}
 
 //Methode, in der man einen neuen Versuch aus dem Spiel heraus starten kann
 public void neuerVersuch(){
