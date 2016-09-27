@@ -3,198 +3,246 @@
  *Farben
  *	gelb-1
  *	blau-2
- *	gr�n-3
+ *	grün-3
  *	rot-4
  *	braun-5
  *	orange-6
  *
  *Hint-Farben
- *	schwarz-2
- *	wei�-1
- *	leer-0
+ *	schwarz-2	Position und Farbe korrekt
+ *	weiß-1		Farbe korrekt - Position falsch
+ *	leer-0		Farbe kommt nicht in der Lösung vor
  */
 
 public class SpielLogik {
-protected String[][] versuch = new String[4][10];	//String-Array, in dem die Farben des aktuellen Versuches gespeichert werden
-protected String[] loesung = new String[4];		//String-Array, in dem die Farben des geheimen Codes gespeichert werden 
-protected String[] versuchAktuell = new String[4];		//String-Array, in dem die Farben des aktuellen Versuches gespeichert sind 
-protected String[][] hint = new String [4][10];	//Array, in dem die L�sungshinweise gespeichert sind
-protected int dieVersuche;
-protected int dieSchwierigkeit;
+protected int[][] versuch = new int[4][10];					//String-Array, in dem die Farben des aktuellen Versuches gespeichert werden
+protected int[] loesung = new int[4];						//String-Array, in dem die Farben des geheimen Codes gespeichert werden 
+protected int[] versuchAktuell = new int[4];				//String-Array, in dem die Farben des aktuellen Versuches gespeichert sind 
+protected int[][] hint = new int [4][10];					//Array, in dem die Lösungshinweise gespeichert sind
+protected int dieVersuche;									//Zeigt an, um welchen Versuch es sich handelt
+protected int dieSchwierigkeit;								//Ändert die Anazahl zu verfügbaren Farben
+protected int tempRichtig;									//Anzahl richtige Pins in diesem Versuch
 
-//Konstruktor
+															//Konstruktor
 public SpielLogik(int pSchwierigkeit){
 	
-	//zu Beginn hat man 0 Versuche
+															//zu Beginn ist man bei Versuch 0
 	dieVersuche = 0;
 	
-	//die Schwierigkeit wird je nach Auswahl gesetzt
+															//die Schwierigkeit wird je nach Auswahl gesetzt
 	dieSchwierigkeit = pSchwierigkeit;
 	
-	//zuf�llige Loesung generieren
+															//zufällige Loesung generieren
     setLoesung();
 }
 
-//hier wird die L�sungsreihe zuf�llig gesetzt
+															//hier wird die Lösungsreihe zufällig gesetzt
 public void setLoesung(){
 	int dieZufallszahl;
-	//1.Stufe der Schwierigkeit - 2 Farben sind m�glich
+															//1.Stufe der Schwierigkeit - 2 Farben sind möglich
 	if(dieSchwierigkeit == 1){
 	    for(int i = 0; i < loesung.length; i++) {
 	        dieZufallszahl = ((int)(Math.random()*2+1));	//Zufallszahl von 1 bis 2 wird generiert
-	        loesung[i] = Integer.toString(dieZufallszahl);
+	        loesung[i] = dieZufallszahl;
 	    }
 	}
-	//2.Stufe - 4 Farben sind m�glich
+															//2.Stufe - 4 Farben sind möglich
 	if(dieSchwierigkeit == 2){
 	    for(int i = 0; i < loesung.length; i++) {
 	        dieZufallszahl = ((int)(Math.random()*4+1));	//Zufallszahl von 1 bis 4 wird generiert
-	        loesung[i] = Integer.toString(dieZufallszahl);
+	        loesung[i] = dieZufallszahl;
 	    }
 	}
-	//3. Stufe - 6 Farben sind m�glich
+															//3. Stufe - 6 Farben sind möglich
 	if(dieSchwierigkeit == 3){
 	    for(int i = 0; i < loesung.length; i++) {
 	        dieZufallszahl = ((int)(Math.random()*6+1));	//Zufallszahl von 1 bis 6 wird generiert
-	        loesung[i] = Integer.toString(dieZufallszahl);
+	        loesung[i] = dieZufallszahl;
 	    }
 	}
 }
-
-//gibt das Array der L�sung zur�ck
-public String[] getLoesung(){
+//													TO-DO: Nicht genutzt - löschen?
+															//gibt das Array der Lösung zurück
+public int[] getLoesung(){
 	return loesung;
 }
 
-
-//eingegebener Versuch ist das Array mit den Farben, die zur Auswahl best�tigt wurden
-//hier werden die Farben also "fest" in einem 2D-Array gespeichert
-//hier muss der "aktuelleVersuch" �bergeben werden
-public void setVersuch(String[] eingegebenerVersuch){
+//													TO-DO: Kann eingegebenerVersuch auch ohne seperate Methode in das versuch array geschrieben werden?
+															//eingegebener Versuch ist das Array mit den Farben, die zur Auswahl bestätigt wurden
+															//hier werden die Farben also "fest" in einem 2D-Array gespeichert
+															//hier muss der "aktuelleVersuch" übergeben werden
+public void setVersuch(int[] eingegebenerVersuch){
 	
-	//die Anzahl der Versuche werden erh�ht
+															//die Anzahl der Versuche werden erhöht
 	dieVersuche++;
-	//for-Schleife, mit der die eingegebenen Farben im Array gespeichert werden
+															//for-Schleife, mit der die eingegebenen Farben im Array gespeichert werden
   for (int i = 0; i < versuch.length; i++) {
       this.versuch[i][dieVersuche] = eingegebenerVersuch[i];
   }
 }
-
-public String[][] getVersuch(){
+//													TO-DO: Nicht genutzt - löschen?
+public int[][] getVersuch(){
     return versuch;
 }
 
-
-//farbe aus 
-//1-schwarz(genau richtig), 2-wei�(farbe richtig), 0-nichts
-public void setHint(int farbe){
-	for(int i = 0; i < hint.length; i++){
-		//schwarze Farbe setzen
-		if(farbe == 2){
-			hint[i][dieVersuche] = Integer.toString(farbe);
-		}
-		//wei�e Farbe setzen
-		if(farbe == 1){
-			hint[i][dieVersuche] = Integer.toString(farbe);
-		}
-		//keine Farbe setzen
-		if(farbe == 0){
-			hint[i][dieVersuche] = Integer.toString(farbe);
-		}
+//													TO-DO: Vereinfachen? 
+															//2-schwarz(genau richtig), 1-weiß(farbe richtig), 0-nichts
+public void setHint(int farbe, int i){
+															//schwarze Farbe setzen
+	if(farbe == 2){
+		hint[i][dieVersuche] = farbe;
+	}
+															//weiße Farbe setzen
+	if(farbe == 1){
+		hint[i][dieVersuche] = farbe;
+	}
+															//keine Farbe setzen
+	if(farbe == 0){
+		hint[i][dieVersuche] = farbe;
 	}
 }
 
-public String[][] getHint(){
+//													TO-DO: Nicht genutzt - löschen?
+public int[][] getHint(){
 	return hint;
 }
 
-
-//Achtung: diese Methode muss beim Best�tigen des Versuchs 4x aufgerufen werden (da alle 4 Farben gesetzt werden m�ssen)
-//hier wird der aktuelle Versuch gesetzt
-public void setVersuchAktuell(int farbe){
-	
-	//for-Schleife, die alle Farben des Versuches setzt
-	for(int i = 0; i < versuchAktuell.length; i++){
-		
-		//switch-case, mit der die einzelnen Farben an der entsprechenden Stelle gesetzt werden
-		switch(farbe){
-		case 1: versuchAktuell[i] = Integer.toString(1);	//geld
-				break;
-		case 2: versuchAktuell[i] = Integer.toString(2);	//blau
-				break;
-		case 3: versuchAktuell[i] = Integer.toString(3);	//gr�n
-				break;
-		case 4: versuchAktuell[i] = Integer.toString(4);	//rot
-				break;
-		case 5: versuchAktuell[i] = Integer.toString(5);	//braun
-				break;
-		case 6: versuchAktuell[i] = Integer.toString(6);	//orange
-				break;
-		}
-	}
+//													TO-DO: Andere Lösung möglich? Aktuell eher Umständlich
+															//Achtung: diese Methode muss beim Bestätigen des Versuchs 4x aufgerufen werden (da alle 4 Farben gesetzt werden müssen)
+															//hier wird der aktuelle Versuch gesetzt
+public void setVersuchAktuell(int farbe, int i){
+															//setzt alle Farben des aktuellen Versuches
+	versuch[i][dieVersuche] = farbe;
 }
 
-//Achtung: nach dem aktuellen Versuch wird "derVergleich" zur �berpr�fung aufgerufen
-public String[] getVersuchAktuell(){
+//													TO-DO: Brauchen wir seperate getter/setter?
+															//Achtung: nach dem aktuellen Versuch wird "derVergleich" zur Überprüfung aufgerufen
+public int[] getVersuchAktuell(){
 	return versuchAktuell;
 }
 
+															//hier werden die Hinweise geordnet, so dass nicht ersichlich ist, welcher Hinweis zu welchem Pin gehört
+public void hintOrdnen(){
+	int anzahl0 = 0;
+	int anzahl1 = 0;
+	int anzahl2 = 0;
+	int zaehler = 0;
+	for (int i=0;i<4;i++){
+		switch (hint[i][dieVersuche]){						//speichert Anzahl 0er, 1er, 2er aus dem hint array
+		case 0:
+			anzahl0++;
+			break;
+		case 1:
+			anzahl1++;
+			break;
+		case 2:
+			anzahl2++;
+			break;
+		}
+	}
+	for (int j=0; j<anzahl2; j++){							//überschreibt das hint array mit zuerst allen 2er
+		hint[zaehler][dieVersuche]=2;
+		zaehler++;
+	}
+	for (int j=0; j<anzahl1; j++){							//dannach alle 1er
+		hint[zaehler][dieVersuche]=1;
+		zaehler++;
+	}
+	for (int j=0; j<anzahl0; j++){							//und am Schluss mit den restlichen 0er
+		hint[zaehler][dieVersuche]=0;
+		zaehler++;
+	}
+}
 
-//hier werden die Farben miteinander verglichen
-//diese Funktion wird immer nach dem Best�tigen einer Reihe aufgerufen
+															//hier werden die Farben miteinander verglichen
+															//diese Funktion wird immer nach dem Bestätigen einer Reihe aufgerufen
 public void derVergleich(){
 	
-	//tempor�rer Z�hler der richtigen Farben&Position wird gesetzt
-	int tempRichtig = 0;
-	//ist die letzte Zeile erreicht?
-	for(int i = 0; i < loesung.length; i++){
-		for(int j = 0; j < loesung.length; j++){
-			//es werden alle Farben der L�sung mit allen Farben des Versuch verglichen
-			//es wird die wei�e Hint-Farbe gesetzt (2), wenn die Farben gleich sind und die Positionen nicht gleich sind
-			if (loesung[i] == versuch[j][dieVersuche] && loesung[i] != versuch[i][dieVersuche]){
-				setHint(2);
+															//temporärer Zähler der richtigen Farben&Position wird gesetzt
+	tempRichtig = 0;
+	int [][] schonBenutzt = {{-1,-1,-1,-1},{-1,-1,-1,-1}};	//wichtig, damit kein Pin doppelt verwendet wird. Bereits verwendete Versuchs und Lösungs Indizes werden hier gespeichert
+	int hilfszaehler = 0;									//benutzt um den Index des schonBenutzt arrays zu verschieben
+	boolean benutzt = false;								//Ist der aktuelle Index bereits als Hinweis verwendet, so wird er bei der nächsten Überprüfung übersprungen
+
+	for(int i = 0; i < 4; i++){
+															//wenn die Position und die Farbe übereinstimmen wird die schwarze Hint-Farbe gesetzt bzw Zahl 2
+		if (versuch[i][dieVersuche]==loesung[i]){
+			setHint(2,i);
+			tempRichtig++;
+			schonBenutzt[0][hilfszaehler]=i;				//Index des benutzten Versuchs wird gespeichert
+			schonBenutzt[1][hilfszaehler]=i;				//Index der benutzten Lösung wird gespeichert
+			hilfszaehler++;
+		}
+	}
+	for(int i = 0; i<4; i++){
+		for(int l = 0; l < 4; l++){							//Wurde der Versuch mit diesem Index bereits als Hinweis verwendet?
+			if (schonBenutzt[0][l]==i){
+				benutzt = true;
 			}
 		}
-		//wenn die Position und die Farbe �bereinstimmen wird die schwarze Hint-Farbe gesetzt
-		if (loesung[i] == versuch[i][dieVersuche]){
-			setHint(1);
-			tempRichtig++;
+		if (benutzt) {										//Falls benutzt --> überspringen
+			benutzt = false;
+			continue;
 		}
-		//wenn die Farbe nicht mit einer der Farben aus der L�sung �bereinstimmt wird nichts gespeichert(0)
-		else{
-			setHint(0);
+		for(int j = 0; j < 4; j++){							//Wurde die Lösung mit diesem Index bereits als Hinweis verwendet?
+			for(int k=0;k<4;k++){
+				if (schonBenutzt[1][k]==j){
+					benutzt = true;
+				}
+			}
+			if (benutzt) {									//Falls benutzt --> überspringen
+				benutzt = false;
+				continue;
+			}
+															//es werden alle Farben der Lösung mit allen Farben des Versuch verglichen
+															//es wird die weiße Hint-Farbe gesetzt (1), wenn die Farben gleich sind und die Positionen nicht gleich sind
+			if (versuch[i][dieVersuche]==loesung[j]){		//Farbe+Position gleich ist hier nicht mehr möglich, da der entsprechende Index übersprungen wurde
+				setHint(1,i);
+				schonBenutzt[0][hilfszaehler]=i;			//Index des benutzten Versuchs wird gespeichert
+				schonBenutzt[1][hilfszaehler]=j;			//Index der benutzten Lösung wird gespeichert
+				hilfszaehler++;
+				break;										//Rest der Lösungsindizes wird übersprungen, da der aktuelle Versuchsindex bereits verwendet wird
+			}
 		}
-	
+															//wenn der geprüfte Versuch nicht mit einer Farbe aus der Lösung übereinstimmt wird nichts gespeichert(0)
+		if (hint[i][dieVersuche]!=1 && hint[i][dieVersuche]!=2) {
+			setHint(0,i);
+		}
 	}
 	
 	if(dieVersuche == 10 && tempRichtig == 4){
-		//zuerst noch die Farben auf dem Spielfeld setzen
+//													TO-DO: Warum? Sollte auch ohne dieses IF funktionieren. Brauchen nur test ob dieVersuche = 10 und nicht alle richtig.
+//														   Nur test auf gewonnen muss vor test auf 10 versuche kommen!
+															//zuerst noch die Farben auf dem Spielfeld setzen
 		setVersuch(getVersuchAktuell());
-		//danach die Gewonnen-Methode aufrufen
+															//danach die Gewonnen-Methode aufrufen
 		gewonnen();
 	}
-	else if(dieVersuche == 10 && tempRichtig < 4){
+	else if(dieVersuche == 10 && tempRichtig < 4){			//wenn der letzte(10.) Versuch erreicht ist und nicht alle Pins korrekt gesetzt sind wird die "verloren" Methode aufgerufen
 		setVersuch(getVersuchAktuell());
 		verloren();
 	}
-	//wenn alle 4 Farben richtig sind und an der richtigen STelle stehen, wird die Methode "gewonnen" aufgerufen
+															//wenn alle 4 Farben richtig sind und an der richtigen STelle stehen, wird die Methode "gewonnen" aufgerufen
 	if(tempRichtig == 4){
 		gewonnen();
 	}
+	
+	hintOrdnen();											//wenn weder gewonnen noch verloren, dann werden die Hinweise geordnet um anschließend angezeigt zu werden
 }
 
+															//Verhalten wenn der Spieler verloren hat
+private void verloren() {//							TO-DO: Methode füllen
 
-private void verloren() {
-	// TODO Auto-generated method stub
+}
+
+															//Methode, in der man einen neuen Versuch aus dem Spiel heraus starten kann
+public void neuerVersuch(){//						TO-DO: Methode füllen
 	
 }
 
-//Methode, in der man einen neuen Versuch aus dem Spiel heraus starten kann
-public void neuerVersuch(){
-	
-}
-
+															//Verhalten wenn der Spieler gewonnen hat
 public void gewonnen(){
-	
+	new Gewonnen();											//Objekt der Gewonnenklasse wird erzeugt
+//													TO-DO: Gewonnen Klasse ändern bzw Methode an sich umwerfen/neu machen
 }
 }
