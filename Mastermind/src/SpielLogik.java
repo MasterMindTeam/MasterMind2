@@ -73,8 +73,6 @@ public int[] getLoesung(){
 															//hier muss der "aktuelleVersuch" übergeben werden
 public void setVersuch(int[] eingegebenerVersuch){
 	
-															//die Anzahl der Versuche werden erhöht
-	dieVersuche++;
 															//for-Schleife, mit der die eingegebenen Farben im Array gespeichert werden
   for (int i = 0; i < versuch.length; i++) {
       this.versuch[i][dieVersuche] = eingegebenerVersuch[i];
@@ -178,6 +176,7 @@ public void derVergleich(){
 		for(int l = 0; l < 4; l++){							//Wurde der Versuch mit diesem Index bereits als Hinweis verwendet?
 			if (schonBenutzt[0][l]==i){
 				benutzt = true;
+				break;
 			}
 		}
 		if (benutzt) {										//Falls benutzt --> überspringen
@@ -188,6 +187,7 @@ public void derVergleich(){
 			for(int k=0;k<4;k++){
 				if (schonBenutzt[1][k]==j){
 					benutzt = true;
+					break;
 				}
 			}
 			if (benutzt) {									//Falls benutzt --> überspringen
@@ -228,6 +228,7 @@ public void derVergleich(){
 	}
 	
 	hintOrdnen();											//wenn weder gewonnen noch verloren, dann werden die Hinweise geordnet um anschließend angezeigt zu werden
+	dieVersuche++;											//die Anzahl der Versuche wird erhöht
 }
 
 															//Verhalten wenn der Spieler verloren hat
