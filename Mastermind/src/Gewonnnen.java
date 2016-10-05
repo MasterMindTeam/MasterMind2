@@ -6,13 +6,13 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 
-public class Gewonnen extends JFrame{
+public class Gewonnnen extends JFrame{
 	
-	public Gewonnen(){
+	public Gewonnnen(){
 		super("Gewonnen");
 	    setDefaultCloseOperation(EXIT_ON_CLOSE);
 	    add(createMenuPanel());
-	    pack();
+	    setSize(600,800);
 	    setLocationRelativeTo(null);
 	    setVisible(true);
 }
@@ -21,12 +21,7 @@ private JPanel createMenuPanel() {
     JPanel panel = new JPanel(new GridLayout(0, 1));
     
     JButton start = new JButton("Super!");
-    start.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            //Dummy Knopf
-        }
-    });
+    start.setEnabled(false);
     
     JButton restart = new JButton("Nochmal!");
     restart.addActionListener(new ActionListener() {
@@ -41,6 +36,8 @@ private JPanel createMenuPanel() {
     close.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
+        	for(int i = 0; i < 20; i++) {System.out.println();}
+        	System.out.println("Thank you for playing");
             System.exit(0);
         }
     });

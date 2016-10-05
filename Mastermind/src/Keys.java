@@ -8,8 +8,6 @@
 // on the game thread rather than on the EDT to avoid
 // problems.
 
-package com.neet.DiamondHunter.Manager;
-
 import java.awt.event.KeyEvent;
 
 public class Keys {

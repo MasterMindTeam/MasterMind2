@@ -23,7 +23,7 @@ public class GUI {
 						System.out.print("blau   ");
 						break;
 					case 3:
-						System.out.print("grÃ¼n   ");
+						System.out.print("grün   ");
 						break;
 					case 4:
 						System.out.print("rot    ");
@@ -46,7 +46,7 @@ public class GUI {
 					System.out.print("blau    ");
 					break;
 				case 3:
-					System.out.print("grÃ¼n    ");
+					System.out.print("grün    ");
 					break;
 				case 4:
 					System.out.print("rot     ");
@@ -67,7 +67,7 @@ public class GUI {
 					System.out.print("nix     ");
 					break;
 				case 1:
-					System.out.print("weiÃŸ    ");
+					System.out.print("weiß    ");
 					break;
 				case 2:
 					System.out.print("schwarz ");
@@ -79,6 +79,7 @@ public class GUI {
 			System.out.println("");
 			System.out.println("");
 			if(logik.tempRichtig==4){								//Wenn gewonnen: Fragt nicht nach neuer Eingabe
+				Gewonnnen gewonnen = new Gewonnnen();
 				break;
 			}
 		}
