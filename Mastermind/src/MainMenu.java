@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
-
+//hallo
 // Aufzählung der Positionen im Hauptmenü
 enum MainMenuPositions {
 	NEUESSPIEL, HIGHSCORE, HILFE, CREDITS;
