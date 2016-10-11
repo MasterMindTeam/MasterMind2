@@ -50,8 +50,8 @@ public class SubMenuSchwierigkeit extends JPanel implements KeyListener {
 		this.setPreferredSize(new Dimension(800, 600));
 		setVisible(false);
 
-		bb8 = load("C:/Users/staniend/git/mastermind/Mastermind/src/Menü/BB8.png");
-		sub = load("C:/Users/staniend/git/mastermind/Mastermind/src/Sub.png");		
+		bb8 = load("src/BB8.png");
+		sub = load("src/Sub.png");		
 	}
 
 	public void paint(Graphics gr) {
@@ -85,7 +85,6 @@ public class SubMenuSchwierigkeit extends JPanel implements KeyListener {
 		}
 		return null;
 	}
-
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub

@@ -49,8 +49,8 @@ public class MainMenu extends JPanel implements KeyListener {
 		setLayout(null);
 		this.setPreferredSize(new Dimension(800, 600));
 		setVisible(false);
-		bg = load("C:/Users/staniend/workspace/Test/src/Men_1_.jpg");
-		bb8 = load("C:/Users/staniend/git/mastermind/Mastermind/src/Menü/BB8.png");
+		bg = load("src/Men_1_.jpg");
+		bb8 = load("src/BB8.png");
 	}		
 
 	public void paint(Graphics gr) {

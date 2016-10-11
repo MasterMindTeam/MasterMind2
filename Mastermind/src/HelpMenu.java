@@ -32,7 +32,7 @@ public class HelpMenu extends JPanel implements KeyListener {
 		this.setPreferredSize(new Dimension(800, 600));
 		setVisible(false);
 
-		hilfe = load("C:/Users/staniend/git/mastermind/Mastermind/src/Hilfe.png");		
+		hilfe = load("src/Hilfe.png");		
 	}
 
 	public void paint(Graphics gr) {

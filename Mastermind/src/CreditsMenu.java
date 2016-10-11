@@ -32,7 +32,7 @@ public class CreditsMenu extends JPanel implements KeyListener {
 		this.setPreferredSize(new Dimension(800, 600));
 		setVisible(false);
 
-		credits = load("C:/Users/staniend/git/mastermind/Mastermind/src/Credits.png");		
+		credits = load("src/Credits.png");		
 	}
 
 	public void paint(Graphics gr) {
