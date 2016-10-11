@@ -101,12 +101,14 @@ public final class MenuManager {
 		mainFrame.getContentPane().remove(main);
 		mainFrame.getContentPane().remove(schwierigkeit);
 		mainFrame.getContentPane().remove(help);
+		mainFrame.getContentPane().remove(spiel);
 	}
 
 	public static void removeAllKeyListener() {
 		mainFrame.removeKeyListener(main);
 		mainFrame.removeKeyListener(schwierigkeit);
 		mainFrame.removeKeyListener(help);
+		mainFrame.removeKeyListener(spiel);
 	}
 	
 	public static void setAllInvisible(){
@@ -114,6 +116,7 @@ public final class MenuManager {
 		help.setVisible(false);
 		credit.setVisible(false);
 		schwierigkeit.setVisible(false);
+		spiel.setVisible(false);
 	}
 
 }
