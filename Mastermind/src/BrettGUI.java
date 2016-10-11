@@ -30,7 +30,7 @@ public class BrettGUI extends JPanel implements KeyListener{
 	public BrettGUI() {
 		setLayout(null);
 		this.setPreferredSize(new Dimension(800,600));
-		setVisible(true);
+		setVisible(false);
 		hintergrund = load("MastermindBild.png");
 		roterKreis = load("RoterKreis.png");
 		blauerKreis = load("BlauerKreis.png");
@@ -42,20 +42,7 @@ public class BrettGUI extends JPanel implements KeyListener{
 		schwarzerKreis = load("SchwarzerKreis.png");
 	}
 	
-	public static void main (String[] args) {
-		BrettGUI brett = new BrettGUI();
-		brett.methode(brett);
-	}
 	
-	public void methode(BrettGUI brett) {
-		JFrame jf = new JFrame();
-		jf.addKeyListener(this);
-		jf.setSize(600, 800);
-		jf.setLocationRelativeTo(null);
-		jf.getContentPane().add(brett);
-		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		jf.setVisible(true);
-	}
 	
 	public void paint(Graphics gr) {
 		Graphics2D g = (Graphics2D) gr;
@@ -191,8 +178,10 @@ public class BrettGUI extends JPanel implements KeyListener{
 				zaehlerFarbe = 0;
 				
 			}
+		
 		}
 		
+				
 	}
 	
 	public void buchstabenUmwandeln(KeyEvent e) {
