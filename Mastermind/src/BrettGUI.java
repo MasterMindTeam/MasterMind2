@@ -22,9 +22,9 @@ public class BrettGUI extends JPanel implements KeyListener{
 	
 	protected BufferedImage hintergrund,roterKreis,blauerKreis,gelberKreis,grünerKreis,orangenerKreis,
 	weißerKreis,schwarzerKreis,braunerKreis;
-	int zaehlerFarbe = 0;
-	int [][] arrayFarbe = new int[8][10];
-	int zaehlerPosition = 0;
+	protected int zaehlerFarbe = 0;
+	protected int [][] arrayFarbe = new int[8][10];
+	protected int zaehlerPosition = 0;
 	SpielLogik objekt123 = new SpielLogik(2);
 	protected int testEnter = 0;
 	protected int angabeAbbrechen;
@@ -33,7 +33,7 @@ public class BrettGUI extends JPanel implements KeyListener{
 	public BrettGUI() {
 		setLayout(null);
 		this.setPreferredSize(new Dimension(800,600));
-		setVisible(false);
+		setVisible(true);
 		hintergrund = load("MastermindBild.png");
 		roterKreis = load("RoterKreis.png");
 		blauerKreis = load("BlauerKreis.png");
@@ -104,6 +104,7 @@ public class BrettGUI extends JPanel implements KeyListener{
 					}
 				}
 			}
+			}
 		for (int i = 0; i<arrayFarbe.length;i++) {
 			for (int j = 0; j<arrayFarbe[i].length;j++) {
 		if (arrayFarbe[i][j] == 1) {
@@ -118,7 +119,7 @@ public class BrettGUI extends JPanel implements KeyListener{
 			switch (i) {
 			case 0: g.drawImage(blauerKreis, 75,  16+72*j, null); break;
 			case 1: g.drawImage(blauerKreis, 175, 16+72*j, null); break;
-			case 2: g.drawImage(blauerKreis, 275, 16+72*j, null); break;
+			case 2: g.drawImage(blauerKreis, 275, 16+72*j, null);  	break;
 			case 3: g.drawImage(blauerKreis, 375, 16+72*j, null); break;
 			}
 		}
@@ -152,14 +153,13 @@ public class BrettGUI extends JPanel implements KeyListener{
 			case 1: g.drawImage(braunerKreis, 175, 16+72*j, null); break;
 			case 2: g.drawImage(braunerKreis, 275, 16+72*j, null); break;
 			case 3: g.drawImage(braunerKreis, 375, 16+72*j, null); break;
-			}
+			}	
 		}
 		}
 		}
 		g.drawImage(weißerKreis,540,14,null);
 		g.drawImage(schwarzerKreis, 508, 14, null);
 		}
-	}
 
 	
 	public static BufferedImage load (String name) {
@@ -190,54 +190,67 @@ public class BrettGUI extends JPanel implements KeyListener{
 		
 		buchstabenUmwandeln(e);
 		if (e.getKeyChar() == KeyEvent.VK_W) {
-			zaehlerFarbe++;
-			if (zaehlerFarbe > 6) {
-				zaehlerFarbe = 1;
+			try {
+				zaehlerFarbe++;
+				if (zaehlerFarbe > 6) {
+					zaehlerFarbe = 1;
+				}
+				arrayFarbe[zaehlerPosition][objekt123.dieVersuche] = zaehlerFarbe;
+				repaint();
+			} catch (Exception f) {
 			}
-			arrayFarbe[zaehlerPosition][objekt123.dieVersuche] = zaehlerFarbe;
-			repaint();
 		}
 		if (e.getKeyChar() == KeyEvent.VK_S) {
-			zaehlerFarbe--;
-			if (zaehlerFarbe < 1) {
-				zaehlerFarbe = 6;
+			try {
+				zaehlerFarbe--;
+				if (zaehlerFarbe < 1) {
+					zaehlerFarbe = 6;
+				}
+				arrayFarbe[zaehlerPosition][objekt123.dieVersuche] = zaehlerFarbe;
+				repaint();
+			} catch (Exception f) {
 			}
-			arrayFarbe[zaehlerPosition][objekt123.dieVersuche] = zaehlerFarbe;
-			repaint();
 		}
 		if (e.getKeyChar() == KeyEvent.VK_D) {
-			zaehlerPosition++;
-			
-			if (zaehlerPosition > 3 ) {
-				zaehlerPosition = 3;
+			try {
+				zaehlerPosition++;
+				
+				if (zaehlerPosition > 3 ) {
+					zaehlerPosition = 3;
+				}
+				zaehlerFarbe = 0;
+			} catch (Exception f) {
 			}
-			zaehlerFarbe = 0;
 		}
 		if (e.getKeyChar() == KeyEvent.VK_A) {
-			zaehlerPosition--;
-			if (zaehlerPosition < 0) {
-				zaehlerPosition = 0;
+			try {
+				zaehlerPosition--;
+				if (zaehlerPosition < 0) {
+					zaehlerPosition = 0;
+				}
+				zaehlerFarbe = 0;
+			} catch (Exception f) {
 			}
-			zaehlerFarbe = 0;
 		}
 		if (e.getKeyChar() == KeyEvent.VK_ENTER) {
-			int gesetzt = 0;
-			for (int i = 0; i<4 ; i++) {
-				if (arrayFarbe[i][objekt123.dieVersuche]!=0){
-					gesetzt++;
+			try {
+				int gesetzt = 0;
+				for (int i = 0; i<4 ; i++) {
+					if (arrayFarbe[i][objekt123.dieVersuche]!=0){
+						gesetzt++;
+					}
 				}
+				if (gesetzt==4){
+					testEnter++;
+					if (testEnter > 9) {
+						repaint();
+					}
+					objekt123.dieVersuche++;
+					zaehlerPosition = 0;
+					zaehlerFarbe = 0;
+				}
+			} catch (Exception f) {
 			}
-			if (gesetzt==4){
-				objekt123.dieVersuche++;
-				zaehlerPosition = 0;
-				zaehlerFarbe = 0;
-				
-			}
-			testEnter++;
-			if (testEnter > 9) {
-				repaint();
-			}
-		
 		}
 		if (e.getKeyChar() == KeyEvent.VK_ESCAPE) {
 		angabeAbbrechen=JOptionPane.showConfirmDialog(null, "Zurück zum Hauptmenü?", "Abbrechen?", JOptionPane.YES_NO_OPTION);
