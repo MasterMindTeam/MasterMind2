@@ -10,6 +10,7 @@ public final class MenuManager {
 	private static CreditsMenu credit;
 	private static BrettGUI spiel;
 	private static JFrame mainFrame;
+	protected static boolean resetSpiel = true;
 
 	public static void main(String[] args) throws IOException {
 		MenuManager manager = new MenuManager();
@@ -47,7 +48,8 @@ public final class MenuManager {
 
 		removeAllContentPane();
 		mainFrame.getContentPane().add(main);
-
+		
+		resetSpiel = true;
 	}
 	
 	public static void showGame(){
@@ -96,6 +98,7 @@ public final class MenuManager {
 		
 		
 	}
+	
 
 	public static void removeAllContentPane() {
 		mainFrame.getContentPane().remove(main);

@@ -48,6 +48,14 @@ public class BrettGUI extends JPanel implements KeyListener{
 	
 	
 	public void paint(Graphics gr) {
+		if(MenuManager.resetSpiel){
+			MenuManager.resetSpiel = false;
+			objekt123 = new SpielLogik(2);
+			arrayFarbe = new int [8][10];
+			zaehlerFarbe = 0;
+			zaehlerPosition = 0;
+			testEnter = 0;
+		}
 		Graphics2D g = (Graphics2D) gr;
 		g.setColor(Color.WHITE);
 		g.fill(g.getClipBounds());
