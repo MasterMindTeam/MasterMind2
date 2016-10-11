@@ -27,7 +27,7 @@ public class BrettGUI extends JPanel implements KeyListener{
 	protected int zaehlerPosition = 0;
 	SpielLogik objekt123 = new SpielLogik(2);
 	protected int testEnter = 0;
-	protected int angabeAbbrechen;
+	protected int angabeAbbrechen=5;
 
 	
 	public BrettGUI() {
@@ -253,15 +253,38 @@ public class BrettGUI extends JPanel implements KeyListener{
 					if (testEnter > 9) {
 						repaint();
 					}
-					objekt123.dieVersuche++;
 					zaehlerPosition = 0;
 					zaehlerFarbe = 0;
+					objekt123.setVersuch(arrayFarbe);
+					objekt123.derVergleich2();
+					if(objekt123.tempRichtig == 4){
+						testEnter = 10;
+						repaint();
+					}
+					System.out.println();
+					System.out.println("Lösung: ");
+					for ( int j = 0; j<4; j++){
+						switch (objekt123.loesung[j]){
+						case 1:
+							System.out.print("rot   ");
+							break;
+						case 2:
+							System.out.print("blau   ");
+							break;
+						case 3:
+							System.out.print("gelb   ");
+							break;
+						case 4:
+							System.out.print("grün    ");
+							break;
+						}
+					}
 				}
 			} catch (Exception f) {
 			}
 		}
 		if (e.getKeyChar() == KeyEvent.VK_ESCAPE) {
-		angabeAbbrechen=JOptionPane.showConfirmDialog(null, "Zurück zum Hauptmenü?", "Abbrechen?", JOptionPane.YES_NO_OPTION);
+		angabeAbbrechen=JOptionPane.showConfirmDialog(null, "Zurück zum Hauptmenü?", "Abbrechen?", JOptionPane.OK_CANCEL_OPTION);
 		if (angabeAbbrechen == 0) {
 			MenuManager.showMainMenu();
 		}

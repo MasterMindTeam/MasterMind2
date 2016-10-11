@@ -28,7 +28,7 @@ private JPanel createMenuPanel() {
     	@Override
     	public void actionPerformed(ActionEvent e) {
     		setVisible(false);
-    		GUI.main(null);
+//    		GUI.main(null);
     	}
     });
     

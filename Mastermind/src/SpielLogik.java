@@ -1,12 +1,12 @@
 /*
  *Beschreibung:
  *Farben
- *	gelb-1
+ *	rot-1
  *	blau-2
- *	gruen-3
- *	rot-4
- *	braun-5
- *	orange-6
+ *	gelb-3
+ *	grün-4
+ *	orange-5
+ *	braun-6
  *
  *Hint-Farben
  *	schwarz-2	Position und Farbe korrekt
@@ -71,11 +71,11 @@ public int[] getLoesung(){
 															//eingegebener Versuch ist das Array mit den Farben, die zur Auswahl bestÃ¤tigt wurden
 															//hier werden die Farben also "fest" in einem 2D-Array gespeichert
 															//hier muss der "aktuelleVersuch" Ã¼bergeben werden
-public void setVersuch(int[] eingegebenerVersuch){
+public void setVersuch(int[][] eingegebenerVersuch){
 	
 															//for-Schleife, mit der die eingegebenen Farben im Array gespeichert werden
   for (int i = 0; i < versuch.length; i++) {
-      this.versuch[i][dieVersuche] = eingegebenerVersuch[i];
+      this.versuch[i][dieVersuche] = eingegebenerVersuch[i][dieVersuche];
   }
 }
 //													TO-DO: Nicht genutzt - lÃ¶schen?
@@ -157,7 +157,7 @@ public void hintOrdnen(){
 
 public void derVergleich2(){
 	//temporärer Zähler, wenn Farbe und Position richtig
-	int tempRichtig = 0;
+	tempRichtig = 0;
 	int benutztschwarz[] = {0,0,0,0};
 	int benutztweis[] = {0,0,0,0};
 	int schonGenutzt;
@@ -172,17 +172,21 @@ public void derVergleich2(){
 			//diesen Versuchs-Pin speichern, da er beim Überprüfen auf eine Übereinstimung
 			//mit der Farbe nicht mehr berücksichtigt werden darf (sonst doppelte Überprüfung und setzen der Antwort)
 			benutztschwarz[i] = 1;
+			benutztweis[i] = 1;
 			
 			tempRichtig++;	//
 		}
+	}
+	
+	for(int i = 0; i < loesung.length; i++){
 		
 		for(int j = 0; j < loesung.length; j++){
 			//es werden alle Farben der Lösung mit allen Farben des Versuch verglichen
 			//es wird die weiße Hint-Farbe gesetzt (1), wenn die Farben gleich sind und die Positionen nicht gleich sind und
 			//der Versuchs-Pin (array benutztschwarz[] und benutztweis[]) noch nicht mit einer schwarzen Antwort gesetzt wurde (siehe oben)
-			if (loesung[i] == versuch[j][dieVersuche] && loesung[i] != versuch[j][dieVersuche]
-					&& benutztschwarz[i]!=1 && benutztweis[j]!=1){
+			if (loesung[i] == versuch[j][dieVersuche] && benutztschwarz[i]!=1 && benutztweis[j]!=1){
 				benutztweis[j]=1;
+				benutztschwarz[i]=1;
 				setHint(1,i);
 				break;
 			}
@@ -205,12 +209,12 @@ public void derVergleich2(){
 	
 	
 	if(dieVersuche == 10 && tempRichtig < 4){
-		setVersuch(getVersuchAktuell());
+//		setVersuch(getVersuchAktuell());
 		verloren();
 	}
 	//wenn alle 4 Farben richtig sind und an der richtigen Stelle stehen, wird die Methode "gewonnen" aufgerufen
 	if(tempRichtig == 4){
-		setVersuch(getVersuchAktuell());
+//		setVersuch(getVersuchAktuell());
 		gewonnen();
 	}
 	
@@ -279,12 +283,12 @@ public void derVergleich(){
 //													TO-DO: Warum? Sollte auch ohne dieses IF funktionieren. Brauchen nur test ob dieVersuche = 10 und nicht alle richtig.
 //														   Nur test auf gewonnen muss vor test auf 10 versuche kommen!
 															//zuerst noch die Farben auf dem Spielfeld setzen
-		setVersuch(getVersuchAktuell());
+//		setVersuch(getVersuchAktuell());
 															//danach die Gewonnen-Methode aufrufen
 		gewonnen();
 	}
 	else if(dieVersuche == 10 && tempRichtig < 4){			//wenn der letzte(10.) Versuch erreicht ist und nicht alle Pins korrekt gesetzt sind wird die "verloren" Methode aufgerufen
-		setVersuch(getVersuchAktuell());
+//		setVersuch(getVersuchAktuell());
 		verloren();
 	}
 															//wenn alle 4 Farben richtig sind und an der richtigen STelle stehen, wird die Methode "gewonnen" aufgerufen
