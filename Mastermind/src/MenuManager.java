@@ -13,7 +13,7 @@ public final class MenuManager {
 
 	public static void main(String[] args) throws IOException {
 		MenuManager manager = new MenuManager();
-		System.out.println("Hallo");
+		
 	}
 
 	private MenuManager() throws IOException {
