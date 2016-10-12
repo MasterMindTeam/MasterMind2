@@ -277,24 +277,6 @@ public class BrettGUI extends JPanel implements KeyListener{
 						testEnter = 10;
 						repaint();
 					}
-					System.out.println();
-					System.out.println("Lösung: ");
-					for ( int j = 0; j<4; j++){
-						switch (objekt123.loesung[j]){
-						case 1:
-							System.out.print("rot   ");
-							break;
-						case 2:
-							System.out.print("blau   ");
-							break;
-						case 3:
-							System.out.print("gelb   ");
-							break;
-						case 4:
-							System.out.print("grün    ");
-							break;
-						}
-					}
 				}
 				repaint();
 			} catch (Exception f) {
