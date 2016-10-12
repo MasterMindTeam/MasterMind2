@@ -23,7 +23,6 @@ public class BrettGUI extends JPanel implements KeyListener{
 	protected BufferedImage hintergrund,roterKreis,blauerKreis,gelberKreis,grünerKreis,orangenerKreis,
 	weißerKreis,schwarzerKreis,braunerKreis;
 	protected int zaehlerFarbe = 0;
-	protected int [][] arrayFarbe = new int[8][10];
 	protected int zaehlerPosition = 0;
 	SpielLogik objekt123 = new SpielLogik(2);
 	protected int testEnter = 0;
@@ -51,7 +50,6 @@ public class BrettGUI extends JPanel implements KeyListener{
 		if(MenuManager.resetSpiel){
 			MenuManager.resetSpiel = false;
 			objekt123 = new SpielLogik(2);
-			arrayFarbe = new int [8][10];
 			zaehlerFarbe = 0;
 			zaehlerPosition = 0;
 			testEnter = 0;
@@ -113,9 +111,9 @@ public class BrettGUI extends JPanel implements KeyListener{
 				}
 			}
 			}
-		for (int i = 0; i<arrayFarbe.length;i++) {
-			for (int j = 0; j<arrayFarbe[i].length;j++) {
-		if (arrayFarbe[i][j] == 1) {
+		for (int i = 0; i<objekt123.versuch.length;i++) {
+			for (int j = 0; j<objekt123.versuch[i].length;j++) {
+		if (objekt123.versuch[i][j] == 1) {
 			switch (i) {
 			case 0: g.drawImage(roterKreis, 75,	 16+72*j, null); break;
 			case 1: g.drawImage(roterKreis, 175, 16+72*j, null); break;
@@ -123,7 +121,7 @@ public class BrettGUI extends JPanel implements KeyListener{
 			case 3: g.drawImage(roterKreis, 375, 16+72*j, null); break;
 			}
 		}
-		if (arrayFarbe[i][j] == 2) {
+		if (objekt123.versuch[i][j] == 2) {
 			switch (i) {
 			case 0: g.drawImage(blauerKreis, 75,  16+72*j, null); break;
 			case 1: g.drawImage(blauerKreis, 175, 16+72*j, null); break;
@@ -131,7 +129,7 @@ public class BrettGUI extends JPanel implements KeyListener{
 			case 3: g.drawImage(blauerKreis, 375, 16+72*j, null); break;
 			}
 		}
-		if (arrayFarbe[i][j] == 3) {
+		if (objekt123.versuch[i][j] == 3) {
 			switch (i) {
 			case 0: g.drawImage(gelberKreis, 75,16+72*j, null); break;
 			case 1: g.drawImage(gelberKreis, 175, 16+72*j, null); break;
@@ -139,7 +137,7 @@ public class BrettGUI extends JPanel implements KeyListener{
 			case 3: g.drawImage(gelberKreis, 375, 16+72*j, null); break;
 			}
 		}
-		if (arrayFarbe[i][j] == 4) {
+		if (objekt123.versuch[i][j] == 4) {
 			switch (i) {
 			case 0: g.drawImage(grünerKreis, 75,16+72*j, null); break;
 			case 1: g.drawImage(grünerKreis, 175, 16+72*j, null); break;
@@ -147,7 +145,7 @@ public class BrettGUI extends JPanel implements KeyListener{
 			case 3: g.drawImage(grünerKreis, 375, 16+72*j, null); break;
 			}
 		}
-		if (arrayFarbe[i][j] == 5) {
+		if (objekt123.versuch[i][j] == 5) {
 			switch (i) {
 			case 0: g.drawImage(orangenerKreis, 75,16+72*j, null); break;
 			case 1: g.drawImage(orangenerKreis, 175, 16+72*j, null); break;
@@ -155,7 +153,7 @@ public class BrettGUI extends JPanel implements KeyListener{
 			case 3: g.drawImage(orangenerKreis, 375, 16+72*j, null); break;
 			}
 		}
-		if (arrayFarbe[i][j] == 6) {
+		if (objekt123.versuch[i][j] == 6) {
 			switch (i) {
 			case 0: g.drawImage(braunerKreis, 75,16+72*j, null); break;
 			case 1: g.drawImage(braunerKreis, 175, 16+72*j, null); break;
@@ -165,9 +163,27 @@ public class BrettGUI extends JPanel implements KeyListener{
 		}
 		}
 		}
-		g.drawImage(weißerKreis,540,14,null);
-		g.drawImage(schwarzerKreis, 508, 14, null);
+		for (int i = 0; i<objekt123.hint.length; i++){
+			for (int j = 0; j<objekt123.hint[i].length; j++){
+				if (objekt123.hint[i][j] == 2){
+					switch(i) {
+					case 0: g.drawImage(schwarzerKreis, 508, 14+72*j, null); break;
+					case 1: g.drawImage(schwarzerKreis, 540, 14+72*j, null); break;
+					case 2: g.drawImage(schwarzerKreis, 508, 40+72*j, null); break;
+					case 3: g.drawImage(schwarzerKreis, 540, 40+72*j, null); break;
+					}
+				}
+				if (objekt123.hint[i][j] == 1){
+					switch(i) {
+					case 0: g.drawImage(weißerKreis, 508, 14+72*j, null); break;
+					case 1: g.drawImage(weißerKreis, 540, 14+72*j, null); break;
+					case 2: g.drawImage(weißerKreis, 508, 40+72*j, null); break;
+					case 3: g.drawImage(weißerKreis, 540, 40+72*j, null); break;
+					}
+				}
+			}
 		}
+	}
 
 	
 	public static BufferedImage load (String name) {
@@ -203,7 +219,7 @@ public class BrettGUI extends JPanel implements KeyListener{
 				if (zaehlerFarbe > 6) {
 					zaehlerFarbe = 1;
 				}
-				arrayFarbe[zaehlerPosition][objekt123.dieVersuche] = zaehlerFarbe;
+				objekt123.versuch[zaehlerPosition][objekt123.dieVersuche] = zaehlerFarbe;
 				repaint();
 			} catch (Exception f) {
 			}
@@ -214,7 +230,7 @@ public class BrettGUI extends JPanel implements KeyListener{
 				if (zaehlerFarbe < 1) {
 					zaehlerFarbe = 6;
 				}
-				arrayFarbe[zaehlerPosition][objekt123.dieVersuche] = zaehlerFarbe;
+				objekt123.versuch[zaehlerPosition][objekt123.dieVersuche] = zaehlerFarbe;
 				repaint();
 			} catch (Exception f) {
 			}
@@ -244,7 +260,7 @@ public class BrettGUI extends JPanel implements KeyListener{
 			try {
 				int gesetzt = 0;
 				for (int i = 0; i<4 ; i++) {
-					if (arrayFarbe[i][objekt123.dieVersuche]!=0){
+					if (objekt123.versuch[i][objekt123.dieVersuche]!=0){
 						gesetzt++;
 					}
 				}
@@ -255,9 +271,9 @@ public class BrettGUI extends JPanel implements KeyListener{
 					}
 					zaehlerPosition = 0;
 					zaehlerFarbe = 0;
-					objekt123.setVersuch(arrayFarbe);
 					objekt123.derVergleich2();
 					if(objekt123.tempRichtig == 4){
+						objekt123.dieVersuche = 10;
 						testEnter = 10;
 						repaint();
 					}
@@ -280,6 +296,7 @@ public class BrettGUI extends JPanel implements KeyListener{
 						}
 					}
 				}
+				repaint();
 			} catch (Exception f) {
 			}
 		}
