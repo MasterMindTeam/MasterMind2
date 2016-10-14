@@ -2,6 +2,7 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 
+
 public final class MenuManager {
 
 	private static MainMenu main;
@@ -10,7 +11,7 @@ public final class MenuManager {
 	private static CreditsMenu credit;
 	private static BrettGUI spiel;
 	private static JFrame mainFrame;
-	protected static boolean resetSpiel = true;
+	protected static int gameMode;
 
 	public static void main(String[] args) throws IOException {
 		MenuManager manager = new MenuManager();
@@ -49,7 +50,6 @@ public final class MenuManager {
 		removeAllContentPane();
 		mainFrame.getContentPane().add(main);
 		
-		resetSpiel = true;
 	}
 	
 	public static void showGame(){

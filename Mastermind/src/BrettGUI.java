@@ -48,12 +48,12 @@ public class BrettGUI extends JPanel implements KeyListener{
 	
 	
 	public void paint(Graphics gr) {
-		if(MenuManager.resetSpiel){
-			MenuManager.resetSpiel = false;
-			objekt123 = new SpielLogik(2);
+		if(MenuManager.gameMode!=0){
+			objekt123 = new SpielLogik(MenuManager.gameMode);
 			zaehlerFarbe = 0;
 			zaehlerPosition = 0;
 			testEnter = 0;
+			MenuManager.gameMode = 0;
 		}
 		Graphics2D g = (Graphics2D) gr;
 		g.setColor(Color.WHITE);
@@ -78,6 +78,7 @@ public class BrettGUI extends JPanel implements KeyListener{
 					case 3: g.drawImage(blauerKreis, 375, 717, null); break;
 					}
 				}
+				if (objekt123.dieSchwierigkeit>1){
 				if (objekt123.loesung[i] == 3) {
 					switch (i) {
 					case 0: g.drawImage(gelberKreis, 75,717, null); break;
@@ -94,6 +95,7 @@ public class BrettGUI extends JPanel implements KeyListener{
 					case 3: g.drawImage(grünerKreis, 375, 717, null); break;
 					}
 				}
+				if (objekt123.dieSchwierigkeit>2){
 				if (objekt123.loesung[i] == 5) {
 					switch (i) {
 					case 0: g.drawImage(orangenerKreis, 75,717, null); break;
@@ -109,6 +111,8 @@ public class BrettGUI extends JPanel implements KeyListener{
 					case 2: g.drawImage(braunerKreis, 275, 717, null); break;
 					case 3: g.drawImage(braunerKreis, 375, 717, null); break;
 					}
+				}
+				}
 				}
 			}
 			}
@@ -225,7 +229,7 @@ public class BrettGUI extends JPanel implements KeyListener{
 		if (e.getKeyChar() == KeyEvent.VK_W) {
 			try {
 				zaehlerFarbe++;
-				if (zaehlerFarbe > 6) {
+				if (zaehlerFarbe > 2*objekt123.dieSchwierigkeit) {
 					zaehlerFarbe = 1;
 				}
 				objekt123.versuch[zaehlerPosition][objekt123.dieVersuche] = zaehlerFarbe;
@@ -237,7 +241,7 @@ public class BrettGUI extends JPanel implements KeyListener{
 			try {
 				zaehlerFarbe--;
 				if (zaehlerFarbe < 1) {
-					zaehlerFarbe = 6;
+					zaehlerFarbe = 2*objekt123.dieSchwierigkeit;
 				}
 				objekt123.versuch[zaehlerPosition][objekt123.dieVersuche] = zaehlerFarbe;
 				repaint();

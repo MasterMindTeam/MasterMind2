@@ -183,6 +183,15 @@ public class SubMenuSchwierigkeit extends JPanel implements KeyListener {
 
 	private void enterPressed() {
 		if(currentSubMenu == SubMenuPositions.LEICHT){
+			MenuManager.gameMode = 1;
+			MenuManager.showGame();
+		}
+		if(currentSubMenu == SubMenuPositions.MITTEL){
+			MenuManager.gameMode = 2;
+			MenuManager.showGame();
+		}
+		if(currentSubMenu == SubMenuPositions.SCHWER){
+			MenuManager.gameMode = 3;
 			MenuManager.showGame();
 		}
 
