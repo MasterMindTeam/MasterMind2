@@ -11,7 +11,7 @@
  *Hint-Farben
  *	schwarz-2	Position und Farbe korrekt
  *	weiss-1		Farbe korrekt - Position falsch
- *	leer-0		Farbe kommt nicht in der LÃ¶sung vor
+ *	rotes Kreuz- 3		Farbe kommt nicht in der LÃ¶sung vor
  */
 
 public class SpielLogik {
@@ -95,7 +95,7 @@ public void setHint(int farbe, int i){
 		hint[i][dieVersuche] = farbe;
 	}
 															//keine Farbe setzen
-	if(farbe == 0){
+	if(farbe == 3){
 		hint[i][dieVersuche] = farbe;
 	}
 }
@@ -120,15 +120,15 @@ public int[] getVersuchAktuell(){
 
 //hier werden die Hinweise geordnet, so dass nicht ersichlich ist, welcher Hinweis zu welchem Pin gehoert
 public void hintOrdnen(){
-	int anzahl0 = 0;
 	int anzahl1 = 0;
 	int anzahl2 = 0;
+	int anzahl3 = 0;
 	int zaehler = 0;
 	//hier werden die Pins zum Loesungshinweis gezählt und gespeichert
 	for (int i=0;i<4;i++){
 		switch (hint[i][dieVersuche]){						//speichert Anzahl 0er, 1er, 2er aus dem hint array
-		case 0:
-			anzahl0++;
+		case 3:
+			anzahl3++;
 			break;
 		case 1:
 			anzahl1++;
@@ -148,9 +148,9 @@ public void hintOrdnen(){
 		hint[zaehler][dieVersuche]=1;
 		zaehler++;
 	}
-	//und am Schluss mit den restlichen 0er
-	for (int j=0; j<anzahl0; j++){							
-		hint[zaehler][dieVersuche]=0;
+	//und am Schluss mit den restlichen -1er
+	for (int j=0; j<anzahl3; j++){							
+		hint[zaehler][dieVersuche]=3;
 		zaehler++;
 	}
 }
@@ -194,7 +194,7 @@ public void derVergleich2(){
 		//wenn die Farbe nicht mit einer der Farben aus
 		//der Lösung übereinstimmt wird nichts gespeichert(hint = 0)
 		if (hint[i][dieVersuche]!=1 && hint[i][dieVersuche]!=2) {
-			setHint(0,i);
+			setHint(3,i);
 		}
 	}
 

@@ -21,7 +21,7 @@ import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 public class BrettGUI extends JPanel implements KeyListener{
 	
 	protected BufferedImage hintergrund,roterKreis,blauerKreis,gelberKreis,grünerKreis,orangenerKreis,
-	weißerKreis,schwarzerKreis,braunerKreis;
+	weißerKreis,schwarzerKreis,braunerKreis,kreuz;
 	protected int zaehlerFarbe = 0;
 	protected int zaehlerPosition = 0;
 	SpielLogik objekt123 = new SpielLogik(2);
@@ -42,6 +42,7 @@ public class BrettGUI extends JPanel implements KeyListener{
 		braunerKreis = load("BraunerKreis.png");
 		weißerKreis = load("WeißerKreis.png");
 		schwarzerKreis = load("SchwarzerKreis.png");
+		kreuz = load("Kreuz.png");
 	}
 	
 	
@@ -181,6 +182,14 @@ public class BrettGUI extends JPanel implements KeyListener{
 					case 3: g.drawImage(weißerKreis, 540, 40+72*j, null); break;
 					}
 				}
+				if (objekt123.hint[i][j] == 3){
+					switch(i) {
+					case 0: g.drawImage(kreuz, 508, 14+72*j, null); break;
+					case 1: g.drawImage(kreuz, 540, 14+72*j, null); break;
+					case 2: g.drawImage(kreuz, 508, 40+72*j, null); break;
+					case 3: g.drawImage(kreuz, 540, 40+72*j, null); break;
+					}
+				}
 			}
 		}
 	}
@@ -242,7 +251,7 @@ public class BrettGUI extends JPanel implements KeyListener{
 				if (zaehlerPosition > 3 ) {
 					zaehlerPosition = 3;
 				}
-				zaehlerFarbe = 0;
+				zaehlerFarbe = objekt123.versuch[zaehlerPosition][objekt123.dieVersuche];
 			} catch (Exception f) {
 			}
 		}
@@ -252,7 +261,7 @@ public class BrettGUI extends JPanel implements KeyListener{
 				if (zaehlerPosition < 0) {
 					zaehlerPosition = 0;
 				}
-				zaehlerFarbe = 0;
+				zaehlerFarbe = objekt123.versuch[zaehlerPosition][objekt123.dieVersuche];
 			} catch (Exception f) {
 			}
 		}
