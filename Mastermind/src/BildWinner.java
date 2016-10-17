@@ -17,64 +17,33 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
-//hallo
+
 // Aufzählung der Positionen im Hauptmenü
-enum MainMenuPositions {
-	NEUESSPIEL, HIGHSCORE, HILFE, CREDITS;
-	private static MainMenuPositions[] vals = values();
-
-	public MainMenuPositions next() {
-		return vals[(this.ordinal() + 1) % vals.length];
-	}
-
-	public MainMenuPositions previous() {
-		int rest = (this.ordinal() - 1) % vals.length;
-		if (rest < 0) {
-			rest += vals.length;
-		}
-		return vals[rest];
-	}
-}
 
 
-
-public class MainMenu extends JPanel implements KeyListener {
+public class BildWinner extends JPanel implements KeyListener {
 
 	// Speichert die aktuelle Position des Zeigers (bb8) im Hauptmenü
-	private MainMenuPositions currentMainMenu = MainMenuPositions.NEUESSPIEL;	
 
-	private BufferedImage bg, bb8, sub, hilfe, credits;
+	private BufferedImage  winner;
 
-	public MainMenu() throws IOException {
+	public BildWinner() throws IOException {
 		setLayout(null);
 		this.setPreferredSize(new Dimension(800, 600));
 		setVisible(false);
-		bg = load("src/Menü1.png");
-		bb8 = load("src/BB8.png");
-	}		
+
+		winner = load("src/Gewonnen.png");		
+	}
 
 	public void paint(Graphics gr) {
 		Graphics2D g = (Graphics2D) gr;
 		g.setColor(Color.WHITE);
 		g.fill(g.getClipBounds());
-		g.drawImage(bg, -10, 0, null);
 
-		switch (currentMainMenu) {
-		case NEUESSPIEL:
-			g.drawImage(bb8, 30, 240, 90, 90, this);
-			break;
-		case HIGHSCORE:
-			g.drawImage(bb8, 30, 320, 90, 90, this);
-			break;
-		case HILFE:
-			g.drawImage(bb8, 30, 410, 90, 90, this);
-			break;
-		case CREDITS:
-			g.drawImage(bb8, 30, 490, 90, 90, this);
-			break;
-		}
+		g.drawImage(winner, 0, 0, this);
 
 		
+
 	}
 
 	private BufferedImage load(String name) {
@@ -171,38 +140,27 @@ public class MainMenu extends JPanel implements KeyListener {
 		//
 		// }
 	}
-
-	private void sPressed() {
-		currentMainMenu = currentMainMenu.next();
-	}
-
-	private void wPressed() {
-		currentMainMenu = currentMainMenu.previous();
-	}
-
-	private void enterPressed() {
-		if (currentMainMenu==MainMenuPositions.NEUESSPIEL){
-			MenuManager.showSubMenu();
-		}
-		
-		if(currentMainMenu==MainMenuPositions.HILFE){
-			MenuManager.showHelpMenu();
-		}
-		
-		if (currentMainMenu == MainMenuPositions.CREDITS){
-			MenuManager.showCreditsMenu();
-		}
-		
-		
-	
-		
-				
-
-	}
-	
 	
 	private void zPressed(){
 		MenuManager.showMainMenu();
+	}
+
+	private void sPressed() {
+		
+	}
+	
+	
+
+	private void wPressed() {
+		
+	}
+
+	private void enterPressed() {
+		// currentSubMenu = currentSubMenu.LEICHT;
+		//
+		// case currentMainMenu == NEUESSPIEL
+		// MenuManager.Instance.ShowSubMenuNeuesSpiel();
+
 	}
 
 	public void buchstabenUmwandeln(KeyEvent e) {
@@ -215,3 +173,5 @@ public class MainMenu extends JPanel implements KeyListener {
 	}
 
 }
+
+

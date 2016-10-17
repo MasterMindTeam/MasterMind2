@@ -10,6 +10,7 @@ public final class MenuManager {
 	private static HelpMenu help;
 	private static CreditsMenu credit;
 	private static BrettGUI spiel;
+	private static BildWinner winner;
 	private static JFrame mainFrame;
 	protected static int gameMode;
 
@@ -24,6 +25,7 @@ public final class MenuManager {
 		help = new HelpMenu();
 		credit = new CreditsMenu();
 		spiel = new BrettGUI();
+		winner = new BildWinner();
 		main.setVisible(true);
 
 		init();
@@ -51,6 +53,17 @@ public final class MenuManager {
 		mainFrame.getContentPane().add(main);
 		
 	}
+	
+//	public static void showWinnersign(){
+//		setAllInvisible();
+//		winner.setVisible(true);
+//		
+//		removeAllKeyListener();
+//		mainFrame.addKeyListener(winner);
+//		
+//		removeAllContentPane();
+//		mainFrame.getContentPane().add(winner);
+//	}
 	
 	public static void showGame(){
 		setAllInvisible();
@@ -105,6 +118,7 @@ public final class MenuManager {
 		mainFrame.getContentPane().remove(schwierigkeit);
 		mainFrame.getContentPane().remove(help);
 		mainFrame.getContentPane().remove(spiel);
+		mainFrame.getContentPane().remove(winner);
 	}
 
 	public static void removeAllKeyListener() {
@@ -112,6 +126,7 @@ public final class MenuManager {
 		mainFrame.removeKeyListener(schwierigkeit);
 		mainFrame.removeKeyListener(help);
 		mainFrame.removeKeyListener(spiel);
+		mainFrame.removeKeyListener(winner);
 	}
 	
 	public static void setAllInvisible(){
@@ -120,6 +135,8 @@ public final class MenuManager {
 		credit.setVisible(false);
 		schwierigkeit.setVisible(false);
 		spiel.setVisible(false);
+		winner.setVisible(false);
+		
 	}
 
 }
