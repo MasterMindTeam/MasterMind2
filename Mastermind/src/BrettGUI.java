@@ -21,7 +21,7 @@ import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 public class BrettGUI extends JPanel implements KeyListener{
 	
 	protected BufferedImage hintergrund,roterKreis,blauerKreis,gelberKreis,grünerKreis,orangenerKreis,
-	weißerKreis,schwarzerKreis,braunerKreis,kreuz,winner;
+	weißerKreis,schwarzerKreis,braunerKreis,kreuz,winner, loser;
 	protected int zaehlerFarbe = 0;
 	protected int zaehlerPosition = 0;
 	SpielLogik objekt123 = new SpielLogik(2);
@@ -44,6 +44,7 @@ public class BrettGUI extends JPanel implements KeyListener{
 		schwarzerKreis = load("SchwarzerKreis.png");
 		kreuz = load("Kreuz.png");
 		winner = load("Gewonnen.png");
+		loser = load("Verloren.png");
 	}
 	
 	
@@ -197,7 +198,10 @@ public class BrettGUI extends JPanel implements KeyListener{
 				}
 				}
 			}
-			g.drawImage(winner, 0, 0, null);
+			if (objekt123.tempRichtig==4){g.drawImage(winner, 0, 0, null);}
+			else {g.drawImage(loser, 0, 0, null);
+			
+			}
 			}
 	}
 
