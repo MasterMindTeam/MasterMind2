@@ -1,3 +1,4 @@
+import java.applet.AudioClip;
 import java.io.IOException;
 
 import javax.swing.JFrame;
@@ -27,7 +28,6 @@ public final class MenuManager {
 		spiel = new BrettGUI();
 		winner = new BildWinner();
 		main.setVisible(true);
-
 		init();
 	}
 

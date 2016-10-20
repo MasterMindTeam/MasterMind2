@@ -17,16 +17,20 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
+
 //hallo
 // Aufzählung der Positionen im Hauptmenü
 enum MainMenuPositions {
 	NEUESSPIEL, HIGHSCORE, HILFE, CREDITS;
+	// Speichert die Positionen in einem Array 
 	private static MainMenuPositions[] vals = values();
-
+	
+	//ordinal gibt aktuelle Position zurück, und setzt sie Plus ein und nimmt den Modulo von der länge des Arrays
+	//Modulo stellt sicher, dass es nicht über die länge des Arrays hinausgeht
 	public MainMenuPositions next() {
 		return vals[(this.ordinal() + 1) % vals.length];
 	}
-
+	
 	public MainMenuPositions previous() {
 		int rest = (this.ordinal() - 1) % vals.length;
 		if (rest < 0) {
@@ -36,23 +40,23 @@ enum MainMenuPositions {
 	}
 }
 
-
-
 public class MainMenu extends JPanel implements KeyListener {
 
 	// Speichert die aktuelle Position des Zeigers (bb8) im Hauptmenü
-	private MainMenuPositions currentMainMenu = MainMenuPositions.NEUESSPIEL;	
+	private MainMenuPositions currentMainMenu = MainMenuPositions.NEUESSPIEL;
 
 	private BufferedImage bg, bb8, sub, hilfe, credits;
 
+	//Konstruktor 
 	public MainMenu() throws IOException {
 		setLayout(null);
 		this.setPreferredSize(new Dimension(800, 600));
 		setVisible(false);
 		bg = load("src/Menü1.png");
 		bb8 = load("src/BB8.png");
-	}		
-
+	}
+	//Malt das Hintergrundbild und den Cursor in den verschiedenen Positionen
+	// bekommt das BufferedImage übergeben
 	public void paint(Graphics gr) {
 		Graphics2D g = (Graphics2D) gr;
 		g.setColor(Color.WHITE);
@@ -74,9 +78,10 @@ public class MainMenu extends JPanel implements KeyListener {
 			break;
 		}
 
-		
 	}
 
+	//Lädt das Bild in ein BufferedImage
+	//wirft IOException
 	private BufferedImage load(String name) {
 		try {
 
@@ -121,87 +126,48 @@ public class MainMenu extends JPanel implements KeyListener {
 			enterPressed();
 			break;
 		}
+		
+		//Nach jedem KeyListenerEvent soll die Oberfläche neu gezeichnet werden
 		repaint();
 
-		// if (e.getKeyChar() == KeyEvent.VK_S && zaehler < options.length) {
-		// zaehler++;
-		// repaint();
-		// }
-		// if (e.getKeyChar() == KeyEvent.VK_S && counter < optionen.length) {
-		// counter++;
-		// repaint();
-		// }
-		// if (e.getKeyChar() == KeyEvent.VK_W && zaehler > 1) {
-		// zaehler--;
-		// repaint();
-		// }
-		//
-		// if (e.getKeyChar() == KeyEvent.VK_W && counter > 1) {
-		// counter--;
-		// repaint();
-		// }
-		//
-		// if (e.getKeyChar() == KeyEvent.VK_ESCAPE || e.getKeyChar() ==
-		// KeyEvent.VK_Z) {
-		// zaehler = 1;
-		// counter = 0;
-		// pointer = 0;
-		// credit = 0;
-		// repaint();
-		//
-		// }
-		//
-		// if (e.getKeyChar() == KeyEvent.VK_ENTER) {
-		// if (zaehler == 1) {
-		// pointer = 1;
-		// repaint();
-		//
-		// }
-		//
-		// if (zaehler == 3) {
-		// pointer = 2;
-		// repaint();
-		//
-		// }
-		//
-		// if (zaehler == 4) {
-		// pointer = 3;
-		// repaint();
-		// }
-		//
-		// }
 	}
-
+	
+	
 	private void sPressed() {
+		//Enumeration wird einen Wert weiter gesetzt
 		currentMainMenu = currentMainMenu.next();
 	}
+	
+	
 
 	private void wPressed() {
+		//Enumeration wird einen Wert zurück gesetzt
 		currentMainMenu = currentMainMenu.previous();
 	}
+	
+	// Methode, die entscheidet, was bei Enter gemacht wird
 
 	private void enterPressed() {
-		if (currentMainMenu==MainMenuPositions.NEUESSPIEL){
+		//wenn Cursor bei Neues Spiel ist, wird das Untermenü aufgerufen
+		if (currentMainMenu == MainMenuPositions.NEUESSPIEL) {
 			MenuManager.showSubMenu();
 		}
 		
-		if(currentMainMenu==MainMenuPositions.HILFE){
+		//wenn bei Hilfe wird das Hilfemenü aufgerufen
+
+		if (currentMainMenu == MainMenuPositions.HILFE) {
 			MenuManager.showHelpMenu();
 		}
-		
-		if (currentMainMenu == MainMenuPositions.CREDITS){
+		// Creditsmenü wird aufgerufen 
+		if (currentMainMenu == MainMenuPositions.CREDITS) {
 			MenuManager.showCreditsMenu();
 		}
-		
-		
-	
-		
-				
 
 	}
 	
-	
-	private void zPressed(){
+	//Main Menu wird immer aufgerufen, wenn zurück oder ESC gedrückt wird
+
+	private void zPressed() {
 		MenuManager.showMainMenu();
 	}
 
