@@ -26,7 +26,7 @@ enum MainMenuPositions {
 	private static MainMenuPositions[] vals = values();
 	
 	//ordinal gibt aktuelle Position zurück, und setzt sie Plus ein und nimmt den Modulo von der länge des Arrays
-	//Modulo stellt sicher, dass es nicht über die länge des Arrays hinausgeht
+	//Modulo stellt sicher, dass es nicht über die Länge des Arrays hinaus geht, egal wie viele Enums es gibt
 	public MainMenuPositions next() {
 		return vals[(this.ordinal() + 1) % vals.length];
 	}
