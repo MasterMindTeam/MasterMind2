@@ -18,23 +18,19 @@ import javax.swing.border.EmptyBorder;
 
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
-// Aufzählung der Positionen im Hauptmenü
-
-
 public class BildWinner extends JPanel implements KeyListener {
 
-	// Speichert die aktuelle Position des Zeigers (bb8) im Hauptmenü
-
-	private BufferedImage  winner;
+	private BufferedImage winner;
 
 	public BildWinner() throws IOException {
 		setLayout(null);
 		this.setPreferredSize(new Dimension(800, 600));
 		setVisible(false);
-
-		winner = load("src/Gewonnen.png");		
+		// lädt das Bild in den Speicher
+		winner = load("src/Gewonnen.png");
 	}
 
+	// malt das Bild
 	public void paint(Graphics gr) {
 		Graphics2D g = (Graphics2D) gr;
 		g.setColor(Color.WHITE);
@@ -42,10 +38,9 @@ public class BildWinner extends JPanel implements KeyListener {
 
 		g.drawImage(winner, 0, 0, this);
 
-		
-
 	}
 
+	// Methode die das BufferedImage lädt
 	private BufferedImage load(String name) {
 		try {
 
@@ -69,6 +64,7 @@ public class BildWinner extends JPanel implements KeyListener {
 
 	}
 
+	// Über Switch Case Auswahl
 	@Override
 	public void keyTyped(KeyEvent e) {
 		buchstabenUmwandeln(e);
@@ -92,75 +88,22 @@ public class BildWinner extends JPanel implements KeyListener {
 		}
 		repaint();
 
-		// if (e.getKeyChar() == KeyEvent.VK_S && zaehler < options.length) {
-		// zaehler++;
-		// repaint();
-		// }
-		// if (e.getKeyChar() == KeyEvent.VK_S && counter < optionen.length) {
-		// counter++;
-		// repaint();
-		// }
-		// if (e.getKeyChar() == KeyEvent.VK_W && zaehler > 1) {
-		// zaehler--;
-		// repaint();
-		// }
-		//
-		// if (e.getKeyChar() == KeyEvent.VK_W && counter > 1) {
-		// counter--;
-		// repaint();
-		// }
-		//
-		// if (e.getKeyChar() == KeyEvent.VK_ESCAPE || e.getKeyChar() ==
-		// KeyEvent.VK_Z) {
-		// zaehler = 1;
-		// counter = 0;
-		// pointer = 0;
-		// credit = 0;
-		// repaint();
-		//
-		// }
-		//
-		// if (e.getKeyChar() == KeyEvent.VK_ENTER) {
-		// if (zaehler == 1) {
-		// pointer = 1;
-		// repaint();
-		//
-		// }
-		//
-		// if (zaehler == 3) {
-		// pointer = 2;
-		// repaint();
-		//
-		// }
-		//
-		// if (zaehler == 4) {
-		// pointer = 3;
-		// repaint();
-		// }
-		//
-		// }
 	}
-	
-	private void zPressed(){
+
+	private void zPressed() {
 		MenuManager.showMainMenu();
 	}
 
 	private void sPressed() {
-		
+
 	}
-	
-	
 
 	private void wPressed() {
-		
+
 	}
 
 	private void enterPressed() {
-		// currentSubMenu = currentSubMenu.LEICHT;
-		//
-		// case currentMainMenu == NEUESSPIEL
-		// MenuManager.Instance.ShowSubMenuNeuesSpiel();
-
+		
 	}
 
 	public void buchstabenUmwandeln(KeyEvent e) {
@@ -173,5 +116,3 @@ public class BildWinner extends JPanel implements KeyListener {
 	}
 
 }
-
-

@@ -18,31 +18,25 @@ import javax.swing.border.EmptyBorder;
 
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
-// Aufzählung der Positionen im Hauptmenü
-
-
 public class HelpMenu extends JPanel implements KeyListener {
 
-	// Speichert die aktuelle Position des Zeigers (bb8) im Hauptmenü
-
-	private BufferedImage  hilfe;
+	private BufferedImage hilfe;
 
 	public HelpMenu() throws IOException {
 		setLayout(null);
 		this.setPreferredSize(new Dimension(800, 600));
 		setVisible(false);
 
-		hilfe = load("src/Hilfe.png");		
+		hilfe = load("src/Hilfe.png");
 	}
 
+	// Malt die Hilfe-Oberfläche
 	public void paint(Graphics gr) {
 		Graphics2D g = (Graphics2D) gr;
 		g.setColor(Color.WHITE);
 		g.fill(g.getClipBounds());
 
 		g.drawImage(hilfe, -10, 0, this);
-
-		
 
 	}
 
@@ -92,75 +86,22 @@ public class HelpMenu extends JPanel implements KeyListener {
 		}
 		repaint();
 
-		// if (e.getKeyChar() == KeyEvent.VK_S && zaehler < options.length) {
-		// zaehler++;
-		// repaint();
-		// }
-		// if (e.getKeyChar() == KeyEvent.VK_S && counter < optionen.length) {
-		// counter++;
-		// repaint();
-		// }
-		// if (e.getKeyChar() == KeyEvent.VK_W && zaehler > 1) {
-		// zaehler--;
-		// repaint();
-		// }
-		//
-		// if (e.getKeyChar() == KeyEvent.VK_W && counter > 1) {
-		// counter--;
-		// repaint();
-		// }
-		//
-		// if (e.getKeyChar() == KeyEvent.VK_ESCAPE || e.getKeyChar() ==
-		// KeyEvent.VK_Z) {
-		// zaehler = 1;
-		// counter = 0;
-		// pointer = 0;
-		// credit = 0;
-		// repaint();
-		//
-		// }
-		//
-		// if (e.getKeyChar() == KeyEvent.VK_ENTER) {
-		// if (zaehler == 1) {
-		// pointer = 1;
-		// repaint();
-		//
-		// }
-		//
-		// if (zaehler == 3) {
-		// pointer = 2;
-		// repaint();
-		//
-		// }
-		//
-		// if (zaehler == 4) {
-		// pointer = 3;
-		// repaint();
-		// }
-		//
-		// }
 	}
-	
-	private void zPressed(){
+
+	private void zPressed() {
 		MenuManager.showMainMenu();
 	}
 
 	private void sPressed() {
-		
+
 	}
-	
-	
 
 	private void wPressed() {
-		
+
 	}
 
 	private void enterPressed() {
-		// currentSubMenu = currentSubMenu.LEICHT;
-		//
-		// case currentMainMenu == NEUESSPIEL
-		// MenuManager.Instance.ShowSubMenuNeuesSpiel();
-
+		
 	}
 
 	public void buchstabenUmwandeln(KeyEvent e) {
@@ -173,4 +114,3 @@ public class HelpMenu extends JPanel implements KeyListener {
 	}
 
 }
-

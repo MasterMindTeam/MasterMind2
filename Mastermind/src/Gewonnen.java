@@ -20,19 +20,18 @@ import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
 // Aufzählung der Positionen im Hauptmenü
 
-
 public class Gewonnen extends JPanel implements KeyListener {
 
 	// Speichert die aktuelle Position des Zeigers (bb8) im Hauptmenü
 
-	private BufferedImage  winner;
+	private BufferedImage winner;
 
 	public Gewonnen() throws IOException {
 		setLayout(null);
 		this.setPreferredSize(new Dimension(800, 600));
 		setVisible(true);
 
-		winner = load("src/Gewonnen.png");		
+		winner = load("src/Gewonnen.png");
 	}
 
 	public void paint(Graphics gr) {
@@ -41,8 +40,6 @@ public class Gewonnen extends JPanel implements KeyListener {
 		g.fill(g.getClipBounds());
 
 		g.drawImage(winner, 0, 0, this);
-
-		
 
 	}
 
@@ -92,74 +89,21 @@ public class Gewonnen extends JPanel implements KeyListener {
 		}
 		repaint();
 
-		// if (e.getKeyChar() == KeyEvent.VK_S && zaehler < options.length) {
-		// zaehler++;
-		// repaint();
-		// }
-		// if (e.getKeyChar() == KeyEvent.VK_S && counter < optionen.length) {
-		// counter++;
-		// repaint();
-		// }
-		// if (e.getKeyChar() == KeyEvent.VK_W && zaehler > 1) {
-		// zaehler--;
-		// repaint();
-		// }
-		//
-		// if (e.getKeyChar() == KeyEvent.VK_W && counter > 1) {
-		// counter--;
-		// repaint();
-		// }
-		//
-		// if (e.getKeyChar() == KeyEvent.VK_ESCAPE || e.getKeyChar() ==
-		// KeyEvent.VK_Z) {
-		// zaehler = 1;
-		// counter = 0;
-		// pointer = 0;
-		// credit = 0;
-		// repaint();
-		//
-		// }
-		//
-		// if (e.getKeyChar() == KeyEvent.VK_ENTER) {
-		// if (zaehler == 1) {
-		// pointer = 1;
-		// repaint();
-		//
-		// }
-		//
-		// if (zaehler == 3) {
-		// pointer = 2;
-		// repaint();
-		//
-		// }
-		//
-		// if (zaehler == 4) {
-		// pointer = 3;
-		// repaint();
-		// }
-		//
-		// }
 	}
-	
-	private void zPressed(){
+
+	private void zPressed() {
 		MenuManager.showMainMenu();
 	}
 
 	private void sPressed() {
-		
+
 	}
-	
-	
 
 	private void wPressed() {
-		
+
 	}
 
 	private void enterPressed() {
-		// currentSubMenu = currentSubMenu.LEICHT;
-		//
-		// case currentMainMenu == NEUESSPIEL
-		// MenuManager.Instance.ShowSubMenuNeuesSpiel();
 
 	}
 
@@ -173,5 +117,3 @@ public class Gewonnen extends JPanel implements KeyListener {
 	}
 
 }
-
-
