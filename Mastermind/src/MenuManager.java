@@ -3,9 +3,10 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 
-
+//Klasse mit der Main
+//verwaltet alle anderen Klassen 
 public final class MenuManager {
-
+	// Variablendeklaration
 	private static MainMenu main;
 	private static SubMenuSchwierigkeit schwierigkeit;
 	private static HelpMenu help;
@@ -15,11 +16,15 @@ public final class MenuManager {
 	private static JFrame mainFrame;
 	protected static int gameMode;
 
+	// erstellt ein Objekt von Klasse MenuManager
 	public static void main(String[] args) throws IOException {
 		MenuManager manager = new MenuManager();
 		System.out.println();
 	}
 
+	// Konstruktor
+	// erzeugt Objekte von allen involvierten Klassen
+	// setzt Visibilität von dem der Klasse MainMenu wahr
 	private MenuManager() throws IOException {
 		main = new MainMenu();
 		schwierigkeit = new SubMenuSchwierigkeit();
@@ -30,6 +35,9 @@ public final class MenuManager {
 		main.setVisible(true);
 		init();
 	}
+
+	// initialisiert den JFrame und fügt immer von Beginn an die Klasse MainMenu
+	// als ContentPane
 
 	public void init() throws IOException {
 
@@ -42,6 +50,7 @@ public final class MenuManager {
 		mainFrame.setVisible(true);
 	}
 
+	// zeigt das Hauptmenü
 	public static void showMainMenu() {
 		setAllInvisible();
 		main.setVisible(true);
@@ -51,31 +60,21 @@ public final class MenuManager {
 
 		removeAllContentPane();
 		mainFrame.getContentPane().add(main);
-		
+
 	}
-	
-//	public static void showWinnersign(){
-//		setAllInvisible();
-//		winner.setVisible(true);
-//		
-//		removeAllKeyListener();
-//		mainFrame.addKeyListener(winner);
-//		
-//		removeAllContentPane();
-//		mainFrame.getContentPane().add(winner);
-//	}
-	
-	public static void showGame(){
+	//zeigt das Spiel
+	public static void showGame() {
 		setAllInvisible();
 		spiel.setVisible(true);
-		
+
 		removeAllKeyListener();
 		mainFrame.addKeyListener(spiel);
-		
+
 		removeAllContentPane();
 		mainFrame.getContentPane().add(spiel);
 	}
-
+	
+	//zeigt das Untermenü mit den Schwierigkeiten
 	public static void showSubMenu() {
 		setAllInvisible();
 		schwierigkeit.setVisible(true);
@@ -86,10 +85,10 @@ public final class MenuManager {
 		removeAllContentPane();
 		mainFrame.getContentPane().add(schwierigkeit);
 	}
-
-	public static void showHelpMenu() { //TO DO: kann auc in eine Navigate: typ wo ich herkomme, und typ wo ich hinwill
+	//zeugt die Hilfe an 
+	public static void showHelpMenu() { 
 		setAllInvisible();
-		help.setVisible(true);    
+		help.setVisible(true);
 
 		removeAllKeyListener();
 		mainFrame.addKeyListener(help);
@@ -99,20 +98,20 @@ public final class MenuManager {
 
 	}
 	
-	public static void showCreditsMenu(){
+	//zeigt die Credits
+
+	public static void showCreditsMenu() {
 		setAllInvisible();
 		credit.setVisible(true);
-		
+
 		removeAllKeyListener();
 		mainFrame.addKeyListener(credit);
-		
+
 		removeAllContentPane();
 		mainFrame.getContentPane().add(credit);
-		
-		
-	}
-	
 
+	}
+	//löscht ContentPanes, Hilfsmethode
 	public static void removeAllContentPane() {
 		mainFrame.getContentPane().remove(main);
 		mainFrame.getContentPane().remove(schwierigkeit);
@@ -120,7 +119,7 @@ public final class MenuManager {
 		mainFrame.getContentPane().remove(spiel);
 		mainFrame.getContentPane().remove(winner);
 	}
-
+	//löscht alle KeyListener, Hilfsmethode
 	public static void removeAllKeyListener() {
 		mainFrame.removeKeyListener(main);
 		mainFrame.removeKeyListener(schwierigkeit);
@@ -128,15 +127,15 @@ public final class MenuManager {
 		mainFrame.removeKeyListener(spiel);
 		mainFrame.removeKeyListener(winner);
 	}
-	
-	public static void setAllInvisible(){
+	//Setzt alle Objekte unsichtbar
+	public static void setAllInvisible() {
 		main.setVisible(false);
 		help.setVisible(false);
 		credit.setVisible(false);
 		schwierigkeit.setVisible(false);
 		spiel.setVisible(false);
 		winner.setVisible(false);
-		
+
 	}
 
 }
