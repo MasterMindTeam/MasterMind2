@@ -43,7 +43,7 @@ public class SubMenuSchwierigkeit extends JPanel implements KeyListener {
 
 	private SubMenuPositions currentSubMenu = SubMenuPositions.LEICHT;
 
-	private BufferedImage bg, bb8, sub, hilfe, credits;
+	private BufferedImage bg, bb8, sub;
 
 	public SubMenuSchwierigkeit() throws IOException {
 		setLayout(null);
