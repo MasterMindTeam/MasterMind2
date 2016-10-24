@@ -1,17 +1,19 @@
+import java.io.IOException;
+
 /*
  *Beschreibung:
  *Farben
  *	rot-1
  *	blau-2
  *	gelb-3
- *	gr�n-4
+ *	grün-4
  *	orange-5
  *	braun-6
  *
  *Hint-Farben
  *	schwarz-2	Position und Farbe korrekt
  *	weiss-1		Farbe korrekt - Position falsch
- *	rotes Kreuz- 3		Farbe kommt nicht in der Lösung vor
+ *	rotes Kreuz- 3		Farbe kommt nicht in der LÃ¶sung vor
  */
 
 public class SpielLogik {
@@ -25,10 +27,10 @@ public class SpielLogik {
 													// Versuches gespeichert
 													// sind
 	protected int[][] hint = new int[4][10]; // Array, in dem die
-												// Lösungshinweise gespeichert
+												// LÃ¶sungshinweise gespeichert
 												// sind
 	protected int dieVersuche; // Zeigt an, um welchen Versuch es sich handelt
-	protected int dieSchwierigkeit; // Ändert die Anazahl zu verfügbaren
+	protected int dieSchwierigkeit; // Ã„ndert die Anazahl zu verfÃ¼gbaren
 									// Farben
 	protected int tempRichtig; // Anzahl richtige Pins in diesem Versuch
 
@@ -41,14 +43,14 @@ public class SpielLogik {
 		// die Schwierigkeit wird je nach Auswahl gesetzt
 		dieSchwierigkeit = pSchwierigkeit;
 
-		// zufällige Loesung generieren
+		// zufÃ¤llige Loesung generieren
 		setLoesung();
 	}
 
-	// hier wird die Lösungsreihe zufällig gesetzt
+	// hier wird die LÃ¶sungsreihe zufÃ¤llig gesetzt
 	public void setLoesung() {
 		int dieZufallszahl;
-		// 1.Stufe der Schwierigkeit - 2 Farben sind möglich
+		// 1.Stufe der Schwierigkeit - 2 Farben sind mÃ¶glich
 		if (dieSchwierigkeit == 1) {
 			for (int i = 0; i < loesung.length; i++) {
 				dieZufallszahl = ((int) (Math.random() * 2 + 1)); // Zufallszahl
@@ -58,7 +60,7 @@ public class SpielLogik {
 				loesung[i] = dieZufallszahl;
 			}
 		}
-		// 2.Stufe - 4 Farben sind möglich
+		// 2.Stufe - 4 Farben sind mÃ¶glich
 		if (dieSchwierigkeit == 2) {
 			for (int i = 0; i < loesung.length; i++) {
 				dieZufallszahl = ((int) (Math.random() * 4 + 1)); // Zufallszahl
@@ -68,7 +70,7 @@ public class SpielLogik {
 				loesung[i] = dieZufallszahl;
 			}
 		}
-		// 3. Stufe - 6 Farben sind möglich
+		// 3. Stufe - 6 Farben sind mÃ¶glich
 		if (dieSchwierigkeit == 3) {
 			for (int i = 0; i < loesung.length; i++) {
 				dieZufallszahl = ((int) (Math.random() * 6 + 1)); // Zufallszahl
@@ -80,8 +82,8 @@ public class SpielLogik {
 		}
 	}
 
-	// TO-DO: Nicht genutzt - löschen?
-	// gibt das Array der Lösung zurück
+	// TO-DO: Nicht genutzt - lÃ¶schen?
+	// gibt das Array der LÃ¶sung zurÃ¼ck
 	public int[] getLoesung() {
 		return loesung;
 	}
@@ -89,9 +91,9 @@ public class SpielLogik {
 	// TO-DO: Kann eingegebenerVersuch auch ohne seperate Methode in das versuch
 	// array geschrieben werden?
 	// eingegebener Versuch ist das Array mit den Farben, die zur Auswahl
-	// bestätigt wurden
+	// bestÃ¤tigt wurden
 	// hier werden die Farben also "fest" in einem 2D-Array gespeichert
-	// hier muss der "aktuelleVersuch" übergeben werden
+	// hier muss der "aktuelleVersuch" Ã¼bergeben werden
 	public void setVersuch(int[][] eingegebenerVersuch) {
 
 		// for-Schleife, mit der die eingegebenen Farben im Array gespeichert
@@ -101,7 +103,7 @@ public class SpielLogik {
 		}
 	}
 
-	// TO-DO: Nicht genutzt - löschen?
+	// TO-DO: Nicht genutzt - lÃ¶schen?
 	public int[][] getVersuch() {
 		return versuch;
 	}
@@ -128,11 +130,11 @@ public class SpielLogik {
 	}
 
 	// Achtung: diese Methode muss beim Bestaetigen des Versuchs 4x aufgerufen
-	// werden (da alle 4 Farben gesetzt werden müssen)
+	// werden (da alle 4 Farben gesetzt werden mÃ¼ssen)
 	// hier wird der aktuelle Versuch gesetzt
 	public void setVersuchAktuell(int farbe, int i) {
 
-		// setzt die �bergebene Farbe an den �bergebenen Wert
+		// setzt die übergebene Farbe an den übergebenen Wert
 		versuch[i][dieVersuche] = farbe;
 	}
 
@@ -149,7 +151,7 @@ public class SpielLogik {
 		int anzahl2 = 0;
 		int anzahl3 = 0;
 		int zaehler = 0;
-		// hier werden die Pins zum Loesungshinweis gez�hlt und gespeichert
+		// hier werden die Pins zum Loesungshinweis gezählt und gespeichert
 		for (int i = 0; i < 4; i++) {
 			switch (hint[i][dieVersuche]) { // speichert Anzahl 0er, 1er, 2er
 											// aus dem hint array
@@ -165,7 +167,7 @@ public class SpielLogik {
 			}
 		}
 		// das hint-array (Loesungshinweise) wird zuerst mit allen schwarzen
-		// Pins �berschrieben
+		// Pins überschrieben
 		for (int j = 0; j < anzahl2; j++) {
 			hint[zaehler][dieVersuche] = 2;
 			zaehler++;
@@ -182,8 +184,8 @@ public class SpielLogik {
 		}
 	}
 
-	public void derVergleich2() {
-		// tempor�rer Z�hler, wenn Farbe und Position richtig
+	public void derVergleich2() throws IOException {
+		// temporärer Zähler, wenn Farbe und Position richtig
 		tempRichtig = 0;
 		int benutztschwarz[] = { 0, 0, 0, 0 };
 		int benutztweis[] = { 0, 0, 0, 0 };
@@ -194,12 +196,12 @@ public class SpielLogik {
 			// Position und Farbe richtig? (schwarz setzen)
 			if (loesung[i] == versuch[i][dieVersuche]) {
 				setHint(2, i); // schwarze Farbe und der Index der richtigen
-								// Stelle werden �bergeben
+								// Stelle werden übergeben
 
-				// diesen Versuchs-Pin speichern, da er beim �berpr�fen auf eine
-				// �bereinstimung
-				// mit der Farbe nicht mehr ber�cksichtigt werden darf (sonst
-				// doppelte �berpr�fung und setzen der Antwort)
+				// diesen Versuchs-Pin speichern, da er beim Überprüfen auf eine
+				// Übereinstimung
+				// mit der Farbe nicht mehr berücksichtigt werden darf (sonst
+				// doppelte Überprüfung und setzen der Antwort)
 				benutztschwarz[i] = 1;
 				benutztweis[i] = 1;
 
@@ -210,9 +212,9 @@ public class SpielLogik {
 		for (int i = 0; i < loesung.length; i++) {
 
 			for (int j = 0; j < loesung.length; j++) {
-				// es werden alle Farben der L�sung mit allen Farben des Versuch
+				// es werden alle Farben der Lösung mit allen Farben des Versuch
 				// verglichen
-				// es wird die wei�e Hint-Farbe gesetzt (1), wenn die Farben
+				// es wird die weiße Hint-Farbe gesetzt (1), wenn die Farben
 				// gleich sind und die Positionen nicht gleich sind und
 				// der Versuchs-Pin (array benutztschwarz[] und benutztweis[])
 				// noch nicht mit einer schwarzen Antwort gesetzt wurde (siehe
@@ -225,7 +227,7 @@ public class SpielLogik {
 				}
 			}
 			// wenn die Farbe nicht mit einer der Farben aus
-			// der L�sung �bereinstimmt wird nichts gespeichert(hint = 0)
+			// der Lösung übereinstimmt wird nichts gespeichert(hint = 0)
 			if (hint[i][dieVersuche] != 1 && hint[i][dieVersuche] != 2) {
 				setHint(3, i);
 			}
@@ -255,7 +257,7 @@ public class SpielLogik {
 
 	// hier werden die Farben miteinander verglichen
 	// diese Funktion wird immer nach dem Bestaetigen einer Reihe aufgerufen
-	public void derVergleich() {
+	public void derVergleich() throws IOException {
 
 		// temporaerer Zaehler der richtigen Farben&Position wird gesetzt
 		tempRichtig = 0;
@@ -278,11 +280,11 @@ public class SpielLogik {
 		int hilfszaehler = 0; // benutzt um den Index des schonBenutzt arrays zu
 								// verschieben
 		boolean benutzt = false; // Ist der aktuelle Index bereits als Hinweis
-									// verwendet, so wird er bei der nächsten
-									// Überprüfung übersprungen
+									// verwendet, so wird er bei der nÃ¤chsten
+									// ÃœberprÃ¼fung Ã¼bersprungen
 
 		for (int i = 0; i < 4; i++) {
-			// wenn die Position und die Farbe übereinstimmen wird die schwarze
+			// wenn die Position und die Farbe Ã¼bereinstimmen wird die schwarze
 			// Hint-Farbe gesetzt bzw Zahl 2
 			if (versuch[i][dieVersuche] == loesung[i]) {
 				setHint(2, i);
@@ -290,7 +292,7 @@ public class SpielLogik {
 				schonBenutzt[0][hilfszaehler] = i; // Index des benutzten
 													// Versuchs wird gespeichert
 				schonBenutzt[1][hilfszaehler] = i; // Index der benutzten
-													// Lösung wird gespeichert
+													// LÃ¶sung wird gespeichert
 				hilfszaehler++;
 			}
 		}
@@ -306,7 +308,7 @@ public class SpielLogik {
 				benutzt = false;
 				continue;
 			}
-			for (int j = 0; j < 4; j++) { // Wurde die Lösung mit diesem Index
+			for (int j = 0; j < 4; j++) { // Wurde die LÃ¶sung mit diesem Index
 											// bereits als Hinweis verwendet?
 				for (int k = 0; k < 4; k++) {
 					if (schonBenutzt[1][k] == j) {
@@ -314,38 +316,38 @@ public class SpielLogik {
 						break;
 					}
 				}
-				if (benutzt) { // Falls benutzt --> überspringen
+				if (benutzt) { // Falls benutzt --> Ã¼berspringen
 					benutzt = false;
 					continue;
 				}
-				// es werden alle Farben der Lösung mit allen Farben des
+				// es werden alle Farben der LÃ¶sung mit allen Farben des
 				// Versuch verglichen
-				// es wird die weiße Hint-Farbe gesetzt (1), wenn die Farben
+				// es wird die weiÃŸe Hint-Farbe gesetzt (1), wenn die Farben
 				// gleich sind und die Positionen nicht gleich sind
 				if (versuch[i][dieVersuche] == loesung[j]) { // Farbe+Position
 																// gleich ist
 																// hier nicht
 																// mehr
-																// möglich, da
+																// mÃ¶glich, da
 																// der
 																// entsprechende
 																// Index
-																// übersprungen
+																// Ã¼bersprungen
 																// wurde
 					setHint(1, i);
 					schonBenutzt[0][hilfszaehler] = i; // Index des benutzten
 														// Versuchs wird
 														// gespeichert
 					schonBenutzt[1][hilfszaehler] = j; // Index der benutzten
-														// Lösung wird
+														// LÃ¶sung wird
 														// gespeichert
 					hilfszaehler++;
-					break; // Rest der Lösungsindizes wird übersprungen, da
+					break; // Rest der LÃ¶sungsindizes wird Ã¼bersprungen, da
 							// der aktuelle Versuchsindex bereits verwendet wird
 				}
 			}
-			// wenn der geprüfte Versuch nicht mit einer Farbe aus der Lösung
-			// übereinstimmt wird nichts gespeichert(0)
+			// wenn der geprÃ¼fte Versuch nicht mit einer Farbe aus der LÃ¶sung
+			// Ã¼bereinstimmt wird nichts gespeichert(0)
 			if (hint[i][dieVersuche] != 1 && hint[i][dieVersuche] != 2) {
 				setHint(0, i);
 			}
@@ -378,9 +380,9 @@ public class SpielLogik {
 		}
 
 		hintOrdnen(); // wenn weder gewonnen noch verloren, dann werden die
-						// Hinweise geordnet um anschließend angezeigt zu
+						// Hinweise geordnet um anschlieÃŸend angezeigt zu
 						// werden
-		dieVersuche++; // die Anzahl der Versuche wird erhöht
+		dieVersuche++; // die Anzahl der Versuche wird erhÃ¶ht
 	}
 
 	// Verhalten wenn der Spieler verloren hat
@@ -396,8 +398,7 @@ public class SpielLogik {
 
 	// Verhalten wenn der Spieler gewonnen hat
 	// Diese Methode beinhaltet ein Bild, das im aktuellen Fenster erscheint
-	public void gewonnen() {
-		
-
+	public void gewonnen() throws IOException {
+		Gewonnen g1 = new Gewonnen(dieVersuche);
 	}
 }
