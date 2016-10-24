@@ -13,6 +13,7 @@ public final class MenuManager {
 	private static CreditsMenu credit;
 	private static BrettGUI spiel;
 	private static BildWinner winner;
+	private static Highscore highscore;
 	private static JFrame mainFrame;
 	protected static int gameMode;
 
@@ -24,7 +25,7 @@ public final class MenuManager {
 
 	// Konstruktor
 	// erzeugt Objekte von allen involvierten Klassen
-	// setzt Visibilität von dem der Klasse MainMenu wahr
+	// setzt VisibilitÃ¤t von dem der Klasse MainMenu wahr
 	private MenuManager() throws IOException {
 		main = new MainMenu();
 		schwierigkeit = new SubMenuSchwierigkeit();
@@ -32,11 +33,12 @@ public final class MenuManager {
 		credit = new CreditsMenu();
 		spiel = new BrettGUI();
 		winner = new BildWinner();
+		highscore=new Highscore();
 		main.setVisible(true);
 		init();
 	}
 
-	// initialisiert den JFrame und fügt immer von Beginn an die Klasse MainMenu
+	// initialisiert den JFrame und fÃ¼gt immer von Beginn an die Klasse MainMenu
 	// als ContentPane
 
 	public void init() throws IOException {
@@ -50,7 +52,7 @@ public final class MenuManager {
 		mainFrame.setVisible(true);
 	}
 
-	// zeigt das Hauptmenü
+	// zeigt das HauptmenÃ¼
 	public static void showMainMenu() {
 		setAllInvisible();
 		main.setVisible(true);
@@ -73,16 +75,31 @@ public final class MenuManager {
 		removeAllContentPane();
 		mainFrame.getContentPane().add(spiel);
 	}
+	public static void showHighscore() {
+		setAllInvisible();
+		highscore.setVisible(true);
+
+		removeAllKeyListener();
+		mainFrame.addKeyListener(highscore);
+
+		removeAllContentPane();
+		mainFrame.getContentPane().add(Highscore.btWeiter);
+		mainFrame.getContentPane().add(Highscore.tfName);
+		mainFrame.getContentPane().add(highscore);
+	}
 	
-	//zeigt das Untermenü mit den Schwierigkeiten
+	//zeigt das UntermenÃ¼ mit den Schwierigkeiten
 	public static void showSubMenu() {
 		setAllInvisible();
 		schwierigkeit.setVisible(true);
 
 		removeAllKeyListener();
 		mainFrame.addKeyListener(schwierigkeit);
+		main.setFocusable(true);
 
 		removeAllContentPane();
+		mainFrame.getContentPane().remove(Highscore.tfName);
+		mainFrame.getContentPane().remove(Highscore.btWeiter);
 		mainFrame.getContentPane().add(schwierigkeit);
 	}
 	//zeugt die Hilfe an 
@@ -111,21 +128,23 @@ public final class MenuManager {
 		mainFrame.getContentPane().add(credit);
 
 	}
-	//löscht ContentPanes, Hilfsmethode
+	//lÃ¶scht ContentPanes, Hilfsmethode
 	public static void removeAllContentPane() {
 		mainFrame.getContentPane().remove(main);
 		mainFrame.getContentPane().remove(schwierigkeit);
 		mainFrame.getContentPane().remove(help);
 		mainFrame.getContentPane().remove(spiel);
 		mainFrame.getContentPane().remove(winner);
+		mainFrame.getContentPane().remove(highscore);
 	}
-	//löscht alle KeyListener, Hilfsmethode
+	//lÃ¶scht alle KeyListener, Hilfsmethode
 	public static void removeAllKeyListener() {
 		mainFrame.removeKeyListener(main);
 		mainFrame.removeKeyListener(schwierigkeit);
 		mainFrame.removeKeyListener(help);
 		mainFrame.removeKeyListener(spiel);
 		mainFrame.removeKeyListener(winner);
+		mainFrame.removeKeyListener(highscore);
 	}
 	//Setzt alle Objekte unsichtbar
 	public static void setAllInvisible() {
@@ -135,6 +154,7 @@ public final class MenuManager {
 		schwierigkeit.setVisible(false);
 		spiel.setVisible(false);
 		winner.setVisible(false);
+		highscore.setVisible(false);
 
 	}
 
