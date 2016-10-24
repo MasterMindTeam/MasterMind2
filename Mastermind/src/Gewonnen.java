@@ -150,9 +150,7 @@ public class Gewonnen {
        }
        
        public static void anzeigen() throws IOException{
-              System.out.println(lesen(1));
-              System.out.println(lesen(2));
-              System.out.println(lesen(3));
+             
               System.out.println("Highscores");
               for(int i = 0; i<3; i++){
                      switch(i){

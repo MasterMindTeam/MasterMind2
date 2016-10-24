@@ -196,7 +196,7 @@ public class BrettGUI extends JPanel implements KeyListener {
                   }
             }
      }
-//   g.drawImage(balken, 100*zaehlerPosition, 6+72*objekt123.dieVersuche,null);
+   g.drawImage(balken, 100*zaehlerPosition, 6+72*logik.dieVersuche,null);
 }
 
 
