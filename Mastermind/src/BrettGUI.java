@@ -60,62 +60,8 @@ public class BrettGUI extends JPanel implements KeyListener {
 		g.fill(g.getClipBounds());
 		g.drawImage(hintergrund, 0, 0, null);
 
-		if (testEnter > 9) {
-            for (int i = 0; i<logik.loesung.length;i++) {
-                  if (logik.loesung[i] == 1) {
-                         switch (i) {
-                         case 0: g.drawImage(roterKreis, 75,      717, null); break;
-                         case 1: g.drawImage(roterKreis, 175, 717, null); break;
-                         case 2: g.drawImage(roterKreis, 275, 717, null); break;
-                         case 3: g.drawImage(roterKreis, 375, 717, null); break;
-                         }
-                  }
-                  if (logik.loesung[i] == 2) {
-                         switch (i) {
-                         case 0: g.drawImage(blauerKreis, 75,  717, null); break;
-                         case 1: g.drawImage(blauerKreis, 175, 717, null); break;
-                         case 2: g.drawImage(blauerKreis, 275, 717, null); break;
-                         case 3: g.drawImage(blauerKreis, 375, 717, null); break;
-                         }
-                  }
-                  if (logik.dieSchwierigkeit>1){
-                  if (logik.loesung[i] == 3) {
-                         switch (i) {
-                         case 0: g.drawImage(gelberKreis, 75,717, null); break;
-                         case 1: g.drawImage(gelberKreis, 175, 717, null); break;
-                         case 2: g.drawImage(gelberKreis, 275, 717, null); break;
-                         case 3: g.drawImage(gelberKreis, 375, 717, null); break;
-                         }
-                  }
-                  if (logik.loesung[i] == 4) {
-                         switch (i) {
-                         case 0: g.drawImage(grünerKreis, 75,717, null); break;
-                         case 1: g.drawImage(grünerKreis, 175, 717, null); break;
-                         case 2: g.drawImage(grünerKreis, 275, 717, null); break;
-                         case 3: g.drawImage(grünerKreis, 375, 717, null); break;
-                         }
-                  }
-                  if (logik.dieSchwierigkeit>2){
-                  if (logik.loesung[i] == 5) {
-                         switch (i) {
-                         case 0: g.drawImage(orangenerKreis, 75,717, null); break;
-                         case 1: g.drawImage(orangenerKreis, 175, 717, null); break;
-                         case 2: g.drawImage(orangenerKreis, 275, 717, null); break;
-                         case 3: g.drawImage(orangenerKreis, 375, 717, null); break;
-                         }
-                  }
-                  if (logik.loesung[i] == 6) {
-                         switch (i) {
-                         case 0: g.drawImage(braunerKreis, 75,717, null); break;
-                         case 1: g.drawImage(braunerKreis, 175, 717, null); break;
-                         case 2: g.drawImage(braunerKreis, 275, 717, null); break;
-                         case 3: g.drawImage(braunerKreis, 375, 717, null); break;
-                         }
-                  }
-                  }
-                  }
-            }
-            }
+		
+		
      for (int i = 0; i<logik.versuch.length;i++) {
             for (int j = 0; j<logik.versuch[i].length;j++) {
      if (logik.versuch[i][j] == 1) {
@@ -197,6 +143,69 @@ public class BrettGUI extends JPanel implements KeyListener {
             }
      }
    g.drawImage(balken, 100*zaehlerPosition, 6+72*logik.dieVersuche,null);
+   if (testEnter > 9) {
+       for (int i = 0; i<logik.loesung.length;i++) {
+             if (logik.loesung[i] == 1) {
+                    switch (i) {
+                    case 0: g.drawImage(roterKreis, 75,      717, null); break;
+                    case 1: g.drawImage(roterKreis, 175, 717, null); break;
+                    case 2: g.drawImage(roterKreis, 275, 717, null); break;
+                    case 3: g.drawImage(roterKreis, 375, 717, null); break;
+                    }
+             }
+             if (logik.loesung[i] == 2) {
+                    switch (i) {
+                    case 0: g.drawImage(blauerKreis, 75,  717, null); break;
+                    case 1: g.drawImage(blauerKreis, 175, 717, null); break;
+                    case 2: g.drawImage(blauerKreis, 275, 717, null); break;
+                    case 3: g.drawImage(blauerKreis, 375, 717, null); break;
+                    }
+             }
+             if (logik.dieSchwierigkeit>1){
+             if (logik.loesung[i] == 3) {
+                    switch (i) {
+                    case 0: g.drawImage(gelberKreis, 75,717, null); break;
+                    case 1: g.drawImage(gelberKreis, 175, 717, null); break;
+                    case 2: g.drawImage(gelberKreis, 275, 717, null); break;
+                    case 3: g.drawImage(gelberKreis, 375, 717, null); break;
+                    }
+             }
+             if (logik.loesung[i] == 4) {
+                    switch (i) {
+                    case 0: g.drawImage(grünerKreis, 75,717, null); break;
+                    case 1: g.drawImage(grünerKreis, 175, 717, null); break;
+                    case 2: g.drawImage(grünerKreis, 275, 717, null); break;
+                    case 3: g.drawImage(grünerKreis, 375, 717, null); break;
+                    }
+             }
+             if (logik.dieSchwierigkeit>2){
+             if (logik.loesung[i] == 5) {
+                    switch (i) {
+                    case 0: g.drawImage(orangenerKreis, 75,717, null); break;
+                    case 1: g.drawImage(orangenerKreis, 175, 717, null); break;
+                    case 2: g.drawImage(orangenerKreis, 275, 717, null); break;
+                    case 3: g.drawImage(orangenerKreis, 375, 717, null); break;
+                    }
+             }
+             if (logik.loesung[i] == 6) {
+                    switch (i) {
+                    case 0: g.drawImage(braunerKreis, 75,717, null); break;
+                    case 1: g.drawImage(braunerKreis, 175, 717, null); break;
+                    case 2: g.drawImage(braunerKreis, 275, 717, null); break;
+                    case 3: g.drawImage(braunerKreis, 375, 717, null); break;
+                    }
+             }
+             }
+             }
+       }
+       if (logik.tempRichtig == 4) {
+			g.drawImage(winner, 0, 0, null);
+		} else {
+			g.drawImage(loser, 0, 0, null);
+
+		}
+       
+       }
 }
 
 
