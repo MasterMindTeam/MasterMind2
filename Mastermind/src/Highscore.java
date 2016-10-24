@@ -18,8 +18,8 @@ public class Highscore extends JPanel implements KeyListener {
 	protected static JTextField tfName;
 	protected static JButton btWeiter;
 	protected BufferedImage hintergrundHighscore;
-	protected String[] arrayName = new String[100];
-	protected int zaehlerArray = 0;
+	protected static String[] arrayName = new String[100];
+	protected static int zaehlerArray = 0;
 
 	public Highscore() {
 		setLayout(null);
@@ -38,8 +38,13 @@ public class Highscore extends JPanel implements KeyListener {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				nameErfassen();
-				MenuManager.showSubMenu();
+				if (tfName.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null,"Bitte Namen angeben", "Fehler", JOptionPane.ERROR_MESSAGE);
+				}
+				else {
+					nameErfassen();
+					MenuManager.showSubMenu();
+				}
 			}
 			
 		});
@@ -54,16 +59,10 @@ public class Highscore extends JPanel implements KeyListener {
 		g.drawImage(hintergrundHighscore, -10, 0, null);
 		// getRootPane().add(tfName);
 	}
-
+	
 	public void nameErfassen() {
+		System.out.println(zaehlerArray);
 		arrayName[zaehlerArray] = tfName.getText();
-//		for (int j = zaehlerArray; j< arrayName.length; j++) {
-//			if(arrayName[j] == null) {
-//			}
-//			else {
-//				System.out.println(arrayName[j]);
-//			}
-//		}
 		zaehlerArray++;
 	}
 	
