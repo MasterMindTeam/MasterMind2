@@ -18,20 +18,26 @@ import javax.swing.border.EmptyBorder;
 
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
-// Aufz‰hlung der Positionen im Hauptmen¸
+// Aufz√§hlung der Positionen im Hauptmen√º
+
 
 public class Gewonnen extends JPanel implements KeyListener {
 
-	// Speichert die aktuelle Position des Zeigers (bb8) im Hauptmen¸
+	// Speichert die aktuelle Position des Zeigers (bb8) im Hauptmen√º
+	
+	protected static int [] anzahlVersuche = new int [100];
+	private BufferedImage  winner;
+	protected static int zaehler = 0;
 
-	private BufferedImage winner;
-
-	public Gewonnen() throws IOException {
+	public Gewonnen(int versuche) throws IOException {
 		setLayout(null);
 		this.setPreferredSize(new Dimension(800, 600));
 		setVisible(true);
+		
+		anzahlVersuche[zaehler] = versuche;
+		zaehler++;
 
-		winner = load("src/Gewonnen.png");
+		winner = load("Gewonnen.png");
 	}
 
 	public void paint(Graphics gr) {
@@ -41,6 +47,8 @@ public class Gewonnen extends JPanel implements KeyListener {
 
 		g.drawImage(winner, 0, 0, this);
 
+		
+
 	}
 
 	private BufferedImage load(String name) {
@@ -49,7 +57,7 @@ public class Gewonnen extends JPanel implements KeyListener {
 			return ImageIO.read(new File(name));
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		return null;
 	}
@@ -89,26 +97,79 @@ public class Gewonnen extends JPanel implements KeyListener {
 		}
 		repaint();
 
+		// if (e.getKeyChar() == KeyEvent.VK_S && zaehler < options.length) {
+		// zaehler++;
+		// repaint();
+		// }
+		// if (e.getKeyChar() == KeyEvent.VK_S && counter < optionen.length) {
+		// counter++;
+		// repaint();
+		// }
+		// if (e.getKeyChar() == KeyEvent.VK_W && zaehler > 1) {
+		// zaehler--;
+		// repaint();
+		// }
+		//
+		// if (e.getKeyChar() == KeyEvent.VK_W && counter > 1) {
+		// counter--;
+		// repaint();
+		// }
+		//
+		// if (e.getKeyChar() == KeyEvent.VK_ESCAPE || e.getKeyChar() ==
+		// KeyEvent.VK_Z) {
+		// zaehler = 1;
+		// counter = 0;
+		// pointer = 0;
+		// credit = 0;
+		// repaint();
+		//
+		// }
+		//
+		// if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+		// if (zaehler == 1) {
+		// pointer = 1;
+		// repaint();
+		//
+		// }
+		//
+		// if (zaehler == 3) {
+		// pointer = 2;
+		// repaint();
+		//
+		// }
+		//
+		// if (zaehler == 4) {
+		// pointer = 3;
+		// repaint();
+		// }
+		//
+		// }
 	}
-
-	private void zPressed() {
+	
+	private void zPressed(){
 		MenuManager.showMainMenu();
 	}
 
 	private void sPressed() {
-
+		
 	}
+	
+	
 
 	private void wPressed() {
-
+		
 	}
 
 	private void enterPressed() {
+		// currentSubMenu = currentSubMenu.LEICHT;
+		//
+		// case currentMainMenu == NEUESSPIEL
+		// MenuManager.Instance.ShowSubMenuNeuesSpiel();
 
 	}
 
 	public void buchstabenUmwandeln(KeyEvent e) {
-		// Die eingebebenen Buchstaben werden von Groﬂbuchstaben in
+		// Die eingebebenen Buchstaben werden von Gro√übuchstaben in
 		// Kleinbuchstaben umgewandelt
 		if (e.getID() == KeyEvent.KEY_TYPED) {
 			e.setKeyChar(Character.toUpperCase(e.getKeyChar()));
