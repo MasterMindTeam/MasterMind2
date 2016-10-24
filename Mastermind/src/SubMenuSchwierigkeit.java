@@ -51,7 +51,7 @@ public class SubMenuSchwierigkeit extends JPanel implements KeyListener {
 		setVisible(false);
 
 		bb8 = load("src/BB8.png");
-		sub = load("src/Sub.png");		
+		sub = load("src/Sub.png");
 	}
 
 	public void paint(Graphics gr) {
@@ -85,6 +85,7 @@ public class SubMenuSchwierigkeit extends JPanel implements KeyListener {
 		}
 		return null;
 	}
+
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
@@ -120,56 +121,9 @@ public class SubMenuSchwierigkeit extends JPanel implements KeyListener {
 		}
 		repaint();
 
-		// if (e.getKeyChar() == KeyEvent.VK_S && zaehler < options.length) {
-		// zaehler++;
-		// repaint();
-		// }
-		// if (e.getKeyChar() == KeyEvent.VK_S && counter < optionen.length) {
-		// counter++;
-		// repaint();
-		// }
-		// if (e.getKeyChar() == KeyEvent.VK_W && zaehler > 1) {
-		// zaehler--;
-		// repaint();
-		// }
-		//
-		// if (e.getKeyChar() == KeyEvent.VK_W && counter > 1) {
-		// counter--;
-		// repaint();
-		// }
-		//
-		// if (e.getKeyChar() == KeyEvent.VK_ESCAPE || e.getKeyChar() ==
-		// KeyEvent.VK_Z) {
-		// zaehler = 1;
-		// counter = 0;
-		// pointer = 0;
-		// credit = 0;
-		// repaint();
-		//
-		// }
-		//
-		// if (e.getKeyChar() == KeyEvent.VK_ENTER) {
-		// if (zaehler == 1) {
-		// pointer = 1;
-		// repaint();
-		//
-		// }
-		//
-		// if (zaehler == 3) {
-		// pointer = 2;
-		// repaint();
-		//
-		// }
-		//
-		// if (zaehler == 4) {
-		// pointer = 3;
-		// repaint();
-		// }
-		//
-		// }
 	}
-	
-	private void zPressed(){
+
+	private void zPressed() {
 		MenuManager.showMainMenu();
 	}
 
@@ -182,15 +136,15 @@ public class SubMenuSchwierigkeit extends JPanel implements KeyListener {
 	}
 
 	private void enterPressed() {
-		if(currentSubMenu == SubMenuPositions.LEICHT){
+		if (currentSubMenu == SubMenuPositions.LEICHT) {
 			MenuManager.gameMode = 1;
 			MenuManager.showGame();
 		}
-		if(currentSubMenu == SubMenuPositions.MITTEL){
+		if (currentSubMenu == SubMenuPositions.MITTEL) {
 			MenuManager.gameMode = 2;
 			MenuManager.showGame();
 		}
-		if(currentSubMenu == SubMenuPositions.SCHWER){
+		if (currentSubMenu == SubMenuPositions.SCHWER) {
 			MenuManager.gameMode = 3;
 			MenuManager.showGame();
 		}

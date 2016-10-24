@@ -27,7 +27,8 @@ public class SpielLogik {
 													// Versuches gespeichert
 													// sind
 	protected int[][] hint = new int[4][10]; // Array, in dem die
-												// LÃ¶sungshinweise gespeichert
+												// LÃ¶sungshinweise
+												// gespeichert
 												// sind
 	protected int dieVersuche; // Zeigt an, um welchen Versuch es sich handelt
 	protected int dieSchwierigkeit; // Ã„ndert die Anazahl zu verfÃ¼gbaren
@@ -50,35 +51,14 @@ public class SpielLogik {
 	// hier wird die LÃ¶sungsreihe zufÃ¤llig gesetzt
 	public void setLoesung() {
 		int dieZufallszahl;
+
 		// 1.Stufe der Schwierigkeit - 2 Farben sind mÃ¶glich
-		if (dieSchwierigkeit == 1) {
-			for (int i = 0; i < loesung.length; i++) {
-				dieZufallszahl = ((int) (Math.random() * 2 + 1)); // Zufallszahl
-																	// von 1 bis
-																	// 2 wird
-																	// generiert
-				loesung[i] = dieZufallszahl;
-			}
-		}
-		// 2.Stufe - 4 Farben sind mÃ¶glich
-		if (dieSchwierigkeit == 2) {
-			for (int i = 0; i < loesung.length; i++) {
-				dieZufallszahl = ((int) (Math.random() * 4 + 1)); // Zufallszahl
-																	// von 1 bis
-																	// 4 wird
-																	// generiert
-				loesung[i] = dieZufallszahl;
-			}
-		}
-		// 3. Stufe - 6 Farben sind mÃ¶glich
-		if (dieSchwierigkeit == 3) {
-			for (int i = 0; i < loesung.length; i++) {
-				dieZufallszahl = ((int) (Math.random() * 6 + 1)); // Zufallszahl
-																	// von 1 bis
-																	// 6 wird
-																	// generiert
-				loesung[i] = dieZufallszahl;
-			}
+		for (int i = 0; i < loesung.length; i++) {
+			dieZufallszahl = ((int) (Math.random() * 2 * dieSchwierigkeit + 1)); // Zufallszahl
+			// von 1 bis
+			// 2 wird
+			// generiert
+			loesung[i] = dieZufallszahl;
 		}
 	}
 
@@ -184,7 +164,7 @@ public class SpielLogik {
 		}
 	}
 
-	public void derVergleich2() throws IOException {
+	public void derVergleich() throws IOException {
 		// temporärer Zähler, wenn Farbe und Position richtig
 		tempRichtig = 0;
 		int benutztschwarz[] = { 0, 0, 0, 0 };
@@ -198,7 +178,8 @@ public class SpielLogik {
 				setHint(2, i); // schwarze Farbe und der Index der richtigen
 								// Stelle werden übergeben
 
-				// diesen Versuchs-Pin speichern, da er beim Überprüfen auf eine
+				// diesen Versuchs-Pin speichern, da er beim Überprüfen auf
+				// eine
 				// Übereinstimung
 				// mit der Farbe nicht mehr berücksichtigt werden darf (sonst
 				// doppelte Überprüfung und setzen der Antwort)
@@ -212,7 +193,8 @@ public class SpielLogik {
 		for (int i = 0; i < loesung.length; i++) {
 
 			for (int j = 0; j < loesung.length; j++) {
-				// es werden alle Farben der Lösung mit allen Farben des Versuch
+				// es werden alle Farben der Lösung mit allen Farben des
+				// Versuch
 				// verglichen
 				// es wird die weiße Hint-Farbe gesetzt (1), wenn die Farben
 				// gleich sind und die Positionen nicht gleich sind und
@@ -233,12 +215,7 @@ public class SpielLogik {
 			}
 		}
 
-		/*
-		 * if(dieVersuche == 10 && tempRichtig == 4){ //zuerst noch die Farben
-		 * auf dem Spielfeld setzen (zum Anzeigen)
-		 * setVersuch(getVersuchAktuell()); //danach die Gewonnen-Methode
-		 * aufrufen gewonnen(); }
-		 */
+	
 
 		if (dieVersuche == 10 && tempRichtig < 4) {
 			// setVersuch(getVersuchAktuell());
@@ -255,135 +232,7 @@ public class SpielLogik {
 		dieVersuche++;
 	}
 
-	// hier werden die Farben miteinander verglichen
-	// diese Funktion wird immer nach dem Bestaetigen einer Reihe aufgerufen
-	public void derVergleich() throws IOException {
-
-		// temporaerer Zaehler der richtigen Farben&Position wird gesetzt
-		tempRichtig = 0;
-		int[][] schonBenutzt = { { -1, -1, -1, -1 }, { -1, -1, -1, -1 } }; // wichtig,
-																			// damit
-																			// kein
-																			// Pin
-																			// doppelt
-																			// verwendet
-																			// wird.
-																			// Bereits
-																			// verwendete
-																			// Versuchs
-																			// und
-																			// Loesungs
-																			// Indizes
-																			// werden
-																			// hier
-																			// gespeichert
-		int hilfszaehler = 0; // benutzt um den Index des schonBenutzt arrays zu
-								// verschieben
-		boolean benutzt = false; // Ist der aktuelle Index bereits als Hinweis
-									// verwendet, so wird er bei der nÃ¤chsten
-									// ÃœberprÃ¼fung Ã¼bersprungen
-
-		for (int i = 0; i < 4; i++) {
-			// wenn die Position und die Farbe Ã¼bereinstimmen wird die schwarze
-			// Hint-Farbe gesetzt bzw Zahl 2
-			if (versuch[i][dieVersuche] == loesung[i]) {
-				setHint(2, i);
-				tempRichtig++;
-				schonBenutzt[0][hilfszaehler] = i; // Index des benutzten
-													// Versuchs wird gespeichert
-				schonBenutzt[1][hilfszaehler] = i; // Index der benutzten
-													// LÃ¶sung wird gespeichert
-				hilfszaehler++;
-			}
-		}
-		for (int i = 0; i < 4; i++) {
-			for (int l = 0; l < 4; l++) { // Wurde der Versuch mit diesem Index
-											// bereits als Hinweis verwendet?
-				if (schonBenutzt[0][l] == i) {
-					benutzt = true;
-					break;
-				}
-			}
-			if (benutzt) { // Falls benutzt --> Ueberspringen
-				benutzt = false;
-				continue;
-			}
-			for (int j = 0; j < 4; j++) { // Wurde die LÃ¶sung mit diesem Index
-											// bereits als Hinweis verwendet?
-				for (int k = 0; k < 4; k++) {
-					if (schonBenutzt[1][k] == j) {
-						benutzt = true;
-						break;
-					}
-				}
-				if (benutzt) { // Falls benutzt --> Ã¼berspringen
-					benutzt = false;
-					continue;
-				}
-				// es werden alle Farben der LÃ¶sung mit allen Farben des
-				// Versuch verglichen
-				// es wird die weiÃŸe Hint-Farbe gesetzt (1), wenn die Farben
-				// gleich sind und die Positionen nicht gleich sind
-				if (versuch[i][dieVersuche] == loesung[j]) { // Farbe+Position
-																// gleich ist
-																// hier nicht
-																// mehr
-																// mÃ¶glich, da
-																// der
-																// entsprechende
-																// Index
-																// Ã¼bersprungen
-																// wurde
-					setHint(1, i);
-					schonBenutzt[0][hilfszaehler] = i; // Index des benutzten
-														// Versuchs wird
-														// gespeichert
-					schonBenutzt[1][hilfszaehler] = j; // Index der benutzten
-														// LÃ¶sung wird
-														// gespeichert
-					hilfszaehler++;
-					break; // Rest der LÃ¶sungsindizes wird Ã¼bersprungen, da
-							// der aktuelle Versuchsindex bereits verwendet wird
-				}
-			}
-			// wenn der geprÃ¼fte Versuch nicht mit einer Farbe aus der LÃ¶sung
-			// Ã¼bereinstimmt wird nichts gespeichert(0)
-			if (hint[i][dieVersuche] != 1 && hint[i][dieVersuche] != 2) {
-				setHint(0, i);
-			}
-		}
-
-		if (dieVersuche == 10 && tempRichtig == 4) {
-			// TO-DO: Warum? Sollte auch ohne dieses IF funktionieren. Brauchen
-			// nur test ob dieVersuche = 10 und nicht alle richtig.
-			// Nur test auf gewonnen muss vor test auf 10 versuche kommen!
-			// zuerst noch die Farben auf dem Spielfeld setzen
-			// setVersuch(getVersuchAktuell());
-			// danach die Gewonnen-Methode aufrufen
-			gewonnen();
-		} else if (dieVersuche == 10 && tempRichtig < 4) { // wenn der
-															// letzte(10.)
-															// Versuch erreicht
-															// ist und nicht
-															// alle Pins korrekt
-															// gesetzt sind wird
-															// die "verloren"
-															// Methode
-															// aufgerufen
-			// setVersuch(getVersuchAktuell());
-			verloren();
-		}
-		// wenn alle 4 Farben richtig sind und an der richtigen STelle stehen,
-		// wird die Methode "gewonnen" aufgerufen
-		if (tempRichtig == 4) {
-			gewonnen();
-		}
-
-		hintOrdnen(); // wenn weder gewonnen noch verloren, dann werden die
-						// Hinweise geordnet um anschlieÃŸend angezeigt zu
-						// werden
-		dieVersuche++; // die Anzahl der Versuche wird erhÃ¶ht
-	}
+	
 
 	// Verhalten wenn der Spieler verloren hat
 	// Diese Methode beinhaltet ein Bild, das im aktuellen Fenster erscheint
@@ -399,6 +248,6 @@ public class SpielLogik {
 	// Verhalten wenn der Spieler gewonnen hat
 	// Diese Methode beinhaltet ein Bild, das im aktuellen Fenster erscheint
 	public void gewonnen() throws IOException {
-		Gewonnen g1 = new Gewonnen(dieVersuche);
+		Gewonnen g1 = new Gewonnen(dieVersuche, dieSchwierigkeit);
 	}
 }
