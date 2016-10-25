@@ -13,7 +13,6 @@ public class Gewonnen {
        final static String LINESEPARATOR = System.getProperty("line.separator");
        
        public Gewonnen(int anzahlVersuche, int schwierigkeit) {
-              do{MenuManager.name = JOptionPane.showInputDialog(null, "Ihr Benutzername: ", "Super, Sie haben gewonnen", JOptionPane.PLAIN_MESSAGE);}while(MenuManager.name==null);
               this.anzahlVersuche = anzahlVersuche;
               this.schwierigkeit = schwierigkeit;
               highscoreArray1[10][0]="11";

@@ -153,8 +153,12 @@ public class MainMenu extends JPanel implements KeyListener {
 			MenuManager.showSubMenu();
 		}
 		
+		//Highscoremenü wird aufgerufen
+		if (currentMainMenu == MainMenuPositions.HIGHSCORE){
+			MenuManager.showAnzeigeHighscore();
+		}
+		
 		//wenn bei Hilfe wird das Hilfemenü aufgerufen
-
 		if (currentMainMenu == MainMenuPositions.HILFE) {
 			MenuManager.showHelpMenu();
 		}

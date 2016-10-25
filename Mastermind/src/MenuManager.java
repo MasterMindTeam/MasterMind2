@@ -13,8 +13,8 @@ public final class MenuManager {
 	private static CreditsMenu credit;
 	private static BrettGUI spiel;
 	private static BildWinner winner;
-//	private static Highscore highscore;
-//	private static AnzeigeHighscore anzeige;
+	private static Highscore highscore;
+	private static AnzeigeHighscore anzeige;
 	private static MP3_Player music;
 	private static JFrame mainFrame;
 	protected static int gameMode;
@@ -37,8 +37,8 @@ public final class MenuManager {
 		credit = new CreditsMenu();
 		spiel = new BrettGUI();
 		winner = new BildWinner();
-//		highscore = new Highscore();
-//		anzeige = new AnzeigeHighscore();
+		highscore = new Highscore();
+		anzeige = new AnzeigeHighscore();
 		main.setVisible(true);
 		init();
 	}
@@ -64,7 +64,7 @@ public final class MenuManager {
 		setAllInvisible();
 		main.setVisible(true);
 
-		// mainFrame.remove(AnzeigeHighscore.taAusgabeHighscore);
+		 mainFrame.remove(AnzeigeHighscore.taAusgabeHighscore);
 		removeAllKeyListener();
 		mainFrame.addKeyListener(main);
 
@@ -84,40 +84,38 @@ public final class MenuManager {
 		mainFrame.getContentPane().add(spiel);
 	}
 
-//	public static void showAnzeigeHighscore() {
-//		setAllInvisible();
-//		anzeige.setVisible(true);
-//
-//		removeAllKeyListener();
-//		mainFrame.addKeyListener(anzeige);
-//
-//		removeAllContentPane();
-//		AnzeigeHighscore.taAusgabeHighscore.setText("");
-//		// System.out.println(Gewonnen.anzahlVersuche);
-//		for (int i = 0; i < Highscore.arrayName.length; i++) {
-//			if (Highscore.arrayName[i] == null) {
-//			} else {
-//				AnzeigeHighscore.taAusgabeHighscore.append(i + 1 + ") " + Highscore.arrayName[i] + "\t"
-//						+ "Anzahl Versuche: " + (Gewonnen.anzahlVersuche[i] + 1) + "\n");
-//			}
-//		}
-//		// setText(AnzeigeHighscore.ausgabeArray());
-//		mainFrame.getContentPane().add(AnzeigeHighscore.taAusgabeHighscore);
-//		mainFrame.getContentPane().add(anzeige);
-//	}
+	public static void showAnzeigeHighscore() {
+		setAllInvisible();
+		anzeige.setVisible(true);
 
-//	public static void showHighscore() {
-//		setAllInvisible();
-//		highscore.setVisible(true);
-//
-//		removeAllKeyListener();
-//		mainFrame.addKeyListener(highscore);
-//
-//		removeAllContentPane();
-//		mainFrame.getContentPane().add(Highscore.btWeiter);
-//		mainFrame.getContentPane().add(Highscore.tfName);
-//		mainFrame.getContentPane().add(highscore);
-//	}
+		removeAllKeyListener();
+		mainFrame.addKeyListener(anzeige);
+
+		removeAllContentPane();
+		AnzeigeHighscore.taAusgabeHighscore.setText("");
+		for (int i = 0; i < 10; i++) {
+			if (Gewonnen.highscoreArray1[i][0] == null) {
+			} else {
+				AnzeigeHighscore.taAusgabeHighscore.append(i + 1 + ") " + Gewonnen.highscoreArray1[i][1] + "\t"
+						+ "Anzahl Versuche: " + (Integer.parseInt(Gewonnen.highscoreArray1[i][0]) + 1) + "\n");
+			}
+		}
+		mainFrame.getContentPane().add(AnzeigeHighscore.taAusgabeHighscore);
+		mainFrame.getContentPane().add(anzeige);
+	}
+
+	public static void showHighscore() {
+		setAllInvisible();
+		highscore.setVisible(true);
+
+		removeAllKeyListener();
+		mainFrame.addKeyListener(highscore);
+
+		removeAllContentPane();
+		mainFrame.getContentPane().add(Highscore.btWeiter);
+		mainFrame.getContentPane().add(Highscore.tfName);
+		mainFrame.getContentPane().add(highscore);
+	}
 
 	// zeigt das Untermenü mit den Schwierigkeiten
 	public static void showSubMenu() {
@@ -129,9 +127,9 @@ public final class MenuManager {
 		mainFrame.setFocusable(true);
 
 		removeAllContentPane();
-//		Highscore.tfName.setText("");
-//		mainFrame.getContentPane().remove(Highscore.tfName);
-//		mainFrame.getContentPane().remove(Highscore.btWeiter);
+		Highscore.tfName.setText("");
+		mainFrame.getContentPane().remove(Highscore.tfName);
+		mainFrame.getContentPane().remove(Highscore.btWeiter);
 		mainFrame.getContentPane().add(schwierigkeit);
 	}
 
@@ -169,8 +167,8 @@ public final class MenuManager {
 		mainFrame.getContentPane().remove(help);
 		mainFrame.getContentPane().remove(spiel);
 		mainFrame.getContentPane().remove(winner);
-//		mainFrame.getContentPane().remove(highscore);
-//		mainFrame.getContentPane().remove(anzeige);
+		mainFrame.getContentPane().remove(highscore);
+		mainFrame.getContentPane().remove(anzeige);
 	}
 
 	// löscht alle KeyListener, Hilfsmethode
@@ -180,8 +178,8 @@ public final class MenuManager {
 		mainFrame.removeKeyListener(help);
 		mainFrame.removeKeyListener(spiel);
 		mainFrame.removeKeyListener(winner);
-//		mainFrame.removeKeyListener(highscore);
-//		mainFrame.removeKeyListener(anzeige);
+		mainFrame.removeKeyListener(highscore);
+		mainFrame.removeKeyListener(anzeige);
 	}
 
 	// Setzt alle Objekte unsichtbar
@@ -192,8 +190,8 @@ public final class MenuManager {
 		schwierigkeit.setVisible(false);
 		spiel.setVisible(false);
 		winner.setVisible(false);
-//		highscore.setVisible(false);
-//		anzeige.setVisible(false);
+		highscore.setVisible(false);
+		anzeige.setVisible(false);
 	}
 
 }
