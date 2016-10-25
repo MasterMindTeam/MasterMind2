@@ -24,7 +24,7 @@ public class AnzeigeHighscore extends JPanel implements KeyListener{
 		setLayout(null);
 		this.setPreferredSize(new Dimension(800, 600));
 		anzeigeHintergrund = load("src/Highscore_2.png");
-		taAusgabeHighscore = new JTextArea();
+		taAusgabeHighscore = new JTextArea(MenuManager.name);
 		taAusgabeHighscore.setBackground(SystemColor.window);
 		taAusgabeHighscore.setBounds(70, 350, 450, 250);
 		taAusgabeHighscore.setFont(new Font("HP Simplified", Font.PLAIN, 20));
@@ -65,15 +65,20 @@ public class AnzeigeHighscore extends JPanel implements KeyListener{
 
 	@Override
 	public void keyTyped(KeyEvent e) {
+		buchstabenUmwandeln(e);
 		// TODO Auto-generated method stub
-		if (e.getKeyChar() == KeyEvent.VK_ESCAPE) {
-			angabeAbbrechen=JOptionPane.showConfirmDialog(null, "Zurück zum Hauptmenü?", "Abbrechen?", JOptionPane.OK_CANCEL_OPTION);
-			if (angabeAbbrechen == 0) {
-				MenuManager.showMainMenu();
-			}
-			}
+		if (e.getKeyChar() == KeyEvent.VK_ESCAPE||e.getKeyChar() == KeyEvent.VK_Z) {
+			MenuManager.showMainMenu();
+		}
 	}
-	
+	public void buchstabenUmwandeln(KeyEvent e) {
+		// Die eingebebenen Buchstaben werden von Großbuchstaben in
+		// Kleinbuchstaben umgewandelt
+		if (e.getID() == KeyEvent.KEY_TYPED) {
+			e.setKeyChar(Character.toUpperCase(e.getKeyChar()));
+		}
+
+	}
 	
 
 }

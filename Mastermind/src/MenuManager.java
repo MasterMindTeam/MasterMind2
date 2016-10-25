@@ -23,6 +23,7 @@ public final class MenuManager {
 	// erstellt ein Objekt von Klasse MenuManager
 	public static void main(String[] args) throws IOException {
 		MenuManager manager = new MenuManager();
+		Gewonnen arrayInit = new Gewonnen(999,3);
 		music = new MP3_Player();
 		System.out.println();
 	}
@@ -92,7 +93,7 @@ public final class MenuManager {
 		mainFrame.addKeyListener(anzeige);
 
 		removeAllContentPane();
-		AnzeigeHighscore.taAusgabeHighscore.setText("");
+		AnzeigeHighscore.taAusgabeHighscore.setText(MenuManager.name);
 		for (int i = 0; i < 10; i++) {
 			if (Gewonnen.highscoreArray1[i][0] == null) {
 			} else {
