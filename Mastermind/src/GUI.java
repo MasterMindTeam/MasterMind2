@@ -1,9 +1,11 @@
 import java.awt.*;
+import java.io.IOException;
+
 import javax.swing.*;
 import java.util.*;
 
 public class GUI {
-	public static void main (String [] args){						//Spacing
+	public static void main (String [] args) throws IOException{						//Spacing
 		for(int i=0;i<15;i++){
 			System.out.println();
 		}
@@ -79,7 +81,7 @@ public class GUI {
 			System.out.println("");
 			System.out.println("");
 			if(logik.tempRichtig==4){								//Wenn gewonnen: Fragt nicht nach neuer Eingabe
-				Gewonnnen gewonnen = new Gewonnnen();
+				MenuManager.showWinnersign();
 				break;
 			}
 		}
