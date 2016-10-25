@@ -59,7 +59,7 @@ public class SubMenuSchwierigkeit extends JPanel implements KeyListener {
 		g.setColor(Color.WHITE);
 		g.fill(g.getClipBounds());
 
-		g.drawImage(sub, -10, 0, this);
+		g.drawImage(sub, -5, 0, this);
 
 		switch (currentSubMenu) {
 		case LEICHT:

@@ -56,7 +56,7 @@
 //		Graphics2D g = (Graphics2D) gr;
 //		g.setColor(Color.WHITE);
 //		g.fill(g.getClipBounds());
-//		g.drawImage(hintergrundHighscore, -10, 0, null);
+//		g.drawImage(hintergrundHighscore, -5, 0, null);
 //		// getRootPane().add(tfName);
 //	}
 //	

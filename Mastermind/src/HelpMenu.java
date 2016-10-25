@@ -36,7 +36,7 @@ public class HelpMenu extends JPanel implements KeyListener {
 		g.setColor(Color.WHITE);
 		g.fill(g.getClipBounds());
 
-		g.drawImage(hilfe, -10, 0, this);
+		g.drawImage(hilfe, -5, 0, this);
 
 	}
 

@@ -52,6 +52,7 @@ public final class MenuManager {
 		mainFrame = new JFrame();
 		mainFrame.addKeyListener(main);
 		mainFrame.setSize(600, 800);
+		mainFrame.setResizable(false);
 		mainFrame.setLocationRelativeTo(null);
 		mainFrame.getContentPane().add(main);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

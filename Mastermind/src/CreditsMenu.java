@@ -40,7 +40,7 @@ public class CreditsMenu extends JPanel implements KeyListener {
 		g.setColor(Color.WHITE);
 		g.fill(g.getClipBounds());
 
-		g.drawImage(credits, -10, 0, this);
+		g.drawImage(credits, -5, 0, this);
 
 		
 
