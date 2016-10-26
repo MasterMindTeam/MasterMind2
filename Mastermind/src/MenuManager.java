@@ -93,7 +93,7 @@ public final class MenuManager {
 		mainFrame.addKeyListener(anzeige);
 
 		removeAllContentPane();
-		AnzeigeHighscore.taAusgabeHighscore.setText(MenuManager.name);
+		AnzeigeHighscore.taAusgabeHighscore.setText("");
 		for (int i = 0; i < 10; i++) {
 			if (Gewonnen.highscoreArray1[i][0] == null) {
 			} else {
