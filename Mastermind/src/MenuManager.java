@@ -70,6 +70,9 @@ public final class MenuManager {
 		mainFrame.addKeyListener(main);
 
 		removeAllContentPane();
+		Highscore.tfName.setText("");
+		mainFrame.getContentPane().remove(Highscore.tfName);
+		mainFrame.getContentPane().remove(Highscore.btWeiter);
 		mainFrame.getContentPane().add(main);
 	}
 
