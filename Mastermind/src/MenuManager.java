@@ -70,6 +70,9 @@ public final class MenuManager {
 		mainFrame.addKeyListener(main);
 
 		removeAllContentPane();
+		Highscore.tfName.setText("");
+		mainFrame.getContentPane().remove(Highscore.tfName);
+		mainFrame.getContentPane().remove(Highscore.btWeiter);
 		mainFrame.getContentPane().add(main);
 	}
 
@@ -93,7 +96,7 @@ public final class MenuManager {
 		mainFrame.addKeyListener(anzeige);
 
 		removeAllContentPane();
-		AnzeigeHighscore.taAusgabeHighscore.setText(MenuManager.name);
+		AnzeigeHighscore.taAusgabeHighscore.setText("");
 		for (int i = 0; i < 10; i++) {
 			if (Gewonnen.highscoreArray1[i][0] == null) {
 			} else {

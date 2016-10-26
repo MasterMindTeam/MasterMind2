@@ -87,9 +87,13 @@ public class Highscore extends JPanel implements KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		if (e.getKeyChar() == KeyEvent.VK_ENTER) {
-			MenuManager.showSubMenu();
-
+		switch(e.getKeyChar()){ 
+		case KeyEvent.VK_ESCAPE:
+			MenuManager.showMainMenu();
+			break;
+		case KeyEvent.VK_Z:
+			MenuManager.showMainMenu();
+			break;
 		}
 
 	}
