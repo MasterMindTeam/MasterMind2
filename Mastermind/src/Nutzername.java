@@ -17,9 +17,10 @@ import javax.swing.*;
 public class Nutzername extends JPanel implements KeyListener {
 
 	protected static JTextField tfName;
+	protected static JButton btHome;
 	protected static JButton btWeiter;
 	protected BufferedImage hintergrundNutzername;
-	ActionListener listener = new ActionListener() {
+	protected static ActionListener listener = new ActionListener() {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -32,8 +33,8 @@ public class Nutzername extends JPanel implements KeyListener {
 				MenuManager.showSubMenu();
 			}
 		}
-		
 	};
+
 
 	public Nutzername() {
 		setLayout(null);
@@ -47,10 +48,18 @@ public class Nutzername extends JPanel implements KeyListener {
 		tfName.setHorizontalAlignment(JTextField.CENTER);
 		tfName.addActionListener(listener);
 		btWeiter = new JButton("Weiter");
-		btWeiter.setBounds(240, 470, 100, 60);
+		btWeiter.setBounds(360, 470, 100, 60);
 		btWeiter.setOpaque(false);
 		btWeiter.addActionListener(listener);
-		setVisible(false);
+		btHome = new JButton("Home");
+		btHome.setBounds(140, 470, 100, 60);
+		btHome.setOpaque(false);
+		btHome.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+				tfName.transferFocusUpCycle();
+				MenuManager.showMainMenu();
+			}
+		});
 	}
 
 	public void paint(Graphics gr) {
@@ -63,7 +72,7 @@ public class Nutzername extends JPanel implements KeyListener {
 		g.drawImage(hintergrundNutzername, -5, 0, null);
 	}
 	
-	public void nameErfassen() {
+	public static void nameErfassen() {
 		MenuManager.name = tfName.getText();
 	}
 	

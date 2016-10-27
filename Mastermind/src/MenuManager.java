@@ -74,6 +74,7 @@ public final class MenuManager {
 		Nutzername.tfName.setText("");
 		mainFrame.getContentPane().remove(Nutzername.tfName);
 		mainFrame.getContentPane().remove(Nutzername.btWeiter);
+		mainFrame.getContentPane().remove(Nutzername.btHome);
 		mainFrame.getContentPane().add(main);
 	}
 
@@ -110,6 +111,7 @@ public final class MenuManager {
 
 		removeAllContentPane();
 		mainFrame.getContentPane().add(Nutzername.btWeiter);
+		mainFrame.getContentPane().add(Nutzername.btHome);
 		mainFrame.getContentPane().add(Nutzername.tfName);
 		mainFrame.getContentPane().add(namenEingeben);
 	}
@@ -127,6 +129,7 @@ public final class MenuManager {
 		Nutzername.tfName.setText("");
 		mainFrame.getContentPane().remove(Nutzername.tfName);
 		mainFrame.getContentPane().remove(Nutzername.btWeiter);
+		mainFrame.getContentPane().remove(Nutzername.btHome);
 		mainFrame.getContentPane().add(schwierigkeit);
 	}
 

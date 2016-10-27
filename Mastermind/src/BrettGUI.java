@@ -3,6 +3,7 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
@@ -285,7 +286,8 @@ public void keyTyped(KeyEvent e) {
             try {
                   int gesetzt = 0;
                   if(done){
-                  	MenuManager.showMainMenu();
+                	  done=false;
+                	  MenuManager.showMainMenu();
                   }
                   for (int i = 0; i<4 ; i++) {
                          if (testEnter < 10 && logik.versuch[i][logik.dieVersuche]!=0){
