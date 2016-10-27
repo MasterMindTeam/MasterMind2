@@ -95,13 +95,26 @@ public class MainMenu extends JPanel implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_KP_DOWN:
+			sPressed();
+			break;
+		case KeyEvent.VK_DOWN:
+			sPressed();
+			break;
+		case KeyEvent.VK_KP_UP:
+			wPressed();
+			break;
+		case KeyEvent.VK_UP:
+			wPressed();
+			break;
+		}
+		repaint();
 	}
+
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
 
 	}
 

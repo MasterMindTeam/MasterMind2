@@ -224,106 +224,127 @@ public static BufferedImage load (String name) {
 
 @Override
 public void keyPressed(KeyEvent e) {
-     // TODO Auto-generated method stub
-     
+	try {
+	switch(e.getKeyCode()){
+	case KeyEvent.VK_KP_UP:
+		zaehlerFarbe++;
+		if (zaehlerFarbe > 2*logik.dieSchwierigkeit) {
+			zaehlerFarbe = 1;
+		}
+		logik.versuch[zaehlerPosition][logik.dieVersuche] = zaehlerFarbe;
+		repaint();
+		break;
+	case KeyEvent.VK_KP_DOWN:
+		zaehlerFarbe--;
+		if (zaehlerFarbe < 1) {
+			zaehlerFarbe = 2*logik.dieSchwierigkeit;
+		}
+		logik.versuch[zaehlerPosition][logik.dieVersuche] = zaehlerFarbe;
+		repaint();
+		break;
+	case KeyEvent.VK_KP_RIGHT:
+		zaehlerPosition++;
+		if (zaehlerPosition > 3 ) {
+			zaehlerPosition = 3;
+		}
+		zaehlerFarbe = logik.versuch[zaehlerPosition][logik.dieVersuche];
+		repaint();
+        break;
+	case KeyEvent.VK_KP_LEFT:
+		zaehlerPosition--;
+		if (zaehlerPosition < 0) {
+			zaehlerPosition = 0;
+		}
+		zaehlerFarbe = logik.versuch[zaehlerPosition][logik.dieVersuche];
+		repaint();
+		break;
+	}
+	} catch (Exception f){}
+	repaint();
 }
 
 @Override
-public void keyReleased(KeyEvent arg0) {
-     // TODO Auto-generated method stub
-     
+public void keyReleased(KeyEvent e) {
+
+
 }
 
 public void keyTyped(KeyEvent e) {
-     
      buchstabenUmwandeln(e);
-     if (e.getKeyChar() == KeyEvent.VK_W) {
-            try {
-                  zaehlerFarbe++;
-                  if (zaehlerFarbe > 2*logik.dieSchwierigkeit) {
-                         zaehlerFarbe = 1;
-                  }
-                  logik.versuch[zaehlerPosition][logik.dieVersuche] = zaehlerFarbe;
-                  repaint();
-            } catch (Exception f) {
-            }
+     try{
+	     switch(e.getKeyChar()){
+	     case KeyEvent.VK_W:
+	    	 zaehlerFarbe++;
+	    	 if (zaehlerFarbe > 2*logik.dieSchwierigkeit) {
+	    		 zaehlerFarbe = 1;
+	    	 }
+	    	 logik.versuch[zaehlerPosition][logik.dieVersuche] = zaehlerFarbe;
+	    	 repaint();
+	         break;
+	     case KeyEvent.VK_S:
+	    	 zaehlerFarbe--;
+	    	 if (zaehlerFarbe < 1) {
+	    		 zaehlerFarbe = 2*logik.dieSchwierigkeit;
+	    	 }
+	    	 logik.versuch[zaehlerPosition][logik.dieVersuche] = zaehlerFarbe;
+	    	 repaint();
+	         break;
+	     case KeyEvent.VK_D:
+	    	 zaehlerPosition++;
+	    	 if (zaehlerPosition > 3 ) {
+	    		 zaehlerPosition = 3;
+	    	 }
+	    	 zaehlerFarbe = logik.versuch[zaehlerPosition][logik.dieVersuche];
+	    	 repaint();
+	         break;
+	     case KeyEvent.VK_A:
+	    	 zaehlerPosition--;
+	    	 if (zaehlerPosition < 0) {
+	    		 zaehlerPosition = 0;
+	    	 }
+	    	 zaehlerFarbe = logik.versuch[zaehlerPosition][logik.dieVersuche];
+	    	 repaint();
+	         break;
+	     case KeyEvent.VK_ENTER:
+	    	 int gesetzt = 0;
+	    	 if(done){
+	    		 done=false;
+	    		 MenuManager.showMainMenu();
+	    	 }
+	    	 for (int i = 0; i<4 ; i++) {
+	    		 if (testEnter < 10 && logik.versuch[i][logik.dieVersuche]!=0){
+	    			 gesetzt++;
+	    		 }
+	    	 }
+	    	 if (gesetzt==4){
+	    		 testEnter++;
+	    		 if (testEnter > 9) {
+	    			 repaint();
+	    		 }
+	    		 zaehlerPosition = 0;
+	    		 zaehlerFarbe = 0;
+	    		 logik.derVergleich();
+	    		 if(logik.tempRichtig == 4){
+	    			 logik.dieVersuche = 10;
+	    			 testEnter = 10;
+	    			 repaint();
+	    		 }
+	    	 }
+	    	 repaint();
+	    	 break;
+	     case KeyEvent.VK_ESCAPE:
+	    	 if(done){
+	    		 MenuManager.showMainMenu();
+	    	 }else{
+	    		 angabeAbbrechen=JOptionPane.showConfirmDialog(null, "Zurück zum Hauptmenü?", "Abbrechen?", JOptionPane.OK_CANCEL_OPTION);
+	    		 if (angabeAbbrechen == 0) {
+	    			 MenuManager.showMainMenu();
+	    		 }
+	    	 }
+	    	 break;
+	     }
+     }catch(Exception f){
      }
-     if (e.getKeyChar() == KeyEvent.VK_S) {
-            try {
-                  zaehlerFarbe--;
-                  if (zaehlerFarbe < 1) {
-                         zaehlerFarbe = 2*logik.dieSchwierigkeit;
-                  }
-                  logik.versuch[zaehlerPosition][logik.dieVersuche] = zaehlerFarbe;
-                  repaint();
-            } catch (Exception f) {
-            }
-     }
-     if (e.getKeyChar() == KeyEvent.VK_D) {
-            try {
-                  zaehlerPosition++;
-                  
-                  if (zaehlerPosition > 3 ) {
-                         zaehlerPosition = 3;
-                  }
-                  zaehlerFarbe = logik.versuch[zaehlerPosition][logik.dieVersuche];
-                  repaint();
-            } catch (Exception f) {
-            }
-     }
-     if (e.getKeyChar() == KeyEvent.VK_A) {
-            try {
-                  zaehlerPosition--;
-                  if (zaehlerPosition < 0) {
-                         zaehlerPosition = 0;
-                  }
-                  zaehlerFarbe = logik.versuch[zaehlerPosition][logik.dieVersuche];
-                  repaint();
-            } catch (Exception f) {
-            }
-     }
-     if (e.getKeyChar() == KeyEvent.VK_ENTER) {
-            try {
-                  int gesetzt = 0;
-                  if(done){
-                	  done=false;
-                	  MenuManager.showMainMenu();
-                  }
-                  for (int i = 0; i<4 ; i++) {
-                         if (testEnter < 10 && logik.versuch[i][logik.dieVersuche]!=0){
-                                gesetzt++;
-                         }
-                  }
-                  if (gesetzt==4){
-                         testEnter++;
-                         if (testEnter > 9) {
-                                repaint();
-                         }
-                         zaehlerPosition = 0;
-                         zaehlerFarbe = 0;
-                         logik.derVergleich();
-                         if(logik.tempRichtig == 4){
-                                logik.dieVersuche = 10;
-                                testEnter = 10;
-                                repaint();
-                         }
-                  }
-                  repaint();
-            } catch (Exception f) {
-                  f.printStackTrace();
-            }
-     }
-     if (e.getKeyChar() == KeyEvent.VK_ESCAPE) {
-     if(done){
-    	 MenuManager.showMainMenu();
-     }else{
-    	 angabeAbbrechen=JOptionPane.showConfirmDialog(null, "Zurück zum Hauptmenü?", "Abbrechen?", JOptionPane.OK_CANCEL_OPTION);
-    	 if (angabeAbbrechen == 0) {
-            MenuManager.showMainMenu();
-     }
-     }
-     }
-     
 }
 
 public void buchstabenUmwandeln(KeyEvent e) {

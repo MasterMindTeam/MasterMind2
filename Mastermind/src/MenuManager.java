@@ -66,7 +66,7 @@ public final class MenuManager {
 		setAllInvisible();
 		main.setVisible(true);
 
-		 mainFrame.remove(AnzeigeHighscore.taAusgabeHighscore);
+		mainFrame.remove(AnzeigeHighscore.taAusgabeHighscore);
 		removeAllKeyListener();
 		mainFrame.addKeyListener(main);
 
