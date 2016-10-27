@@ -27,6 +27,7 @@ public class BrettGUI extends JPanel implements KeyListener {
 	SpielLogik logik = new SpielLogik(MenuManager.gameMode);
 	protected int testEnter = 0;
 	protected int angabeAbbrechen = 5;
+	protected boolean done = false;
 
 	public BrettGUI() {
 		setLayout(null);
@@ -202,9 +203,8 @@ public class BrettGUI extends JPanel implements KeyListener {
 			g.drawImage(winner, 0, 0, null);
 		} else {
 			g.drawImage(loser, 0, 0, null);
-
 		}
-       
+       done = true;
        }
 }
 
@@ -284,6 +284,9 @@ public void keyTyped(KeyEvent e) {
      if (e.getKeyChar() == KeyEvent.VK_ENTER) {
             try {
                   int gesetzt = 0;
+                  if(done){
+                  	MenuManager.showMainMenu();
+                  }
                   for (int i = 0; i<4 ; i++) {
                          if (testEnter < 10 && logik.versuch[i][logik.dieVersuche]!=0){
                                 gesetzt++;
@@ -309,9 +312,13 @@ public void keyTyped(KeyEvent e) {
             }
      }
      if (e.getKeyChar() == KeyEvent.VK_ESCAPE) {
-     angabeAbbrechen=JOptionPane.showConfirmDialog(null, "Zurück zum Hauptmenü?", "Abbrechen?", JOptionPane.OK_CANCEL_OPTION);
-     if (angabeAbbrechen == 0) {
+     if(done){
+    	 MenuManager.showMainMenu();
+     }else{
+    	 angabeAbbrechen=JOptionPane.showConfirmDialog(null, "Zurück zum Hauptmenü?", "Abbrechen?", JOptionPane.OK_CANCEL_OPTION);
+    	 if (angabeAbbrechen == 0) {
             MenuManager.showMainMenu();
+     }
      }
      }
      
@@ -324,8 +331,4 @@ public void buchstabenUmwandeln(KeyEvent e) {
      }
 }
 
-
-
 }
-
-

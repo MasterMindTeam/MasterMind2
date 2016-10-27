@@ -19,6 +19,21 @@ public class Nutzername extends JPanel implements KeyListener {
 	protected static JTextField tfName;
 	protected static JButton btWeiter;
 	protected BufferedImage hintergrundNutzername;
+	ActionListener listener = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			if (tfName.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null,"Bitte Namen angeben", "Fehler", JOptionPane.ERROR_MESSAGE);
+			}
+			else {
+				nameErfassen();
+				tfName.transferFocusUpCycle();
+				MenuManager.showSubMenu();
+			}
+		}
+		
+	};
 
 	public Nutzername() {
 		setLayout(null);
@@ -30,28 +45,18 @@ public class Nutzername extends JPanel implements KeyListener {
 		tfName.setForeground(Color.BLACK);
 		tfName.setDisabledTextColor(Color.black);
 		tfName.setHorizontalAlignment(JTextField.CENTER);
+		tfName.addActionListener(listener);
 		btWeiter = new JButton("Weiter");
 		btWeiter.setBounds(240, 470, 100, 60);
 		btWeiter.setOpaque(false);
-		btWeiter.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				if (tfName.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null,"Bitte Namen angeben", "Fehler", JOptionPane.ERROR_MESSAGE);
-				}
-				else {
-					nameErfassen();
-					MenuManager.showSubMenu();
-				}
-			}
-			
-		});
+		btWeiter.addActionListener(listener);
 		setVisible(false);
 	}
 
 	public void paint(Graphics gr) {
 		super.paintComponent(gr);
+		tfName.setEnabled(true);
+		tfName.requestFocusInWindow();
 		Graphics2D g = (Graphics2D) gr;
 		g.setColor(Color.WHITE);
 		g.fill(g.getClipBounds());
@@ -90,9 +95,7 @@ public class Nutzername extends JPanel implements KeyListener {
 		switch(e.getKeyChar()){ 
 		case KeyEvent.VK_ESCAPE:
 			MenuManager.showMainMenu();
-			break;
-		case KeyEvent.VK_Z:
-			MenuManager.showMainMenu();
+			tfName.transferFocusUpCycle();
 			break;
 		}
 

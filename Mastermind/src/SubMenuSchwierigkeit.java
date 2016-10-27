@@ -38,7 +38,6 @@ enum SubMenuPositions {
 }
 
 public class SubMenuSchwierigkeit extends JPanel implements KeyListener {
-
 	// Speichert die aktuelle Position des Zeigers (bb8) im Hauptmenü
 
 	private SubMenuPositions currentSubMenu = SubMenuPositions.LEICHT;

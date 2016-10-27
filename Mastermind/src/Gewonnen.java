@@ -20,7 +20,6 @@ public class Gewonnen {
               highscoreArray3[10][0]="11";
               try {
                      abspeichern();
-                     anzeigen();
               } catch (IOException e) {
                      e.printStackTrace();
               }
@@ -38,7 +37,6 @@ public class Gewonnen {
              schreibeStrom.write((byte)text.charAt(i));
            }
            schreibeStrom.close();
-           System.out.println("Datei " + dateiName + " ist geschrieben!");
            for (int i = 1; i<4;i++){
            inArrayLaden(lesen(i), i);
            arraySortieren(i);
@@ -114,7 +112,6 @@ public class Gewonnen {
               PrintWriter pw = new PrintWriter(dateiName);
               pw.print("");
               pw.close();
-              System.out.println("Cleared");
               String text = "";
               for(int j=0;j<10;j++){
                      switch(i){
@@ -136,7 +133,6 @@ public class Gewonnen {
                      schreibeStrom.write((byte)text.charAt(j));
               }
               schreibeStrom.close();
-              System.out.println("Datei " + dateiName + " ist geschrieben!");
        }
        
        public static String[][] arrayDeepCopy(String[][] original) {
@@ -146,33 +142,5 @@ public class Gewonnen {
                      RESULT[i] = Arrays.copyOf(original[i], original[i].length);
               }
               return RESULT;
-       }
-       
-       public static void anzeigen() throws IOException{
-             
-              System.out.println("Highscores");
-              for(int i = 0; i<3; i++){
-                     switch(i){
-                     case 0:System.out.println("Highscores - Einfach");highscoreArray=arrayDeepCopy(highscoreArray1);break;
-                     case 1:System.out.println("Highscores - Mittel");highscoreArray=arrayDeepCopy(highscoreArray2);break;
-                     case 2:System.out.println("Highscores - Schwer");highscoreArray=arrayDeepCopy(highscoreArray3);break;
-                     }
-                     System.out.println("Versuche / Name");
-                     for(int j = 0; j < 10; j++){
-                           if(highscoreArray[j][0]!=null&&highscoreArray[j][1]!=null){
-                                  if(Integer.parseInt(highscoreArray[j][0])<10){
-                                         if (Integer.parseInt(highscoreArray[j][0])==9){
-                                                System.out.print((Integer.parseInt(highscoreArray[j][0]) + 1) + "   ");
-                                         }else{
-                                                System.out.print((Integer.parseInt(highscoreArray[j][0]) + 1) + "    ");
-                                         }
-                                  }else{
-                                         System.out.print("-    ");
-                                  }
-                                  System.out.println(highscoreArray[j][1]);
-                           }
-                     }
-                     System.out.println();
-              }
        }
 }

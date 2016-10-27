@@ -35,7 +35,6 @@ public class AnzeigeHighscore extends JPanel implements KeyListener{
 		super.paintComponent(gr);
 		AnzeigeHighscore.taAusgabeHighscore.setText("");
 		for (int i = 0; i < 10; i++) {
-			System.out.println(MenuManager.gameMode);
 			switch(MenuManager.gameMode){
 			case 1:
 				if(Gewonnen.highscoreArray1[i][0]!=null){
