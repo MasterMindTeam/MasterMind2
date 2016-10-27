@@ -13,12 +13,13 @@ public final class MenuManager {
 	private static CreditsMenu credit;
 	private static BrettGUI spiel;
 	private static BildWinner winner;
-	private static Highscore highscore;
+	private static Nutzername namenEingeben;
 	private static AnzeigeHighscore anzeige;
 	private static MP3_Player music;
 	private static JFrame mainFrame;
 	protected static int gameMode;
 	protected static String name;
+	protected static boolean highscoreOderGame;
 
 	// erstellt ein Objekt von Klasse MenuManager
 	public static void main(String[] args) throws IOException {
@@ -38,7 +39,7 @@ public final class MenuManager {
 		credit = new CreditsMenu();
 		spiel = new BrettGUI();
 		winner = new BildWinner();
-		highscore = new Highscore();
+		namenEingeben = new Nutzername();
 		anzeige = new AnzeigeHighscore();
 		main.setVisible(true);
 		init();
@@ -70,9 +71,9 @@ public final class MenuManager {
 		mainFrame.addKeyListener(main);
 
 		removeAllContentPane();
-		Highscore.tfName.setText("");
-		mainFrame.getContentPane().remove(Highscore.tfName);
-		mainFrame.getContentPane().remove(Highscore.btWeiter);
+		Nutzername.tfName.setText("");
+		mainFrame.getContentPane().remove(Nutzername.tfName);
+		mainFrame.getContentPane().remove(Nutzername.btWeiter);
 		mainFrame.getContentPane().add(main);
 	}
 
@@ -96,29 +97,21 @@ public final class MenuManager {
 		mainFrame.addKeyListener(anzeige);
 
 		removeAllContentPane();
-		AnzeigeHighscore.taAusgabeHighscore.setText("");
-		for (int i = 0; i < 10; i++) {
-			if (Gewonnen.highscoreArray1[i][0] == null) {
-			} else {
-				AnzeigeHighscore.taAusgabeHighscore.append(i + 1 + ") " + Gewonnen.highscoreArray1[i][1] + "\t"
-						+ "Anzahl Versuche: " + (Integer.parseInt(Gewonnen.highscoreArray1[i][0]) + 1) + "\n");
-			}
-		}
 		mainFrame.getContentPane().add(AnzeigeHighscore.taAusgabeHighscore);
 		mainFrame.getContentPane().add(anzeige);
 	}
 
-	public static void showHighscore() {
+	public static void showNutzername() {
 		setAllInvisible();
-		highscore.setVisible(true);
+		namenEingeben.setVisible(true);
 
 		removeAllKeyListener();
-		mainFrame.addKeyListener(highscore);
+		mainFrame.addKeyListener(namenEingeben);
 
 		removeAllContentPane();
-		mainFrame.getContentPane().add(Highscore.btWeiter);
-		mainFrame.getContentPane().add(Highscore.tfName);
-		mainFrame.getContentPane().add(highscore);
+		mainFrame.getContentPane().add(Nutzername.btWeiter);
+		mainFrame.getContentPane().add(Nutzername.tfName);
+		mainFrame.getContentPane().add(namenEingeben);
 	}
 
 	// zeigt das Untermenü mit den Schwierigkeiten
@@ -131,9 +124,9 @@ public final class MenuManager {
 		mainFrame.setFocusable(true);
 
 		removeAllContentPane();
-		Highscore.tfName.setText("");
-		mainFrame.getContentPane().remove(Highscore.tfName);
-		mainFrame.getContentPane().remove(Highscore.btWeiter);
+		Nutzername.tfName.setText("");
+		mainFrame.getContentPane().remove(Nutzername.tfName);
+		mainFrame.getContentPane().remove(Nutzername.btWeiter);
 		mainFrame.getContentPane().add(schwierigkeit);
 	}
 
@@ -171,7 +164,7 @@ public final class MenuManager {
 		mainFrame.getContentPane().remove(help);
 		mainFrame.getContentPane().remove(spiel);
 		mainFrame.getContentPane().remove(winner);
-		mainFrame.getContentPane().remove(highscore);
+		mainFrame.getContentPane().remove(namenEingeben);
 		mainFrame.getContentPane().remove(anzeige);
 	}
 
@@ -182,7 +175,7 @@ public final class MenuManager {
 		mainFrame.removeKeyListener(help);
 		mainFrame.removeKeyListener(spiel);
 		mainFrame.removeKeyListener(winner);
-		mainFrame.removeKeyListener(highscore);
+		mainFrame.removeKeyListener(namenEingeben);
 		mainFrame.removeKeyListener(anzeige);
 	}
 
@@ -194,7 +187,7 @@ public final class MenuManager {
 		schwierigkeit.setVisible(false);
 		spiel.setVisible(false);
 		winner.setVisible(false);
-		highscore.setVisible(false);
+		namenEingeben.setVisible(false);
 		anzeige.setVisible(false);
 	}
 

@@ -14,16 +14,16 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class Highscore extends JPanel implements KeyListener {
+public class Nutzername extends JPanel implements KeyListener {
 
 	protected static JTextField tfName;
 	protected static JButton btWeiter;
-	protected BufferedImage hintergrundHighscore;
+	protected BufferedImage hintergrundNutzername;
 
-	public Highscore() {
+	public Nutzername() {
 		setLayout(null);
 		this.setPreferredSize(new Dimension(800, 600));
-		hintergrundHighscore = load("src/Highscore.png");
+		hintergrundNutzername = load("src/Nutzername.png");
 		tfName = new JTextField();
 		tfName.setBounds(70, 350, 450, 80);
 		tfName.setFont(new Font("HP Simplified", Font.PLAIN, 50));
@@ -55,7 +55,7 @@ public class Highscore extends JPanel implements KeyListener {
 		Graphics2D g = (Graphics2D) gr;
 		g.setColor(Color.WHITE);
 		g.fill(g.getClipBounds());
-		g.drawImage(hintergrundHighscore, -5, 0, null);
+		g.drawImage(hintergrundNutzername, -5, 0, null);
 	}
 	
 	public void nameErfassen() {

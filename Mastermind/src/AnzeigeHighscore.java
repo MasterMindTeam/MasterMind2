@@ -17,8 +17,6 @@ public class AnzeigeHighscore extends JPanel implements KeyListener{
 	
 	protected BufferedImage anzeigeHintergrund;
 	protected static JTextArea taAusgabeHighscore;
-	protected int angabeAbbrechen = 5;
-	protected static String[] namen = new String[100];
 	
 	public AnzeigeHighscore() {
 		setLayout(null);
@@ -35,6 +33,31 @@ public class AnzeigeHighscore extends JPanel implements KeyListener{
 	
 	public void paint(Graphics gr) {
 		super.paintComponent(gr);
+		AnzeigeHighscore.taAusgabeHighscore.setText("");
+		for (int i = 0; i < 10; i++) {
+			System.out.println(MenuManager.gameMode);
+			switch(MenuManager.gameMode){
+			case 1:
+				if(Gewonnen.highscoreArray1[i][0]!=null){
+					AnzeigeHighscore.taAusgabeHighscore.append(i + 1 + ") " + Gewonnen.highscoreArray1[i][1] + "\t"
+							+ "Anzahl Versuche: " + (Integer.parseInt(Gewonnen.highscoreArray1[i][0]) + 1) + "\n");
+				}
+				break;
+			case 2:
+				if(Gewonnen.highscoreArray2[i][0]!=null){
+					AnzeigeHighscore.taAusgabeHighscore.append(i + 1 + ") " + Gewonnen.highscoreArray2[i][1] + "\t"
+							+ "Anzahl Versuche: " + (Integer.parseInt(Gewonnen.highscoreArray2[i][0]) + 1) + "\n");
+				}
+				break;
+			case 3:
+				if(Gewonnen.highscoreArray3[i][0]!=null){
+					AnzeigeHighscore.taAusgabeHighscore.append(i + 1 + ") " + Gewonnen.highscoreArray3[i][1] + "\t"
+							+ "Anzahl Versuche: " + (Integer.parseInt(Gewonnen.highscoreArray3[i][0]) + 1) + "\n");
+				}
+				break;
+			default: AnzeigeHighscore.taAusgabeHighscore.append("Error404");
+			}
+		}
 		Graphics2D g = (Graphics2D) gr;
 		g.setColor(Color.WHITE);
 		g.fill(g.getClipBounds());

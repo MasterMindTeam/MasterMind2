@@ -150,12 +150,14 @@ public class MainMenu extends JPanel implements KeyListener {
 	private void enterPressed() {
 		//wenn Cursor bei Neues Spiel ist, wird das Untermenü aufgerufen
 		if (currentMainMenu == MainMenuPositions.NEUESSPIEL) {
-			MenuManager.showHighscore();
+			MenuManager.highscoreOderGame = false;
+			MenuManager.showNutzername();
 		}
 		
 		//Highscoremenü wird aufgerufen
 		if (currentMainMenu == MainMenuPositions.HIGHSCORE){
-			MenuManager.showAnzeigeHighscore();
+			MenuManager.highscoreOderGame = true;
+			MenuManager.showSubMenu();
 		}
 		
 		//wenn bei Hilfe wird das Hilfemenü aufgerufen
