@@ -9,14 +9,14 @@ public final class MenuManager {
 	// Variablendeklaration
 	private static MainMenu main;
 	private static SubMenuSchwierigkeit schwierigkeit;
-	private static HelpMenu help;
+	protected static HelpMenu help;
 	private static CreditsMenu credit;
 	private static BrettGUI spiel;
 	private static BildWinner winner;
 	private static Nutzername namenEingeben;
 	private static AnzeigeHighscore anzeige;
 	private static MP3_Player music;
-	private static JFrame mainFrame;
+	protected static JFrame mainFrame;
 	protected static int gameMode;
 	protected static String name;
 	protected static boolean highscoreOderGame;
