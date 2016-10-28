@@ -29,6 +29,7 @@ public class BrettGUI extends JPanel implements KeyListener {
 	protected int testEnter = 0;
 	protected int angabeAbbrechen = 5;
 	protected boolean done = false;
+	protected boolean helpDisplayed = false;
 
 	public BrettGUI() {
 		setLayout(null);
@@ -258,6 +259,38 @@ public void keyPressed(KeyEvent e) {
 		zaehlerFarbe = logik.versuch[zaehlerPosition][logik.dieVersuche];
 		repaint();
 		break;
+	case KeyEvent.VK_UP:
+		zaehlerFarbe++;
+		if (zaehlerFarbe > 2*logik.dieSchwierigkeit) {
+			zaehlerFarbe = 1;
+		}
+		logik.versuch[zaehlerPosition][logik.dieVersuche] = zaehlerFarbe;
+		repaint();
+		break;
+	case KeyEvent.VK_DOWN:
+		zaehlerFarbe--;
+		if (zaehlerFarbe < 1) {
+			zaehlerFarbe = 2*logik.dieSchwierigkeit;
+		}
+		logik.versuch[zaehlerPosition][logik.dieVersuche] = zaehlerFarbe;
+		repaint();
+		break;
+	case KeyEvent.VK_RIGHT:
+		zaehlerPosition++;
+		if (zaehlerPosition > 3 ) {
+			zaehlerPosition = 3;
+		}
+		zaehlerFarbe = logik.versuch[zaehlerPosition][logik.dieVersuche];
+		repaint();
+		break;
+	case KeyEvent.VK_LEFT:
+		zaehlerPosition--;
+		if (zaehlerPosition < 0) {
+			zaehlerPosition = 0;
+		}
+		zaehlerFarbe = logik.versuch[zaehlerPosition][logik.dieVersuche];
+		repaint();
+		break;
 	}
 	} catch (Exception f){}
 	repaint();
@@ -342,9 +375,25 @@ public void keyTyped(KeyEvent e) {
 	    		 }
 	    	 }
 	    	 break;
+	     case KeyEvent.VK_H:
+	    	 if(helpDisplayed){
+	    		 helpDisplayed = false;
+	    		 MenuManager.showGame();
+	    	 }else{
+	    		 showHelpInGame();
+	    	 }
 	     }
      }catch(Exception f){
      }
+}
+public void showHelpInGame(){
+	MenuManager.setAllInvisible();
+	MenuManager.help.setVisible(true);
+	
+	helpDisplayed = true;
+
+	MenuManager.removeAllContentPane();
+	MenuManager.mainFrame.getContentPane().add(MenuManager.help);
 }
 
 public void buchstabenUmwandeln(KeyEvent e) {
