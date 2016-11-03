@@ -21,7 +21,7 @@ public class AnzeigeHighscore extends JPanel implements KeyListener{
 	public AnzeigeHighscore() {
 		setLayout(null);
 		this.setPreferredSize(new Dimension(800, 600));
-		anzeigeHintergrund = load("/Mastermind/src/Highscore_2.png");
+		anzeigeHintergrund = load("Mastermind/src/Highscore_2.png");
 		taAusgabeHighscore = new JTextArea(MenuManager.name);
 		taAusgabeHighscore.setBackground(SystemColor.window);
 		taAusgabeHighscore.setBounds(70, 350, 450, 250);

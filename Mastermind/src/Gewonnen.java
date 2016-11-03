@@ -30,7 +30,7 @@ public class Gewonnen {
               text = text + Integer.toString(anzahlVersuche) + LINESEPARATOR;
            text = text + MenuManager.name + LINESEPARATOR;
            text = text + lesen(schwierigkeit).substring(0,lesen(schwierigkeit).lastIndexOf(LINESEPARATOR)) + "&" + LINESEPARATOR;
-           String dateiName = "Test" + schwierigkeit + ".txt";
+           String dateiName = "Mastermind/Highscore" + schwierigkeit + ".txt";
            FileOutputStream schreibeStrom = 
                             new FileOutputStream(dateiName);
            for (int i=0; i < text.length(); i++){
@@ -47,7 +47,7 @@ public class Gewonnen {
        public static String lesen(int i) throws IOException{
               byte zeichen=0;
               String text = "";
-              String dateiName = "Test"+i+".txt";
+              String dateiName = "Mastermind/Highscore"+i+".txt";
               FileInputStream leseStrom = new FileInputStream(dateiName);
               while(zeichen !=-1){
                      zeichen = (byte)leseStrom.read();
@@ -108,7 +108,7 @@ public class Gewonnen {
        }
        
        public static void arrayAnDatei(int i) throws IOException{
-              String dateiName = "Test"+ i + ".txt";
+              String dateiName = "Mastermind/Highscore"+ i + ".txt";
               PrintWriter pw = new PrintWriter(dateiName);
               pw.print("");
               pw.close();
