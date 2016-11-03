@@ -52,8 +52,8 @@ public class MainMenu extends JPanel implements KeyListener {
 		setLayout(null);
 		this.setPreferredSize(new Dimension(800, 600));
 		setVisible(false);
-		bg = load("src/Menü1.png");
-		bb8 = load("src/BB8.png");
+		bg = load("Mastermind/src/Menü1.png");
+		bb8 = load("Mastermind/src/BB8.png");
 	}
 	//Malt das Hintergrundbild und den Cursor in den verschiedenen Positionen
 	// bekommt das BufferedImage übergeben

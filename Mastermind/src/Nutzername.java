@@ -39,7 +39,7 @@ public class Nutzername extends JPanel implements KeyListener {
 	public Nutzername() {
 		setLayout(null);
 		this.setPreferredSize(new Dimension(800, 600));
-		hintergrundNutzername = load("src/Nutzername.png");
+		hintergrundNutzername = load("Mastermind/src/Nutzername.png");
 		tfName = new JTextField();
 		tfName.setBounds(70, 350, 450, 80);
 		tfName.setFont(new Font("HP Simplified", Font.PLAIN, 50));

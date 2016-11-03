@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -35,19 +36,19 @@ public class BrettGUI extends JPanel implements KeyListener {
 		setLayout(null);
 		this.setPreferredSize(new Dimension(800, 600));
 		setVisible(true);
-		hintergrund = load("MastermindBild.png");
-		roterKreis = load("RoterKreis.png");
-		blauerKreis = load("BlauerKreis.png");
-		gelberKreis = load("GelberKreis.png");
-		grünerKreis = load("GrünerKreis.png");
-		orangenerKreis = load("OrangenerKreis.png");
-		braunerKreis = load("BraunerKreis.png");
-		weißerKreis = load("WeißerKreis.png");
-		schwarzerKreis = load("SchwarzerKreis.png");
-		kreuz = load("Kreuz.png");
-		winner = load("Gewonnen.png");
-		loser = load("Verloren.png");
-		balken = load("Balken.png");
+		hintergrund = load("Mastermind/src/MastermindBild.png");
+		roterKreis = load("Mastermind/src/RoterKreis.png");
+		blauerKreis = load("Mastermind/src/BlauerKreis.png");
+		gelberKreis = load("Mastermind/src/GelberKreis.png");
+		grünerKreis = load("Mastermind/src/GrünerKreis.png");
+		orangenerKreis = load("Mastermind/src/OrangenerKreis.png");
+		braunerKreis = load("Mastermind/src/BraunerKreis.png");
+		weißerKreis = load("Mastermind/src/WeißerKreis.png");
+		schwarzerKreis = load("Mastermind/src/SchwarzerKreis.png");
+		kreuz = load("Mastermind/src/Kreuz.png");
+		winner = load("Mastermind/src/Gewonnen.png");
+		loser = load("Mastermind/src/Verloren.png");
+		balken = load("Mastermind/src/Balken.png");
 	}
 
 	public void paint(Graphics gr) {
@@ -211,17 +212,16 @@ public class BrettGUI extends JPanel implements KeyListener {
 }
 
 
-public static BufferedImage load (String name) {
-     try {
-            BufferedImage img = ImageIO.read(
-                         BrettGUI.class.getResourceAsStream(name)
-                         );
-            return img;
-     } catch (IOException e) {
-            e.printStackTrace();
-     }
-     return null;
-}
+	private BufferedImage load(String name) {
+		try {
+
+			return ImageIO.read(new File(name));
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 @Override
 public void keyPressed(KeyEvent e) {

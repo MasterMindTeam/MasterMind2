@@ -27,7 +27,7 @@ public class HelpMenu extends JPanel implements KeyListener {
 		this.setPreferredSize(new Dimension(800, 600));
 		setVisible(false);
 
-		hilfe = load("src/Hilfe.png");
+		hilfe = load("Mastermind/src/Hilfe.png");
 	}
 
 	// Malt die Hilfe-Oberfläche

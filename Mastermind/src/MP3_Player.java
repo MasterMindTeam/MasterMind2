@@ -12,7 +12,7 @@ public class MP3_Player {
 //	}
 	
 	public MP3_Player(){
-		String p = "Answers-REMAKE.mp3";
+		String p = "Mastermind/Answers-REMAKE.mp3";
 		try{
 			FileInputStream in = new FileInputStream(p);
 			Player pl = new Player(in);

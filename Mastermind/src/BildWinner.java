@@ -27,7 +27,7 @@ public class BildWinner extends JPanel implements KeyListener {
 		this.setPreferredSize(new Dimension(800, 600));
 		setVisible(false);
 		// lädt das Bild in den Speicher
-		winner = load("src/Gewonnen.png");
+		winner = load("/Mastermind/src/Gewonnen.png");
 	}
 
 	// malt das Bild
