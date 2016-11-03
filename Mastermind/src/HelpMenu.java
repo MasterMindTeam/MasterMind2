@@ -89,7 +89,7 @@ public class HelpMenu extends JPanel implements KeyListener {
 	}
 
 	private void zPressed() {
-		MenuManager.showMainMenu();
+		if(!BrettGUI.helpDisplayed){MenuManager.showMainMenu();}
 	}
 
 	private void sPressed() {

@@ -31,7 +31,7 @@ public class BrettGUI extends JPanel implements KeyListener {
 	protected int testEnter = 0;
 	protected int angabeAbbrechen = 5;
 	protected boolean done = false;
-	protected boolean helpDisplayed = false;
+	protected static boolean helpDisplayed = false;
 	
 	// Konstruktor, in dem die Bilder geladen werden, welche für das Spiel benötigt werden
 	public BrettGUI() {

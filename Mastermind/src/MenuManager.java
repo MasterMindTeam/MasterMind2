@@ -63,6 +63,7 @@ public final class MenuManager {
 
 	// zeigt das Hauptmenü
 	public static void showMainMenu() {
+		BrettGUI.helpDisplayed=false;
 		setAllInvisible();
 		main.setVisible(true);
 
