@@ -54,7 +54,8 @@ public class BrettGUI extends JPanel implements KeyListener {
 	}
 	
 	public void paint(Graphics gr) {
-		// logik, zaehlerFarbe, zaehlerPosition und testEnter werden auf 0 gesetzt, sobald eine Schwierigkeit ausgewählt ist 
+		// Wenn ein neues Spiel gestartet wird, dann wird ein neues Objekt von SpielLogik mit der im SubMenuSchwierigkeit
+		// gewaehlten Schwierigkeit erzeugt. zaehlerFarbe, zaehlerPosition und testEnter werden auf 0 gesetzt
 		// gameMode wird am Schluss auf 0 gesetzt, sodass die Variablen nur beim ersten Mal auf 0 gesetzt werden
 		if (MenuManager.gameMode != 0) {
 			logik = new SpielLogik(MenuManager.gameMode);
@@ -69,7 +70,7 @@ public class BrettGUI extends JPanel implements KeyListener {
 		g.fill(g.getClipBounds());
 		g.drawImage(hintergrund, 0, 0, null);
 
-		
+	// Alle eingegebenen Farben des aktuellen Spiels sind im versuch Array des aktuellen SpielLogik Objekts gespeichert
 	// Alle bisher eingegebeben Farben werden an der entsprechenden (Pixel)Stelle gezeichnet 
      for (int i = 0; i<logik.versuch.length;i++) {
             for (int j = 0; j<logik.versuch[i].length;j++) {
@@ -155,13 +156,13 @@ public class BrettGUI extends JPanel implements KeyListener {
      // hier wird der Balken gezeichnet, der die Position angibt
      // der Balken wandert je nachdem ob der Benutzer nach rechts oder nach links drückt 
    g.drawImage(balken, 100*zaehlerPosition, 6+72*logik.dieVersuche,null);
-   // hier wird die Lösung gezeichnet, abhängig von dem SChwierigkeitsgrad
+   // hier wird die Lösung gezeichnet
    // wird erst ausgeführt, wenn alle Zeilen gefüllt sind oder die Lösung gefunden wurde
    if (testEnter > 9) {
        for (int i = 0; i<logik.loesung.length;i++) {
              if (logik.loesung[i] == 1) {
                     switch (i) {
-                    case 0: g.drawImage(roterKreis, 75,      717, null); break;
+                    case 0: g.drawImage(roterKreis, 75,  717, null); break;
                     case 1: g.drawImage(roterKreis, 175, 717, null); break;
                     case 2: g.drawImage(roterKreis, 275, 717, null); break;
                     case 3: g.drawImage(roterKreis, 375, 717, null); break;
@@ -179,7 +180,7 @@ public class BrettGUI extends JPanel implements KeyListener {
              if (logik.dieSchwierigkeit>1){
              if (logik.loesung[i] == 3) {
                     switch (i) {
-                    case 0: g.drawImage(gelberKreis, 75,717, null); break;
+                    case 0: g.drawImage(gelberKreis, 75,  717, null); break;
                     case 1: g.drawImage(gelberKreis, 175, 717, null); break;
                     case 2: g.drawImage(gelberKreis, 275, 717, null); break;
                     case 3: g.drawImage(gelberKreis, 375, 717, null); break;
@@ -187,7 +188,7 @@ public class BrettGUI extends JPanel implements KeyListener {
              }
              if (logik.loesung[i] == 4) {
                     switch (i) {
-                    case 0: g.drawImage(grünerKreis, 75,717, null); break;
+                    case 0: g.drawImage(grünerKreis, 75,  717, null); break;
                     case 1: g.drawImage(grünerKreis, 175, 717, null); break;
                     case 2: g.drawImage(grünerKreis, 275, 717, null); break;
                     case 3: g.drawImage(grünerKreis, 375, 717, null); break;
@@ -197,7 +198,7 @@ public class BrettGUI extends JPanel implements KeyListener {
              if (logik.dieSchwierigkeit>2){
              if (logik.loesung[i] == 5) {
                     switch (i) {
-                    case 0: g.drawImage(orangenerKreis, 75,717, null); break;
+                    case 0: g.drawImage(orangenerKreis, 75,  717, null); break;
                     case 1: g.drawImage(orangenerKreis, 175, 717, null); break;
                     case 2: g.drawImage(orangenerKreis, 275, 717, null); break;
                     case 3: g.drawImage(orangenerKreis, 375, 717, null); break;
@@ -205,7 +206,7 @@ public class BrettGUI extends JPanel implements KeyListener {
              }
              if (logik.loesung[i] == 6) {
                     switch (i) {
-                    case 0: g.drawImage(braunerKreis, 75,717, null); break;
+                    case 0: g.drawImage(braunerKreis, 75,  717, null); break;
                     case 1: g.drawImage(braunerKreis, 175, 717, null); break;
                     case 2: g.drawImage(braunerKreis, 275, 717, null); break;
                     case 3: g.drawImage(braunerKreis, 375, 717, null); break;
@@ -357,7 +358,7 @@ public void keyTyped(KeyEvent e) {
 	     // Wenn Enter gedrückt wird, wird die nächste Zeile zum Farbe auswählen aufgerufen
 	     case KeyEvent.VK_ENTER:
 	    	 int gesetzt = 0;
-	    	 // wenn done = true ist, dann wird das Hauptmenü angezeigt , done = true, wenn der Zähler vom Enter = 10 ist 
+	    	 // wenn das Spiel zu Ende ist(done = true), dann wird das Hauptmenü ohne zusaetzliche Abfrage angezeigt
 	    	 if(done){
 	    		 done=false;
 	    		 MenuManager.showMainMenu();
@@ -385,6 +386,7 @@ public void keyTyped(KeyEvent e) {
 	    	 break;
 	    // Wenn die ESC Taste gedrückt wird, erscheint ein Fenster, ob man zurück zum Hauptmenü möchte
 	     case KeyEvent.VK_ESCAPE:
+	    	// wenn das Spiel zu Ende ist, dann wird das Hauptmenü ohne zusaetzliche Abfrage angezeigt
 	    	 if(done){
 	    		 done = false;
 	    		 MenuManager.showMainMenu();

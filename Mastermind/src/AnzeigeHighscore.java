@@ -13,13 +13,14 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class AnzeigeHighscore extends JPanel implements KeyListener{
-	
-	//Variablendeklaration 
+public class AnzeigeHighscore extends JPanel implements KeyListener {
+
+	// Variablendeklaration
 	protected BufferedImage anzeigeHintergrund;
 	protected static JTextArea taAusgabeHighscore;
-	
-	//Konstruktor, in dem die verschiedenen Komponenten sowie das Hintergrundbild hinzugefügt werden
+
+	// Konstruktor, in dem die verschiedenen Komponenten sowie das
+	// Hintergrundbild hinzugefügt werden
 	public AnzeigeHighscore() {
 		setLayout(null);
 		this.setPreferredSize(new Dimension(800, 600));
@@ -32,43 +33,42 @@ public class AnzeigeHighscore extends JPanel implements KeyListener{
 		taAusgabeHighscore.setDisabledTextColor(Color.black);
 		setVisible(false);
 	}
-	
 
 	public void paint(Graphics gr) {
 		super.paintComponent(gr);
 		AnzeigeHighscore.taAusgabeHighscore.setText("");
-		// In dem Highscore Array befindet sich die Anzahl der Versuche sowie der Name
-		// Die TextArea taAusgabeHighscore wird mit den Werten von dem Array befüllt, je nach Schwierigkeit (leicht/mittel/schwer)
+		// In dem Highscore Array befindet sich die Anzahl der Versuche sowie
+		// der zugeoerige Name
+		// Die TextArea taAusgabeHighscore wird mit den Werten von dem Array
+		// befüllt, je nach gewaehlter Schwierigkeit (leicht/mittel/schwer)
+		switch (MenuManager.gameMode) {
+		case 1:
+			Gewonnen.highscoreArray = Gewonnen.arrayDeepCopy(Gewonnen.highscoreArray1);
+			break;
+		case 2:
+			Gewonnen.highscoreArray = Gewonnen.arrayDeepCopy(Gewonnen.highscoreArray2);
+			break;
+		case 3:
+			Gewonnen.highscoreArray = Gewonnen.arrayDeepCopy(Gewonnen.highscoreArray3);
+			break;
+		}
 		for (int i = 0; i < 10; i++) {
-			switch(MenuManager.gameMode){
-			case 1:
-				if(Gewonnen.highscoreArray1[i][0]!=null){
-					AnzeigeHighscore.taAusgabeHighscore.append(i + 1 + ") " + Gewonnen.highscoreArray1[i][1] + "\t"
-							+ "Anzahl Versuche: " + (Integer.parseInt(Gewonnen.highscoreArray1[i][0]) + 1) + "\n");
-				}
-				break;
-			case 2:
-				if(Gewonnen.highscoreArray2[i][0]!=null){
-					AnzeigeHighscore.taAusgabeHighscore.append(i + 1 + ") " + Gewonnen.highscoreArray2[i][1] + "\t"
-							+ "Anzahl Versuche: " + (Integer.parseInt(Gewonnen.highscoreArray2[i][0]) + 1) + "\n");
-				}
-				break;
-			case 3:
-				if(Gewonnen.highscoreArray3[i][0]!=null){
-					AnzeigeHighscore.taAusgabeHighscore.append(i + 1 + ") " + Gewonnen.highscoreArray3[i][1] + "\t"
-							+ "Anzahl Versuche: " + (Integer.parseInt(Gewonnen.highscoreArray3[i][0]) + 1) + "\n");
-				}
-				break;
-			default: AnzeigeHighscore.taAusgabeHighscore.append("Error404");
+			// Ist der Wert an einem bestimmten Index "null" oder "99" (also der
+			// Standardwert) wird nichts ausgegeben
+			if (Gewonnen.highscoreArray[i][0] != null && Integer.parseInt(Gewonnen.highscoreArray[i][0]) != 99) {
+				AnzeigeHighscore.taAusgabeHighscore.append(i + 1 + ") " + Gewonnen.highscoreArray[i][1] + "\t"
+						+ "Anzahl Versuche: " + (Integer.parseInt(Gewonnen.highscoreArray[i][0]) + 1) + "\n");
+			} else if (i == 0 && Integer.parseInt(Gewonnen.highscoreArray[i][0]) == 99){
+				AnzeigeHighscore.taAusgabeHighscore.append("\n     Für diese Schwierigkeit wurden noch\n     keine Highscores aufgestellt.");
 			}
 		}
-		// Hintergrundbild wird gezeichnet 
+		// Hintergrundbild wird gezeichnet
 		Graphics2D g = (Graphics2D) gr;
 		g.setColor(Color.WHITE);
 		g.fill(g.getClipBounds());
 		g.drawImage(anzeigeHintergrund, -5, 0, null);
 	}
-	
+
 	// Methode zum Laden der Bilder
 	public static BufferedImage load(String name) {
 		try {
@@ -78,28 +78,30 @@ public class AnzeigeHighscore extends JPanel implements KeyListener{
 		}
 		return null;
 	}
-	
+
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	// KeyListener, der auf die Tasten ESC und Z reagiert, man landet wieder im Hauptmenü
+	// KeyListener, der auf die Tasten ESC und Z reagiert, man landet wieder im
+	// Hauptmenü
 	public void keyTyped(KeyEvent e) {
 		buchstabenUmwandeln(e);
 		// TODO Auto-generated method stub
-		if (e.getKeyChar() == KeyEvent.VK_ESCAPE||e.getKeyChar() == KeyEvent.VK_Z) {
+		if (e.getKeyChar() == KeyEvent.VK_ESCAPE || e.getKeyChar() == KeyEvent.VK_Z) {
 			MenuManager.showMainMenu();
 		}
 	}
+
 	public void buchstabenUmwandeln(KeyEvent e) {
 		// Die eingebebenen Buchstaben werden von Großbuchstaben in
 		// Kleinbuchstaben umgewandelt
@@ -108,6 +110,5 @@ public class AnzeigeHighscore extends JPanel implements KeyListener{
 		}
 
 	}
-	
 
 }
