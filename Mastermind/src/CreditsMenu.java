@@ -19,7 +19,6 @@ import javax.swing.border.EmptyBorder;
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
 // Aufzählung der Positionen im Hauptmenü
-// hallo
 
 public class CreditsMenu extends JPanel implements KeyListener {
 

@@ -15,9 +15,11 @@ import javax.swing.*;
 
 public class AnzeigeHighscore extends JPanel implements KeyListener{
 	
+	//Variablendeklaration 
 	protected BufferedImage anzeigeHintergrund;
 	protected static JTextArea taAusgabeHighscore;
 	
+	//Konstruktor, in dem die verschiedenen Komponenten sowie das Hintergrundbild hinzugefügt werden
 	public AnzeigeHighscore() {
 		setLayout(null);
 		this.setPreferredSize(new Dimension(800, 600));
@@ -31,9 +33,12 @@ public class AnzeigeHighscore extends JPanel implements KeyListener{
 		setVisible(false);
 	}
 	
+
 	public void paint(Graphics gr) {
 		super.paintComponent(gr);
 		AnzeigeHighscore.taAusgabeHighscore.setText("");
+		// In dem Highscore Array befindet sich die Anzahl der Versuche sowie der Name
+		// Die TextArea taAusgabeHighscore wird mit den Werten von dem Array befüllt, je nach Schwierigkeit (leicht/mittel/schwer)
 		for (int i = 0; i < 10; i++) {
 			switch(MenuManager.gameMode){
 			case 1:
@@ -57,13 +62,14 @@ public class AnzeigeHighscore extends JPanel implements KeyListener{
 			default: AnzeigeHighscore.taAusgabeHighscore.append("Error404");
 			}
 		}
+		// Hintergrundbild wird gezeichnet 
 		Graphics2D g = (Graphics2D) gr;
 		g.setColor(Color.WHITE);
 		g.fill(g.getClipBounds());
 		g.drawImage(anzeigeHintergrund, -5, 0, null);
 	}
 	
-	
+	// Methode zum Laden der Bilder
 	public static BufferedImage load(String name) {
 		try {
 			return ImageIO.read(new File(name));
@@ -86,6 +92,7 @@ public class AnzeigeHighscore extends JPanel implements KeyListener{
 	}
 
 	@Override
+	// KeyListener, der auf die Tasten ESC und Z reagiert, man landet wieder im Hauptmenü
 	public void keyTyped(KeyEvent e) {
 		buchstabenUmwandeln(e);
 		// TODO Auto-generated method stub

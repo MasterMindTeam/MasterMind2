@@ -21,7 +21,8 @@ import javax.swing.border.EmptyBorder;
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
 public class BrettGUI extends JPanel implements KeyListener {
-
+	
+	// Variablendeklaration 
 	protected BufferedImage hintergrund, roterKreis, blauerKreis, gelberKreis, grünerKreis, orangenerKreis, weißerKreis,
 			schwarzerKreis, braunerKreis, kreuz, winner, loser, balken;
 	protected int zaehlerFarbe = 0;
@@ -31,7 +32,8 @@ public class BrettGUI extends JPanel implements KeyListener {
 	protected int angabeAbbrechen = 5;
 	protected boolean done = false;
 	protected boolean helpDisplayed = false;
-
+	
+	// Konstruktor, in dem die Bilder geladen werden, welche für das Spiel benötigt werden
 	public BrettGUI() {
 		setLayout(null);
 		this.setPreferredSize(new Dimension(800, 600));
@@ -50,8 +52,10 @@ public class BrettGUI extends JPanel implements KeyListener {
 		loser = load("Mastermind/src/Verloren.png");
 		balken = load("Mastermind/src/Balken.png");
 	}
-
+	
 	public void paint(Graphics gr) {
+		// logik, zaehlerFarbe, zaehlerPosition und testEnter werden auf 0 gesetzt, sobald eine Schwierigkeit ausgewählt ist 
+		// gameMode wird am Schluss auf 0 gesetzt, sodass die Variablen nur beim ersten Mal auf 0 gesetzt werden
 		if (MenuManager.gameMode != 0) {
 			logik = new SpielLogik(MenuManager.gameMode);
 			zaehlerFarbe = 0;
@@ -59,18 +63,19 @@ public class BrettGUI extends JPanel implements KeyListener {
 			testEnter = 0;
 			MenuManager.gameMode = 0;
 		}
+		// Zeichnen des Hintergrundbildes 
 		Graphics2D g = (Graphics2D) gr;
 		g.setColor(Color.WHITE);
 		g.fill(g.getClipBounds());
 		g.drawImage(hintergrund, 0, 0, null);
 
 		
-		
+	// Alle bisher eingegebeben Farben werden an der entsprechenden (Pixel)Stelle gezeichnet 
      for (int i = 0; i<logik.versuch.length;i++) {
             for (int j = 0; j<logik.versuch[i].length;j++) {
      if (logik.versuch[i][j] == 1) {
             switch (i) {
-            case 0: g.drawImage(roterKreis, 75,      16+72*j, null); break;
+            case 0: g.drawImage(roterKreis, 75,  16+72*j, null); break;
             case 1: g.drawImage(roterKreis, 175, 16+72*j, null); break;
             case 2: g.drawImage(roterKreis, 275, 16+72*j, null); break;
             case 3: g.drawImage(roterKreis, 375, 16+72*j, null); break;
@@ -118,6 +123,7 @@ public class BrettGUI extends JPanel implements KeyListener {
      }
      }
      }
+     // Hier werden die schwarzen / weißen Hinweise gezeichnet, je nachdem wie viele Farben richtig ausgewählt wurden 
      for (int i = 0; i<logik.hint.length; i++){
             for (int j = 0; j<logik.hint[i].length; j++){
                   if (logik.hint[i][j] == 2){
@@ -146,7 +152,11 @@ public class BrettGUI extends JPanel implements KeyListener {
                   }
             }
      }
+     // hier wird der Balken gezeichnet, der die Position angibt
+     // der Balken wandert je nachdem ob der Benutzer nach rechts oder nach links drückt 
    g.drawImage(balken, 100*zaehlerPosition, 6+72*logik.dieVersuche,null);
+   // hier wird die Lösung gezeichnet, abhängig von dem SChwierigkeitsgrad
+   // wird erst ausgeführt, wenn alle Zeilen gefüllt sind oder die Lösung gefunden wurde
    if (testEnter > 9) {
        for (int i = 0; i<logik.loesung.length;i++) {
              if (logik.loesung[i] == 1) {
@@ -165,6 +175,7 @@ public class BrettGUI extends JPanel implements KeyListener {
                     case 3: g.drawImage(blauerKreis, 375, 717, null); break;
                     }
              }
+             // wenn die Schwierigkeit größer als 1 (Mittel oder schwer) ist, sind weitere mögliche Farben für die Lösung vorgesehen
              if (logik.dieSchwierigkeit>1){
              if (logik.loesung[i] == 3) {
                     switch (i) {
@@ -182,6 +193,7 @@ public class BrettGUI extends JPanel implements KeyListener {
                     case 3: g.drawImage(grünerKreis, 375, 717, null); break;
                     }
              }
+             // wenn die Schwierigkeit größer als 2 (schwer) ist, sind erneut mehr mögliche Farben für die Lösung vorgesehen
              if (logik.dieSchwierigkeit>2){
              if (logik.loesung[i] == 5) {
                     switch (i) {
@@ -202,6 +214,7 @@ public class BrettGUI extends JPanel implements KeyListener {
              }
              }
        }
+       // je nachdem, ob man gewonnen hat oder nicht, wird das winner / loser Bild gezeichnet 
        if (logik.tempRichtig == 4) {
 			g.drawImage(winner, 0, 0, null);
 		} else {
@@ -211,7 +224,7 @@ public class BrettGUI extends JPanel implements KeyListener {
        }
 }
 
-
+	// Laden der Bilder 
 	private BufferedImage load(String name) {
 		try {
 
@@ -227,7 +240,16 @@ public class BrettGUI extends JPanel implements KeyListener {
 public void keyPressed(KeyEvent e) {
 	try {
 	switch(e.getKeyCode()){
+	// sobald Pfeiltaste nach oben/unten/w/s gedrückt wird, wird die nächste mögliche Farbe, abhängig vom Schwierigkeitsgrad, angezeigt
 	case KeyEvent.VK_KP_UP:
+		zaehlerFarbe++;
+		if (zaehlerFarbe > 2*logik.dieSchwierigkeit) {
+			zaehlerFarbe = 1;
+		}
+		logik.versuch[zaehlerPosition][logik.dieVersuche] = zaehlerFarbe;
+		repaint();	// mit der repaint Methode wird die paint Methode erneut aufgerufen und die Bilder werden gezeichnet 
+		break;
+	case KeyEvent.VK_UP:
 		zaehlerFarbe++;
 		if (zaehlerFarbe > 2*logik.dieSchwierigkeit) {
 			zaehlerFarbe = 1;
@@ -243,30 +265,6 @@ public void keyPressed(KeyEvent e) {
 		logik.versuch[zaehlerPosition][logik.dieVersuche] = zaehlerFarbe;
 		repaint();
 		break;
-	case KeyEvent.VK_KP_RIGHT:
-		zaehlerPosition++;
-		if (zaehlerPosition > 3 ) {
-			zaehlerPosition = 3;
-		}
-		zaehlerFarbe = logik.versuch[zaehlerPosition][logik.dieVersuche];
-		repaint();
-        break;
-	case KeyEvent.VK_KP_LEFT:
-		zaehlerPosition--;
-		if (zaehlerPosition < 0) {
-			zaehlerPosition = 0;
-		}
-		zaehlerFarbe = logik.versuch[zaehlerPosition][logik.dieVersuche];
-		repaint();
-		break;
-	case KeyEvent.VK_UP:
-		zaehlerFarbe++;
-		if (zaehlerFarbe > 2*logik.dieSchwierigkeit) {
-			zaehlerFarbe = 1;
-		}
-		logik.versuch[zaehlerPosition][logik.dieVersuche] = zaehlerFarbe;
-		repaint();
-		break;
 	case KeyEvent.VK_DOWN:
 		zaehlerFarbe--;
 		if (zaehlerFarbe < 1) {
@@ -275,10 +273,28 @@ public void keyPressed(KeyEvent e) {
 		logik.versuch[zaehlerPosition][logik.dieVersuche] = zaehlerFarbe;
 		repaint();
 		break;
+	// wenn die Pfeiltaste nach rechts/d gedrückt wird, kann der nächste Kreis mit einer Farbe ausgefüllt werden
+	case KeyEvent.VK_KP_RIGHT:
+		zaehlerPosition++;
+		if (zaehlerPosition > 3 ) {
+			zaehlerPosition = 3;
+		}
+		zaehlerFarbe = logik.versuch[zaehlerPosition][logik.dieVersuche];
+		repaint();
+        break;
 	case KeyEvent.VK_RIGHT:
 		zaehlerPosition++;
 		if (zaehlerPosition > 3 ) {
 			zaehlerPosition = 3;
+		}
+		zaehlerFarbe = logik.versuch[zaehlerPosition][logik.dieVersuche];
+		repaint();
+		break;
+	// Wenn die Pfeiltaste nach links / a gedrückt wird, kann der vorherige Kreis mit einer Farbe erneut ausgefüllt werden
+	case KeyEvent.VK_KP_LEFT:
+		zaehlerPosition--;
+		if (zaehlerPosition < 0) {
+			zaehlerPosition = 0;
 		}
 		zaehlerFarbe = logik.versuch[zaehlerPosition][logik.dieVersuche];
 		repaint();
@@ -338,8 +354,10 @@ public void keyTyped(KeyEvent e) {
 	    	 zaehlerFarbe = logik.versuch[zaehlerPosition][logik.dieVersuche];
 	    	 repaint();
 	         break;
+	     // Wenn Enter gedrückt wird, wird die nächste Zeile zum Farbe auswählen aufgerufen
 	     case KeyEvent.VK_ENTER:
 	    	 int gesetzt = 0;
+	    	 // wenn done = true ist, dann wird das Hauptmenü angezeigt , done = true, wenn der Zähler vom Enter = 10 ist 
 	    	 if(done){
 	    		 done=false;
 	    		 MenuManager.showMainMenu();
@@ -365,8 +383,10 @@ public void keyTyped(KeyEvent e) {
 	    	 }
 	    	 repaint();
 	    	 break;
+	    // Wenn die ESC Taste gedrückt wird, erscheint ein Fenster, ob man zurück zum Hauptmenü möchte
 	     case KeyEvent.VK_ESCAPE:
 	    	 if(done){
+	    		 done = false;
 	    		 MenuManager.showMainMenu();
 	    	 }else{
 	    		 angabeAbbrechen=JOptionPane.showConfirmDialog(null, "Zurück zum Hauptmenü?", "Abbrechen?", JOptionPane.OK_CANCEL_OPTION);
@@ -375,6 +395,7 @@ public void keyTyped(KeyEvent e) {
 	    		 }
 	    	 }
 	    	 break;
+	    // mit H kann die Hilfe angezeigt werden oder wieder entfernt werden 
 	     case KeyEvent.VK_H:
 	    	 if(helpDisplayed){
 	    		 helpDisplayed = false;
@@ -386,6 +407,7 @@ public void keyTyped(KeyEvent e) {
      }catch(Exception f){
      }
 }
+// Hilfe wird angezeigt 
 public void showHelpInGame(){
 	MenuManager.setAllInvisible();
 	MenuManager.help.setVisible(true);

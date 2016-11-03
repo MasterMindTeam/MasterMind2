@@ -19,9 +19,11 @@ import javax.swing.border.EmptyBorder;
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
 public class BildWinner extends JPanel implements KeyListener {
-
+	
+	// Variablendeklaration
 	private BufferedImage winner;
-
+	
+	// Konstruktor, in dem das Objekt gebaut wird 
 	public BildWinner() throws IOException {
 		setLayout(null);
 		this.setPreferredSize(new Dimension(800, 600));
@@ -64,7 +66,7 @@ public class BildWinner extends JPanel implements KeyListener {
 
 	}
 
-	// Über Switch Case Auswahl
+	// Über Switch Case Auswahl werden die verschiedenen Methoden aufgerufen
 	@Override
 	public void keyTyped(KeyEvent e) {
 		buchstabenUmwandeln(e);
