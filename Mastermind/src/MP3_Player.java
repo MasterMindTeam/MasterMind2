@@ -11,6 +11,7 @@ public class MP3_Player {
 //		new MP3_Player();
 //	}
 	
+	// Laden der Musikdatei in das Programm
 	public MP3_Player(){
 		String p = "Mastermind/Answers-REMAKE.mp3";
 		try{
