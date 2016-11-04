@@ -19,9 +19,11 @@ import javax.swing.border.EmptyBorder;
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
 public class HelpMenu extends JPanel implements KeyListener {
-
+	
+	// Variablendeklaration 
 	private BufferedImage hilfe;
-
+	
+	// Konstruktor f√ºr den Bau des Obekts 
 	public HelpMenu() throws IOException {
 		setLayout(null);
 		this.setPreferredSize(new Dimension(800, 600));
@@ -30,7 +32,7 @@ public class HelpMenu extends JPanel implements KeyListener {
 		hilfe = load("Mastermind/src/Hilfe.png");
 	}
 
-	// Malt die Hilfe-Oberfl‰che
+	// Malt die Hilfe-Oberfl√§che
 	public void paint(Graphics gr) {
 		Graphics2D g = (Graphics2D) gr;
 		g.setColor(Color.WHITE);
@@ -64,6 +66,7 @@ public class HelpMenu extends JPanel implements KeyListener {
 	}
 
 	@Override
+	// KeyListener, reagiert auf den jeweiligen Tastendruck 
 	public void keyTyped(KeyEvent e) {
 		buchstabenUmwandeln(e);
 
@@ -105,7 +108,7 @@ public class HelpMenu extends JPanel implements KeyListener {
 	}
 
 	public void buchstabenUmwandeln(KeyEvent e) {
-		// Die eingebebenen Buchstaben werden von Groﬂbuchstaben in
+		// Die eingebebenen Buchstaben werden von Gro√übuchstaben in
 		// Kleinbuchstaben umgewandelt
 		if (e.getID() == KeyEvent.KEY_TYPED) {
 			e.setKeyChar(Character.toUpperCase(e.getKeyChar()));
