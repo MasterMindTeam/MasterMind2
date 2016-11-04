@@ -90,7 +90,9 @@ public final class MenuManager {
 		removeAllContentPane();
 		mainFrame.getContentPane().add(spiel);
 	}
-
+	
+	// zeigt die Highscore
+	// Komponenten wie die Textarea müssen ebenfalls hinzugefügt werden, damit sie auf dem Hintergrundbild liegen
 	public static void showAnzeigeHighscore() {
 		setAllInvisible();
 		anzeige.setVisible(true);
@@ -102,7 +104,9 @@ public final class MenuManager {
 		mainFrame.getContentPane().add(AnzeigeHighscore.taAusgabeHighscore);
 		mainFrame.getContentPane().add(anzeige);
 	}
-
+	
+	// zeigt das Eingabefenster für den Nutzernamen an
+	// Komponenten wie die Buttons oder das Textfeld müssen seperat hinzugefügt werden
 	public static void showNutzername() {
 		setAllInvisible();
 		namenEingeben.setVisible(true);
