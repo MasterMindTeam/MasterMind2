@@ -15,7 +15,8 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class Nutzername extends JPanel implements KeyListener {
-
+	
+	// Variablendeklaration
 	protected static JTextField tfName;
 	protected static JButton btHome;
 	protected static JButton btWeiter;
@@ -23,6 +24,7 @@ public class Nutzername extends JPanel implements KeyListener {
 	protected static ActionListener listener = new ActionListener() {
 
 		@Override
+		// ActionListener, falls kein Name angegeben wird, kommt eine Fehlermeldung
 		public void actionPerformed(ActionEvent arg0) {
 			if (tfName.getText().isEmpty()) {
 				JOptionPane.showMessageDialog(null,"Bitte Namen angeben", "Fehler", JOptionPane.ERROR_MESSAGE);
@@ -35,7 +37,7 @@ public class Nutzername extends JPanel implements KeyListener {
 		}
 	};
 
-
+	// Konstruktor, der das Objekt baut 
 	public Nutzername() {
 		setLayout(null);
 		this.setPreferredSize(new Dimension(800, 600));
@@ -72,11 +74,12 @@ public class Nutzername extends JPanel implements KeyListener {
 		g.drawImage(hintergrundNutzername, -5, 0, null);
 	}
 	
+	// String aus dem Textfeld wird ausgelesen
 	public static void nameErfassen() {
 		MenuManager.name = tfName.getText();
 	}
 	
-
+	// Laden des Bildes
 	public static BufferedImage load(String name) {
 		try {
 			return ImageIO.read(new File(name));
@@ -99,6 +102,7 @@ public class Nutzername extends JPanel implements KeyListener {
 	}
 
 	@Override
+	// 
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 		switch(e.getKeyChar()){ 
