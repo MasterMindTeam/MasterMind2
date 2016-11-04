@@ -18,7 +18,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
-// Aufz‰hlung der Positionen im Hauptmen¸
+// Aufz√§hlung der Positionen im Hauptmen√º
 
 enum SubMenuPositions {
 	LEICHT, MITTEL, SCHWER;
@@ -38,7 +38,7 @@ enum SubMenuPositions {
 }
 
 public class SubMenuSchwierigkeit extends JPanel implements KeyListener {
-	// Speichert die aktuelle Position des Zeigers (bb8) im Hauptmen¸
+	// Speichert die aktuelle Position des Zeigers (bb8) im Hauptmen√º
 
 	private SubMenuPositions currentSubMenu = SubMenuPositions.LEICHT;
 
@@ -52,7 +52,8 @@ public class SubMenuSchwierigkeit extends JPanel implements KeyListener {
 		bb8 = load("Mastermind/src/BB8.png");
 		sub = load("Mastermind/src/Sub.png");
 	}
-
+	
+	// Zeichnen des Bildes je nachdem, welche Schwierigkeit ausgew√§hlt wurde 
 	public void paint(Graphics gr) {
 		Graphics2D g = (Graphics2D) gr;
 		g.setColor(Color.WHITE);
@@ -73,7 +74,8 @@ public class SubMenuSchwierigkeit extends JPanel implements KeyListener {
 		}
 
 	}
-
+	
+	// Laden des Bildes 
 	private BufferedImage load(String name) {
 		try {
 
@@ -145,7 +147,9 @@ public class SubMenuSchwierigkeit extends JPanel implements KeyListener {
 	private void wPressed() {
 		currentSubMenu = currentSubMenu.previous();
 	}
-
+	
+	// Festlegen, welche Schwierigkeit ausgew√§hlt wurde
+	// wenn MenuManager.highscoreOderGame true ist, wird das Spiel angezeigt, ansonsten der Highscore
 	private void enterPressed() {
 		if (currentSubMenu == SubMenuPositions.LEICHT) {
 			MenuManager.gameMode = 1;
@@ -175,7 +179,7 @@ public class SubMenuSchwierigkeit extends JPanel implements KeyListener {
 	}
 
 	public void buchstabenUmwandeln(KeyEvent e) {
-		// Die eingebebenen Buchstaben werden von Groﬂbuchstaben in
+		// Die eingebebenen Buchstaben werden von Gro√übuchstaben in
 		// Kleinbuchstaben umgewandelt
 		if (e.getID() == KeyEvent.KEY_TYPED) {
 			e.setKeyChar(Character.toUpperCase(e.getKeyChar()));
