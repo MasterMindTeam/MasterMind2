@@ -18,11 +18,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
-// Aufzählung der Positionen im Hauptmenü
-
 public class CreditsMenu extends JPanel implements KeyListener {
-
-	// Speichert die aktuelle Position des Zeigers (bb8) im Hauptmenü
 
 	private BufferedImage  credits;
 
@@ -30,7 +26,7 @@ public class CreditsMenu extends JPanel implements KeyListener {
 		setLayout(null);
 		this.setPreferredSize(new Dimension(800, 600));
 		setVisible(false);
-
+// Credits Bild wird geladen und angezeigt
 		credits = load("Mastermind/src/Credits.png");		
 	}
 
@@ -108,11 +104,6 @@ public class CreditsMenu extends JPanel implements KeyListener {
 	}
 
 	private void enterPressed() {
-		// currentSubMenu = currentSubMenu.LEICHT;
-		//
-		// case currentMainMenu == NEUESSPIEL
-		// MenuManager.Instance.ShowSubMenuNeuesSpiel();
-
 	}
 
 	public void buchstabenUmwandeln(KeyEvent e) {

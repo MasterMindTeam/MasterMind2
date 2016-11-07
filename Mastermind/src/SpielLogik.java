@@ -173,7 +173,7 @@ public class SpielLogik {
 		dieVersuche++;
 	}
 	
-	// Verhalten wenn der Spieler gewonnen hat
+	// Verhalten wenn der Spieler gewonnen hatö
 	// Das "Gewonnen" Bild wird von der BrettGUI Klasse angezeigt
 	// Es wird ein Objekt der Gewonnen Klasse erzeugt
 	// Dort wird der Name und die Zahl der benoetigten Versuche in den Highscore eingetragen

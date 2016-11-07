@@ -7,9 +7,6 @@ import javazoom.jl.player.Player;
 
 public class MP3_Player {
 
-//	public static void main (String [] args){
-//		new MP3_Player();
-//	}
 	
 	// Laden der Musikdatei in das Programm
 	public MP3_Player(){
